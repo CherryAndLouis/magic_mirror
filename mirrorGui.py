@@ -14,6 +14,8 @@ from generateNetconfTcl import generateNetconfTcl
 import time
 
 
+
+
 class Gui_Mirror():
     def __init__(self, init_window_name):
         self.init_window_name = init_window_name
@@ -22,6 +24,7 @@ class Gui_Mirror():
         self.tempconfig = ''
         self.TMdata = []
         self.operatemtputty = Operatemtputty()
+
 
     def set_init_window(self):
         self.init_window_name.title("魔镜脚本开发系统")
@@ -32,7 +35,7 @@ class Gui_Mirror():
         # 工具logo
         self.image_file = tk.PhotoImage(file='logo.png')  # 创建图片对象
         self.imgLabel = Label(self.init_window_name, image=self.image_file)  # 把图片整合到标签类中
-        self.imgLabel.place(x=50,y=10,anchor='nw',)
+        self.imgLabel.place(x=70,y=30,anchor='nw',)
 
         # self.canvas = tk.Canvas(self.init_window_name, width=400, height=135, bg='green')
         # image_file = tk.PhotoImage(file='logo.png')
@@ -41,17 +44,24 @@ class Gui_Mirror():
 
 
         # 按钮
-        self.button1 = Button(self.init_window_name, text="连接设备", background="lightblue", foreground='black', width=10,command=self.popwind_device).place(x=100,y=100,anchor='nw',)
-        self.button2 = Button(self.init_window_name, text='连接测试仪', background="lightblue", foreground='black', width=10,command=self.popwind_Tm).place(x=100, y=180, anchor='nw')
-        self.button3 = Button(self.init_window_name, text='HOST连接', background="lightblue", foreground='black', width=10).place(x=100, y=260, anchor='nw')
-        self.button4 = Button(self.init_window_name, text=' 开始录制 ', background="lightblue", foreground='black', width=10, command=self.startest).place(x=100, y=340, anchor='nw')
-        self.button5 = Button(self.init_window_name, text=' 结束录制 ', background="lightblue", foreground='black', width=10, command=self.endtest).place(x=100, y=420, anchor='nw')
-        self.button5 = Button(self.init_window_name, text=' 生成脚本 ', background="lightblue", foreground='black', width=10, command=self.createtcl).place(x=100,
-                                                                                                                                                      y=500,
-                                                                                                                                                      anchor='nw')
-        self.button6 = Button(self.init_window_name, text='log路径设置', background="lightblue", foreground='black', width=10,command=self.creat_log).place(x=350, y=20, anchor='nw')
-        self.button7 = Button(self.init_window_name, text='生成路径设置', background="lightblue", foreground='black', width=10,command=self.creat_Tcl).place(x=550, y=20, anchor='nw')
-        self.button8 = Button(self.init_window_name, text='保存', background="lightblue", foreground='black', width=5).place(x=700, y=135, anchor='nw')
+        self.button1 = Button(self.init_window_name, text="连接设备", background="lightblue", foreground='black', width=10,command=self.popwind_device)
+        self.button1.place(x=100,y=100,anchor='nw',)
+        self.button2 = Button(self.init_window_name, text='连接测试仪', background="lightblue", foreground='black', width=10,command=self.popwind_Tm)
+        self.button2.place(x=100, y=180, anchor='nw')
+        self.button3 = Button(self.init_window_name, text='HOST连接', background="lightblue", foreground='black', width=10)
+        self.button3.place(x=100, y=260, anchor='nw')
+        self.button4 = Button(self.init_window_name, text=' 开始录制 ', background="lightblue", foreground='black', width=10, command=self.startest)
+        self.button4.place(x=100, y=340, anchor='nw')
+        self.button5 = Button(self.init_window_name, text=' 结束录制 ', background="lightblue", foreground='black', width=10, command=self.endtest)
+        self.button5.place(x=100, y=420, anchor='nw')
+        self.button6 = Button(self.init_window_name, text=' 生成脚本 ', background="lightblue", foreground='black', width=10, command=self.createtcl)
+        self.button6.place(x=100,y=500,anchor='nw')
+        self.button7 = Button(self.init_window_name, text='log路径设置', background="lightblue", foreground='black', width=10,command=self.creat_log)
+        self.button7.place(x=350, y=20, anchor='nw')
+        self.button8 = Button(self.init_window_name, text='生成路径设置', background="lightblue", foreground='black', width=10,command=self.creat_Tcl)
+        self.button8.place(x=550, y=20, anchor='nw')
+        self.button9 = Button(self.init_window_name, text='保存', background="lightblue", foreground='black', width=5)
+        self.button9.place(x=700, y=135, anchor='nw')
 
         # 输出框
         self.logtext = Text(self.init_window_name, height=4, width=70)
@@ -509,10 +519,10 @@ class Gui_Mirror():
             operator.stoprecording(self.init_window_name,devicename)
         operator.copyfile(self.logpath, './log', filelist)
         if self.tempconfig == 1:
-            extractlog = ExtractLog('./log',resultename)
+            extractlog = ExtractLog('./log/',resultename)
             extractlog.creattcl()
         elif self.tempconfig == 2:
-            generate = generateNetconfTcl('./log',resultename)
+            generate = generateNetconfTcl('./log/',resultename)
             generate.creattcl()
 
         self.open_file(resultename)

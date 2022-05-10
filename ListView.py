@@ -23,6 +23,7 @@ classes:
 
 from tkinter import *
 from tkinter import ttk
+from operatemtputty import Operatemtputty
 
 
 class ListView():
@@ -44,13 +45,15 @@ class ListView():
         self.__created = False  # 控制表格创建后，停用部分方法
         self.__check_boxes = True  # 标识是否有复选框功能
         self.__show_index = True  # 标识是否显示行号
+        self.operatemtputty = Operatemtputty()
 
     def create_listview(self):
         """
         设置好列后，执行这个函数显示出控件
         """
         if self.__created:
-            print('不能再次创建！')
+            self.operatemtputty.popwarningwin('不能再次创建！')
+            # print('不能再次创建！')
         else:
             self.__created = True
             self.cols_count = len(self.head_tags) - 1  # 第一列用作索引了
@@ -89,7 +92,8 @@ class ListView():
         :param width: 列宽度
         """
         if self.__created:
-            print('表格已经创建，在增加的列无效！')
+            self.operatemtputty.popwarningwin('表格已经创建，在增加的列无效！')
+            # print('表格已经创建，在增加的列无效！')
         else:
             self.head_tags.append(len(self.head_tags))
             self.head_widths.append(width)
@@ -124,7 +128,8 @@ class ListView():
         设置是否有复选功能
         """
         if self.__created:
-            print('表格创建后，不能设置复选状态!')
+            self.operatemtputty.popwarningwin('表格创建后，不能设置复选状态!')
+            # print('表格创建后，不能设置复选状态!')
         else:
             self.__check_boxes = state
 

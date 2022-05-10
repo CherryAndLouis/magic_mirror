@@ -984,6 +984,7 @@ class Operatemtputty():
         self.inputtext(timesethandle, '[%Y/%m/%d %H:%M:%S]')
         self.inputtext(logsethandle, logpath)
         self.clickbutton(overwritehandle)
+        time.sleep(2)
         self.clickbutton(applyhandle)
 
     def setputtylog(self):

@@ -3,6 +3,7 @@
 import re
 import os.path
 from operator import itemgetter
+from operatemtputty import Operatemtputty
 
 class generateNetconfTcl:
 
@@ -13,6 +14,7 @@ class generateNetconfTcl:
     def __init__(self, filepath="./log/", result_file="./Scheduler_ScheduleRepeats.tcl"):
         self.filepath = filepath
         self.result_file = result_file
+        self.operatemtputty = Operatemtputty()
 
     # 获取log名称中相关信息
     def getmodelname(self, modename='no_modename', tablename='no_tablename'):
@@ -114,7 +116,8 @@ class generateNetconfTcl:
                                                 continue
                                         # 此逻辑为没有logbuffer相关命令行
                                         else:
-                                            print('Log Winthout Logbuffer Config')
+                                            self.operatemtputty.popwarningwin('Log Winthout Logbuffer Config')
+                                            # print('Log Winthout Logbuffer Config')
                                             viewlist = re.sub(
                                                 re.compile('[\[<>\]]{1}'), '',
                                                 re.compile(

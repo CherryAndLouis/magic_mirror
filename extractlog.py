@@ -2,6 +2,7 @@
 import re
 import os.path
 from operator import itemgetter
+from operatemtputty import Operatemtputty
 
 
 class ExtractLog:
@@ -9,6 +10,7 @@ class ExtractLog:
     def __init__(self, filepath="./log/", result_file="./result.tcl"):
         self.filepath = filepath
         self.result_file = result_file
+        self.operatemtputty = Operatemtputty()
 
     def returnindex(self,result_data , index):
         for j in range(len(result_data[:index]) - 1, -1, -1):
@@ -171,6 +173,7 @@ class ExtractLog:
                                                 continue
                                         # 此逻辑为没有logbuffer相关命令行
                                         else:
+                                            # self.operatemtputty.popwarningwin('Log Winthout Logbuffer Config')
                                             print('Log Winthout Logbuffer Config')
                                             viewlist = re.sub(
                                                 re.compile('[\[<>\]]{1}'), '',
@@ -357,7 +360,7 @@ class ExtractLog:
         # ip_dir ={}
         # ipv6_dir = {}
         # link_dir = {}
-        if ip_dir or ipv6_dir:
+        if ip_dir or ipv6_dir or link_dir:
             for k in result_data:
                 dut_1 = k.get('dut')
                 config = k.get('config')
@@ -666,7 +669,8 @@ class ExtractLog:
                     })
                 id = id + 1
         else:
-            print('If no log meets requirements, check logs in the path')
+            self.operatemtputty.popwarningwin('If no log meets requirements, check logs in the path')
+            # print('If no log meets requirements, check logs in the path')
         return config_data
 
     # 整理log
@@ -818,7 +822,8 @@ class ExtractLog:
                     id = id + 1
             # print(config_data)
         else:
-            print('If no log meets requirements, check logs in the path')
+            self.operatemtputty.popwarningwin('If no log meets requirements, check logs in the path')
+            # print('If no log meets requirements, check logs in the path')
         return config_data
 
     # 生成tcl
