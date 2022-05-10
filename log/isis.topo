@@ -1,0 +1,24 @@
+<TOPOLOGY> name "isis.topo"
+<TOPOLOGY> graph "
+
+    +------+PORT1    PORT1+------+		+------+
+    | DUT1 |______________| DUT2 |______________| DUT3 |
+    |      |--------------|      |PORT3    PORT3|      |
+    +------+PORT2    PORT2+------+		+------+
+
+
+"
+<TOPOLOGY> description "
+	DUT1	CmwV7Device
+	DUT2	CmwV7Device
+	DUT3	CmwV7Device
+	link1,DUT1 PORT1,DUT2 PORT1
+	link2,DUT1 PORT2,DUT2 PORT2
+	link3,DUT1 PORT3,DUT2 PORT3
+"
+
+#MAP:DUT1 PORT1-GigabitEthernet2/0/1 PORT2-GigabitEthernet3/0/1,DUT2 PORT1-GigabitEthernet2/0/1 PORT2-GigabitEthernet3/0/1 PORT3-GigabitEthernet2/0/2,DUT3 PORT3-GigabitEthernet2/0/2
+#rtentryV6=DUT1 PORT1-10::1 PORT2-20::1,DUT2 PORT1-10::2 PORT2-20::2 PORT3-30::2,DUT3 PORT3-40::3 
+
+<TESTCASE_DEVICE_MAP_BEGIN>
+<TESTCASE_DEVICE_MAP_END>
