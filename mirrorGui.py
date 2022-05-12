@@ -90,7 +90,7 @@ class Gui_Mirror():
         top_log = tkinter.Toplevel()
         top_log.title('路径选择')
         max_w, max_h = top_log.maxsize()
-        top_log.geometry(f'600x50+{int((max_w - 600) / 2)}+{int((max_h - 400) / 2)}')  # 居中显示
+        top_log.geometry(f'600x50+{int((max_w - 600) / 2)}+{int((max_h - 400) / 2)}')
         top_log["bg"] = "Beige"
         top_log.resizable(width=False, height=False)
 
@@ -129,7 +129,7 @@ class Gui_Mirror():
         creat_Tcl = tkinter.Toplevel()
         creat_Tcl.title('路径选择')
         max_w, max_h = creat_Tcl.maxsize()
-        creat_Tcl.geometry(f'600x50+{int((max_w - 600) / 2)}+{int((max_h - 400) / 2)}')  # 居中显示
+        creat_Tcl.geometry(f'600x50+{int((max_w - 600) / 2)}+{int((max_h - 400) / 2)}')
         creat_Tcl["bg"] = "Beige"
         creat_Tcl.resizable(width=False, height=False)
 
