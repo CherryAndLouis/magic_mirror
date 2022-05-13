@@ -116,7 +116,7 @@ class generateNetconfTcl:
                                                 continue
                                         # 此逻辑为没有logbuffer相关命令行
                                         else:
-                                            self.operatemtputty.popwarningwin('Log Winthout Logbuffer Config')
+                                            # self.operatemtputty.popwarningwin('Log Winthout Logbuffer Config')
                                             # print('Log Winthout Logbuffer Config')
                                             viewlist = re.sub(
                                                 re.compile('[\[<>\]]{1}'), '',
