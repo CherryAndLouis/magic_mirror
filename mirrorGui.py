@@ -61,7 +61,7 @@ class Gui_Mirror():
         self.button7.place(x=350, y=20, anchor='nw')
         self.button8 = Button(self.init_window_name, text='生成路径设置', background="lightblue", foreground='black', width=10,command=self.creat_Tcl)
         self.button8.place(x=550, y=20, anchor='nw')
-        self.button9 = Button(self.init_window_name, text='保存', background="lightblue", foreground='black', width=5)
+        self.button9 = Button(self.init_window_name, text='保存', background="lightblue", foreground='black', width=5,command=self.save_file)
         self.button9.place(x=700, y=135, anchor='nw')
 
         # 输出框
@@ -502,13 +502,14 @@ class Gui_Mirror():
                 file_text = file.read()
                 self.tcltext.insert('insert', file_text)
 
-    def save_file(self, file_path):
-        file_path = filedialog.asksaveasfilename(title=u'保存⽂件')
+    def save_file(self):
+        file_path = filedialog.asksaveasfilename(title=u'保存⽂件',initialdir='./result', initialfile='tcl',filetypes=[("tcl文件", ".tcl")])
         print('保存⽂件：', file_path)
         file_text = self.tcltext.get('1.0', tk.END)
         if file_path is not None:
-            with open(file=file_path, mode='a+', encoding='gbk') as file:
+            with open(file=file_path, mode='w+', encoding='gbk') as file:
                 file.write(file_text)
+                file.close()
 
     def startest(self):
         self.select_popwind()
@@ -522,6 +523,7 @@ class Gui_Mirror():
             operator.stoprecording(self.init_window_name,devicename)
         operator.del_files('./log')
         operator.copyfile(self.logpath, './log', self.filelist)
+        self.filelist = []
         if self.tempconfig == 1:
             extractlog = ExtractLog('./log/',resultename)
             extractlog.creattcl()
