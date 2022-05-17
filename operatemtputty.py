@@ -1022,9 +1022,28 @@ class Operatemtputty():
         root.withdraw()
         tkinter.messagebox.showinfo(title='Warning', message=warningtext)
 
+    def remove_lines(self):
+        f = open('./log/DUT1.log', 'rb')
+        f_w = open('./log/DUT1.log_bak', 'w')
+        while True:
+            line = f.readline()
+            if not line:
+                break
+            else:
+                try:
+                    line.decode('utf-8')
+                    f_w.write(str(line, 'utf-8'))
+                # 为了暴露出错误，最好此处不print测试log.log
+                except UnicodeDecodeError:
+                    Operatemtputty.popwarningwin('请修改文件编码格式')
+                    print(str(line))
+                continue
+        f.close()
+        f_w.close()
+        os.remove('./log/DUT1.log')
+        os.chdir(r'.\log')
+        os.rename('DUT1.log_bak', 'DUT1.log')
 
 
 
 
-# ss = Operatemtputty()
-# ss.popwarningwin('错误')

@@ -26,6 +26,7 @@ class ExtractLog:
                 txtname = './logbak/' + filename
                 filetype_tm = re.compile('094904.log').findall(filename)
                 if filetype_tm:
+                    self.operatemtputty.remove_lines()
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
                     tmrequestitem = re.compile(
@@ -109,6 +110,7 @@ class ExtractLog:
                 txtname = self.filepath + '/' + filename
                 filetype_l = re.compile('.log').findall(filename)
                 if filetype_l:
+                    self.operatemtputty.remove_lines()
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
                     logbufferitem = re.compile(".*;\sCommand\sis\s.*").findall(lines)
@@ -173,8 +175,8 @@ class ExtractLog:
                                                 continue
                                         # 此逻辑为没有logbuffer相关命令行
                                         else:
-                                            # self.operatemtputty.popwarningwin('Log Winthout Logbuffer Config')
-                                            print('Log Winthout Logbuffer Config')
+                                            self.operatemtputty.popwarningwin('Log Winthout Logbuffer Config')
+                                            # print('Log Winthout Logbuffer Config')
                                             viewlist = re.sub(
                                                 re.compile('[\[<>\]]{1}'), '',
                                                 re.compile(
@@ -271,6 +273,7 @@ class ExtractLog:
                 txtname = self.filepath + filename
                 filetype_t = re.compile('.topo').findall(filename)
                 if filetype_t:
+                    self.operatemtputty.remove_lines()
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
                     link_item = re.compile('MAP:.*').findall(lines)
