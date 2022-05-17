@@ -173,7 +173,7 @@ class Gui_Mirror():
             devicename = device[3] + ':' + device[4]
             operator.connetdevice(device)
             operator.extraputtyset(devicename)
-            operator.setlogging(self.logpath + '\\' + device[1] + '.log')
+            operator.setlogging(self.logpath + '\\' + device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log')
             # operator.extraputtyset(devicename)
             # operator.setputtylog()
             # operator.setwindowtitle(devicename)
@@ -191,7 +191,7 @@ class Gui_Mirror():
             devicename = device[3] + ':' + device[4]
             operator.connetdevice(device)
             operator.extraputtyset(devicename)
-            operator.setlogging(self.logpath + '\\' + device[1] + '.log')
+            operator.setlogging(self.logpath + '\\' + device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log')
             # operator.extraputtyset(devicename)
             # operator.setputtylog()
             # operator.setwindowtitle(devicename)

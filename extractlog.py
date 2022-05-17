@@ -910,86 +910,92 @@ class ExtractLog:
                             DUT=key, temconfig=temp_setconfig)
                         result_file_o.write(config)
             if temp_check:
-                for index, value in enumerate(temp_check):
-                    if temp_check_num[index] == 0:
-                        if re.compile("include").findall(value):
-                            include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
-                            tempinclude_check = re.sub(re.compile("\s*\|\s*include\s*.*"), "",
-                                                       value)
-                            if re.compile('".*"').findall(include):
-                                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
-                                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
-                                    allItem_1=tempinclude_check, include=include)
-                            else:
-                                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
-                                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
-                                    allItem_1=tempinclude_check, include=include)
+                checklen = len(temp_check)
+                if checklen == 2 :
+                    pass
+                elif checklen == 3 :
+                    pass
+                else:
+                    for index, value in enumerate(temp_check):
+                        if temp_check_num[index] == 0:
+                            if re.compile("include").findall(value):
+                                include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
+                                tempinclude_check = re.sub(re.compile("\s*\|\s*include\s*.*"), "",
+                                                           value)
+                                if re.compile('".*"').findall(include):
+                                    check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                                        step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                                        allItem_1=tempinclude_check, include=include)
+                                else:
+                                    check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                                        step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                                        allItem_1=tempinclude_check, include=include)
+                                result_file_o.write(check)
+                            if re.compile("exclude").findall(value):
+                                exclude = re.sub(re.compile(".*\s*\|\s*exclude\s*"), "", value)
+                                tempexclude_check = re.sub(re.compile("\s*\|\s*exclude\s*.*"), "",
+                                                           value)
+                                if re.compile('".*"').findall(exclude):
+                                    check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                                        step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                                        allItem_1=tempexclude_check, include=exclude)
+                                else:
+                                    check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                                        step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                                        allItem_1=tempexclude_check, include=exclude)
+                                result_file_o.write(check)
+                        elif temp_check_num[index] == 1:
+                            dest_ip = re.sub('ping', '', value)
+                            pinglist =  dest_ip.split()
+                            ip = pinglist[-1]
+                            for i ,v in enumerate(pinglist):
+                                if v == '-a':
+                                    ip = ip + " -source " +pinglist[i+1]
+                            check = '\n	<CHECK> description "check {step}"\n	<CHECK> type ping\n	<CHECK> object {DUT} \n	<CHECK> expect -negative 100\n	 <CHECK> args "{dest_ip}"\n	 <CHECK> repeat 3 -interval 5 \n	      <CHECK> \n'.format(
+                                step=temp_step, DUT=temp_dut[index],
+                                dest_ip=ip)
                             result_file_o.write(check)
-                        if re.compile("exclude").findall(value):
-                            exclude = re.sub(re.compile(".*\s*\|\s*exclude\s*"), "", value)
-                            tempexclude_check = re.sub(re.compile("\s*\|\s*exclude\s*.*"), "",
-                                                       value)
-                            if re.compile('".*"').findall(exclude):
-                                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
-                                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
-                                    allItem_1=tempexclude_check, include=exclude)
-                            else:
-                                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
-                                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
-                                    allItem_1=tempexclude_check, include=exclude)
-                            result_file_o.write(check)
-                    elif temp_check_num[index] == 1:
-                        dest_ip = re.sub('ping', '', value)
-                        pinglist =  dest_ip.split()
-                        ip = pinglist[-1]
-                        for i ,v in enumerate(pinglist):
-                            if v == '-a':
-                                ip = ip + " -source " +pinglist[i+1]
-                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type ping\n	<CHECK> object {DUT} \n	<CHECK> expect -negative 100\n	 <CHECK> args "{dest_ip}"\n	 <CHECK> repeat 3 -interval 5 \n	      <CHECK> \n'.format(
-                            step=temp_step, DUT=temp_dut[index],
-                            dest_ip=ip)
-                        result_file_o.write(check)
-                    elif temp_check_num[index] == 2:
-                        include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
-                        check_1 = re.sub(re.compile("\s\|\sinclude\s.*"), "",
-                                            value)
-                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
-                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
-                            allItem_1=check_1, include=include)
-                        result_file_o.write(check)
-                    elif temp_check_num[index] == 3:
-                        if re.compile("include").findall(value):
+                        elif temp_check_num[index] == 2:
                             include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
-                            tempinclude_check = re.sub(re.compile("\s\|\sinclude\s.*"), "",
-                                                       value)
+                            check_1 = re.sub(re.compile("\s\|\sinclude\s.*"), "",
+                                                value)
                             check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
                                 step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
-                                allItem_1=tempinclude_check, include=include)
+                                allItem_1=check_1, include=include)
                             result_file_o.write(check)
-                        if re.compile("exclude").findall(value):
-                            exclude = re.sub(re.compile(".*\s*\|\s*exclude\s*"), "", value)
-                            tempexclude_check = re.sub(re.compile("\s\|\sexclude\s.*"), "",
-                                                       value)
-                            check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -exclude "{exclude}"  -checkreturn configreturn\n }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n	      <CHECK> \n'.format(
+                        elif temp_check_num[index] == 3:
+                            if re.compile("include").findall(value):
+                                include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
+                                tempinclude_check = re.sub(re.compile("\s\|\sinclude\s.*"), "",
+                                                           value)
+                                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                                    allItem_1=tempinclude_check, include=include)
+                                result_file_o.write(check)
+                            if re.compile("exclude").findall(value):
+                                exclude = re.sub(re.compile(".*\s*\|\s*exclude\s*"), "", value)
+                                tempexclude_check = re.sub(re.compile("\s\|\sexclude\s.*"), "",
+                                                           value)
+                                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -exclude "{exclude}"  -checkreturn configreturn\n }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n	      <CHECK> \n'.format(
+                                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                                    allItem_1=tempexclude_check, exclude=exclude)
+                                result_file_o.write(check)
+                        elif temp_check_num[index] == 4:
+                            dest_tracert = re.sub(re.compile('tracert'), '', value)
+                            check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    set a [{DUT1} executeTracert -target "{allItem_1}"] \n    return $a\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK>\n'.format(
                                 step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
-                                allItem_1=tempexclude_check, exclude=exclude)
+                                allItem_1=dest_tracert, include=include)
                             result_file_o.write(check)
-                    elif temp_check_num[index] == 4:
-                        dest_tracert = re.sub(re.compile('tracert'), '', value)
-                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    set a [{DUT1} executeTracert -target "{allItem_1}"] \n    return $a\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK>\n'.format(
-                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
-                            allItem_1=dest_tracert, include=include)
-                        result_file_o.write(check)
-                    elif temp_check_num[index] == 5:
-                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return\n         undo debugging  all\n         t  d \n         t m"\n		{DUT1} Send "{value}"\n		{DUT2} ClearBuffer\n		after 10000\n		set res2 [{DUT3} GetBuffer]\n		 if {{[string first "$config" $res2]!=-1}} {{\n				return 1\n		}} else {{\n			  return 0	\n      }}\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK> \n'.format(
-                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index], DUT2=temp_dut[index], DUT3=temp_dut[index],value=value)
-                        result_file_o.write(check)
-                    # elif temp_check_num[index] == 99:
-                    #     check = '}'
-                    #     result_file_o.write(check)
-                    if index==len(temp_check)-1:
-                        check = '}'
-                        result_file_o.write(check)
+                        elif temp_check_num[index] == 5:
+                            check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return\n         undo debugging  all\n         t  d \n         t m"\n		{DUT1} Send "{value}"\n		{DUT2} ClearBuffer\n		after 10000\n		set res2 [{DUT3} GetBuffer]\n		 if {{[string first "$config" $res2]!=-1}} {{\n				return 1\n		}} else {{\n			  return 0	\n      }}\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK> \n'.format(
+                                step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index], DUT2=temp_dut[index], DUT3=temp_dut[index],value=value)
+                            result_file_o.write(check)
+                        # elif temp_check_num[index] == 99:
+                        #     check = '}'
+                        #     result_file_o.write(check)
+                        if index==len(temp_check)-1:
+                            check = '}'
+                            result_file_o.write(check)
         result_file_o.write(ender)
         result_file_o.close()
 
@@ -1417,6 +1423,102 @@ class ExtractLog:
         result_file_o.write(stepend)
         result_file_o.write(ender)
         result_file_o.close()
+
+    def check_1(self, result_file_o, j):
+        temp_step = j.get('step')
+        temp_dut = j.get('dut')
+        temp_check = j.get('check')
+        temp_check_num = j.get('check_num')
+        for index, value in enumerate(temp_check):
+            if temp_check_num[index] == 0:
+                if re.compile("include").findall(value):
+                    include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
+                    tempinclude_check = re.sub(re.compile("\s*\|\s*include\s*.*"), "",
+                                               value)
+                    if re.compile('".*"').findall(include):
+                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                            allItem_1=tempinclude_check, include=include)
+                    else:
+                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                            allItem_1=tempinclude_check, include=include)
+                    result_file_o.write(check)
+                if re.compile("exclude").findall(value):
+                    exclude = re.sub(re.compile(".*\s*\|\s*exclude\s*"), "", value)
+                    tempexclude_check = re.sub(re.compile("\s*\|\s*exclude\s*.*"), "",
+                                               value)
+                    if re.compile('".*"').findall(exclude):
+                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                            allItem_1=tempexclude_check, include=exclude)
+                    else:
+                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                            allItem_1=tempexclude_check, include=exclude)
+                    result_file_o.write(check)
+            elif temp_check_num[index] == 1:
+                dest_ip = re.sub('ping', '', value)
+                pinglist = dest_ip.split()
+                ip = pinglist[-1]
+                for i, v in enumerate(pinglist):
+                    if v == '-a':
+                        ip = ip + " -source " + pinglist[i + 1]
+                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type ping\n	<CHECK> object {DUT} \n	<CHECK> expect -negative 100\n	 <CHECK> args "{dest_ip}"\n	 <CHECK> repeat 3 -interval 5 \n	      <CHECK> \n'.format(
+                    step=temp_step, DUT=temp_dut[index],
+                    dest_ip=ip)
+                result_file_o.write(check)
+            elif temp_check_num[index] == 2:
+                include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
+                check_1 = re.sub(re.compile("\s\|\sinclude\s.*"), "",
+                                 value)
+                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                    allItem_1=check_1, include=include)
+                result_file_o.write(check)
+            elif temp_check_num[index] == 3:
+                if re.compile("include").findall(value):
+                    include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
+                    tempinclude_check = re.sub(re.compile("\s\|\sinclude\s.*"), "",
+                                               value)
+                    check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                        step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                        allItem_1=tempinclude_check, include=include)
+                    result_file_o.write(check)
+                if re.compile("exclude").findall(value):
+                    exclude = re.sub(re.compile(".*\s*\|\s*exclude\s*"), "", value)
+                    tempexclude_check = re.sub(re.compile("\s\|\sexclude\s.*"), "",
+                                               value)
+                    check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -exclude "{exclude}"  -checkreturn configreturn\n }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n	      <CHECK> \n'.format(
+                        step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                        allItem_1=tempexclude_check, exclude=exclude)
+                    result_file_o.write(check)
+            elif temp_check_num[index] == 4:
+                dest_tracert = re.sub(re.compile('tracert'), '', value)
+                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    set a [{DUT1} executeTracert -target "{allItem_1}"] \n    return $a\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK>\n'.format(
+                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                    allItem_1=dest_tracert, include=include)
+                result_file_o.write(check)
+            elif temp_check_num[index] == 5:
+                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return\n         undo debugging  all\n         t  d \n         t m"\n		{DUT1} Send "{value}"\n		{DUT2} ClearBuffer\n		after 10000\n		set res2 [{DUT3} GetBuffer]\n		 if {{[string first "$config" $res2]!=-1}} {{\n				return 1\n		}} else {{\n			  return 0	\n      }}\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK> \n'.format(
+                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index], DUT2=temp_dut[index], DUT3=temp_dut[index], value=value)
+                result_file_o.write(check)
+            # elif temp_check_num[index] == 99:
+            #     check = '}'
+            #     result_file_o.write(check)
+            if index == len(temp_check) - 1:
+                check = '}'
+                result_file_o.write(check)
+
+
+    def check_2(self, result_file_o, j):
+        pass
+
+    def check_3(self, result_file_o, j):
+        pass
+
+    def check_4(self, result_file_o, j):
+        pass
 
 
 

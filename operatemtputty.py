@@ -1022,6 +1022,7 @@ class Operatemtputty():
         root.withdraw()
         tkinter.messagebox.showinfo(title='Warning', message=warningtext)
 
+<<<<<<< Updated upstream
     def remove_lines(self):
         f = open('./log/DUT1.log', 'rb')
         f_w = open('./log/DUT1.log_bak', 'w')
@@ -1044,6 +1045,19 @@ class Operatemtputty():
         os.chdir(r'.\log')
         os.rename('DUT1.log_bak', 'DUT1.log')
 
+=======
+    def del_files(self,dir, topdown=True):
+        for root, dirs, files in os.walk(dir, topdown):
+            for name in files:
+                pathname = os.path.splitext(os.path.join(root, name))
+                if (pathname[1] != ".cpp" and pathname[1] != ".hpp" and pathname[1] != ".h"):
+                    os.remove(os.path.join(root, name))
+                    print(os.path.join(root, name))
+                    dir = os.getcwd()
+                    print(dir)
+                    self.del_files(dir)  # will delete the self .py file after run !!!-_-
+                    os.removedirs(dir)  # delete the empty directory recursively
+>>>>>>> Stashed changes
 
 
 
