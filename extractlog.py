@@ -11,6 +11,7 @@ class ExtractLog:
         self.filepath = filepath
         self.result_file = result_file
         self.operatemtputty = Operatemtputty()
+        self.operatemtputty.del_notutf_8('./log')
 
     def returnindex(self,result_data , index):
         for j in range(len(result_data[:index]) - 1, -1, -1):
@@ -26,7 +27,6 @@ class ExtractLog:
                 txtname = './logbak/' + filename
                 filetype_tm = re.compile('094904.log').findall(filename)
                 if filetype_tm:
-                    self.operatemtputty.remove_lines()
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
                     tmrequestitem = re.compile(
@@ -107,10 +107,9 @@ class ExtractLog:
         partten_mainitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s[<\[]{1}\S*[>\]]{1}")
         for path, dirlist, filelist in os.walk(self.filepath):
             for filename in filelist:
-                txtname = self.filepath + '/' + filename
+                txtname = self.filepath + filename
                 filetype_l = re.compile('.log').findall(filename)
                 if filetype_l:
-                    self.operatemtputty.remove_lines()
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
                     logbufferitem = re.compile(".*;\sCommand\sis\s.*").findall(lines)
@@ -273,7 +272,6 @@ class ExtractLog:
                 txtname = self.filepath + filename
                 filetype_t = re.compile('.topo').findall(filename)
                 if filetype_t:
-                    self.operatemtputty.remove_lines()
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
                     link_item = re.compile('MAP:.*').findall(lines)
@@ -1519,6 +1517,8 @@ class ExtractLog:
 
     def check_4(self, result_file_o, j):
         pass
+
+
 
 
 

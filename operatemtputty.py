@@ -104,7 +104,7 @@ class Operatemtputty():
         #     time.sleep(1)
         win32api.SendMessage(okbutton, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, 0)  # 模拟鼠标按下
         win32api.SendMessage(okbutton, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, 0)
-        time.sleep(1)
+        time.sleep(3)
 
     def protestmasterconfig(self):
 
@@ -986,6 +986,7 @@ class Operatemtputty():
         self.clickbutton(overwritehandle)
         time.sleep(2)
         self.clickbutton(applyhandle)
+        time.sleep(2)
 
     def setputtylog(self):
         time.sleep(3)
@@ -1022,10 +1023,9 @@ class Operatemtputty():
         root.withdraw()
         tkinter.messagebox.showinfo(title='Warning', message=warningtext)
 
-<<<<<<< Updated upstream
-    def remove_lines(self):
-        f = open('./log/DUT1.log', 'rb')
-        f_w = open('./log/DUT1.log_bak', 'w')
+    def remove_lines(self,logname):
+        f = open('./log/{logname}'.format(logname=logname), 'rb')
+        f_w = open('./log/log_bak.log', 'w')
         while True:
             line = f.readline()
             if not line:
@@ -1041,23 +1041,31 @@ class Operatemtputty():
                 continue
         f.close()
         f_w.close()
-        os.remove('./log/DUT1.log')
-        os.chdir(r'.\log')
-        os.rename('DUT1.log_bak', 'DUT1.log')
+        os.remove('./log/{logname}'.format(logname=logname))
+        # os.chdir(r'.\log')
+        os.rename('./log/log_bak.log', './log/{logname}'.format(logname=logname))
 
-=======
+    def del_notutf_8(self, path):
+        for root, dirs, files in os.walk(path, True):
+            for name in files:
+                pathname = os.path.splitext(os.path.join(root, name))
+                self.remove_lines(name)
+
     def del_files(self,dir, topdown=True):
         for root, dirs, files in os.walk(dir, topdown):
             for name in files:
                 pathname = os.path.splitext(os.path.join(root, name))
-                if (pathname[1] != ".cpp" and pathname[1] != ".hpp" and pathname[1] != ".h"):
+                if (pathname[1] == ".log"):
                     os.remove(os.path.join(root, name))
-                    print(os.path.join(root, name))
-                    dir = os.getcwd()
-                    print(dir)
-                    self.del_files(dir)  # will delete the self .py file after run !!!-_-
-                    os.removedirs(dir)  # delete the empty directory recursively
->>>>>>> Stashed changes
+                    # print(os.path.join(root, name))
+                    # dir = os.getcwd()
+                    # print(dir)
+                    # self.del_files(dir)  # will delete the self .py file after run !!!-_-
+                    # os.removedirs(dir)  # delete the empty directory recursively
 
 
 
+# f = open('./log/isis.topo', 'rb')
+# f.close()
+# ss=Operatemtputty()
+# ss.del_files("./log")

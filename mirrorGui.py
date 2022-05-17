@@ -24,6 +24,7 @@ class Gui_Mirror():
         self.tempconfig = ''
         self.TMdata = []
         self.operatemtputty = Operatemtputty()
+        self.filelist = []
 
 
     def set_init_window(self):
@@ -173,7 +174,9 @@ class Gui_Mirror():
             devicename = device[3] + ':' + device[4]
             operator.connetdevice(device)
             operator.extraputtyset(devicename)
-            operator.setlogging(self.logpath + '\\' + device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log')
+            logname = device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log'
+            self.filelist.append(logname)
+            operator.setlogging(self.logpath + '\\' + logname)
             # operator.extraputtyset(devicename)
             # operator.setputtylog()
             # operator.setwindowtitle(devicename)
@@ -191,7 +194,9 @@ class Gui_Mirror():
             devicename = device[3] + ':' + device[4]
             operator.connetdevice(device)
             operator.extraputtyset(devicename)
-            operator.setlogging(self.logpath + '\\' + device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log')
+            logname = device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log'
+            self.filelist.append(logname)
+            operator.setlogging(self.logpath + '\\' + logname)
             # operator.extraputtyset(devicename)
             # operator.setputtylog()
             # operator.setwindowtitle(devicename)
@@ -510,14 +515,13 @@ class Gui_Mirror():
 
 
     def endtest(self):
-        filelist = []
         operator = Operatemtputty()
         resultename = './result/' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
         for device in self.selectdata:
-            filelist.append(device[1] + '.log')
             devicename = device[3] + ':' + device[4]
             operator.stoprecording(self.init_window_name,devicename)
-        operator.copyfile(self.logpath, './log', filelist)
+        operator.del_files('./log')
+        operator.copyfile(self.logpath, './log', self.filelist)
         if self.tempconfig == 1:
             extractlog = ExtractLog('./log/',resultename)
             extractlog.creattcl()
