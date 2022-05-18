@@ -959,6 +959,11 @@ class Operatemtputty():
         subhadle1 = win32gui.FindWindowEx(handle, 0, "SysTreeView32", "")
         self.doClick(65,26,subhadle1)
 
+    def clickwindow(self):
+        handle = win32gui.FindWindow("PuTTYConfigBox", "PuTTY Reconfiguration (Save mode : File)")
+        subhadle1 = win32gui.FindWindowEx(handle, 0, "SysTreeView32", "")
+        self.doClick(45,138,subhadle1)
+
     def setlogging(self,logpath):
         # self.extraputtyset()
         time.sleep(3)
@@ -984,6 +989,8 @@ class Operatemtputty():
         self.inputtext(timesethandle, '[%Y/%m/%d %H:%M:%S]')
         self.inputtext(logsethandle, logpath)
         self.clickbutton(overwritehandle)
+        time.sleep(2)
+        self.setloglength()
         time.sleep(2)
         self.clickbutton(applyhandle)
         time.sleep(2)
@@ -1063,6 +1070,16 @@ class Operatemtputty():
                     # self.del_files(dir)  # will delete the self .py file after run !!!-_-
                     # os.removedirs(dir)  # delete the empty directory recursively
 
+    def setloglength(self):
+        time.sleep(3)
+        self.clickwindow()
+        time.sleep(3)
+        handle = win32gui.FindWindow("PuTTYConfigBox", "PuTTY Reconfiguration (Save mode : File)")
+        handlelist = self.get_child_windows(handle)
+        lengthhandle = handlelist[6]
+        rowhandle = handlelist[8]
+        self.inputtext(lengthhandle, '500')
+        self.inputtext(rowhandle, '47')
 
 
 # f = open('./log/isis.topo', 'rb')
