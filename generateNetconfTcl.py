@@ -633,6 +633,49 @@ class generateNetconfTcl:
                     result_file_o.write(checkend)
                     result_file_o.write("\n\n\n")
 
+                elif re.match('<action>', temp) != None:
+                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' action操作"\n<CHECK> type custom\n<CHECK> args {\n'
+                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
+                    rpcxml = "".join(rpcxmltemp)
+                    result_file_o.write(checkstart)
+
+                    #目前针对数字　字符　范围内的列值
+                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    #c count t1 t2 ...都是作为中间变量 l lenth
+                    c = 1
+                    for i in sublist:
+                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t2 = t1[-1]
+                        l = len(t2)
+                        t3 = t2[1:l - 1]
+
+                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml,1)
+                        t4 = "part_{c}".format(c=c)
+                        c = c + 1
+                        result_file_o.write("\tset "+t4+" "+t3+"\n")
+
+                    c = c - 1
+                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
+                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"','\\"')
+
+                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i }  {\n\t\tset pass [lindex $lst $i]"
+
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "ok" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "ok" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "ok" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+
+                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
+
+
+                    result_file_o.write(str(checkbody1))
+                    result_file_o.write(str(checkbody2))
+                    result_file_o.write(str(checkbody3))
+                    result_file_o.write(str(checkbody4))
+                    result_file_o.write(str(checkbody5))
+
+                    result_file_o.write(checkend)
+                    result_file_o.write("\n\n\n")
+
 
         # 拼接脚本尾　
         result_file_o.write(stepend)
