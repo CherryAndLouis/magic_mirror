@@ -173,6 +173,7 @@ class Gui_Mirror():
         for device in self.selectdata:
             devicename = device[3] + ':' + device[4]
             operator.connetdevice(device)
+            time.sleep(3)
             operator.extraputtyset(devicename)
             logname = device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log'
             self.filelist.append(logname)
@@ -193,6 +194,7 @@ class Gui_Mirror():
         for device in self.selectdata:
             devicename = device[3] + ':' + device[4]
             operator.connetdevice(device)
+            time.sleep(3)
             operator.extraputtyset(devicename)
             logname = device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log'
             self.filelist.append(logname)

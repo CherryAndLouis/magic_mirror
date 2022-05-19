@@ -1086,3 +1086,4 @@ class Operatemtputty():
 # f.close()
 # ss=Operatemtputty()
 # ss.del_files("./log")
+

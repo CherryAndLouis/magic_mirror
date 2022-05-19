@@ -910,9 +910,9 @@ class ExtractLog:
             if temp_check:
                 checklen = len(temp_check)
                 if checklen == 2 :
-                    pass
+                    self.check_1( result_file_o, j)
                 elif checklen == 3 :
-                    pass
+                    self.check_1(result_file_o, j)
                 else:
                     for index, value in enumerate(temp_check):
                         if temp_check_num[index] == 0:
