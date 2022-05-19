@@ -929,21 +929,47 @@ class Operatemtputty():
         subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename)
         subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename)
         subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename)
-        if subhadle4:  # ---找到mtputty中对应子窗口
-            menu = win32gui.GetMenu(subhadle4)  # get menu from handle
-            menu1 = win32gui.GetSubMenu(menu, 0)  # get server menu
-            cmd_ID = win32gui.GetMenuItemID(menu1, 5)  # get add server bottom
-            win32gui.PostMessage(subhadle4, win32con.WM_COMMAND, cmd_ID, 0)  # bottom
-        else:
-            handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
-            subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
-            subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename.split(':')[0])
-            subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename.split(':')[0])
-            subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename.split(':')[0] + " - PuTTY")
-            menu = win32gui.GetMenu(subhadle4)  # get menu from handle
-            menu1 = win32gui.GetSubMenu(menu, 0)  # get server menu
-            cmd_ID = win32gui.GetMenuItemID(menu1, 5)  # get add server bottom
-            win32gui.PostMessage(subhadle4, win32con.WM_COMMAND, cmd_ID, 0)  # bottom
+        try:
+            if subhadle4:  # ---找到mtputty中对应子窗口
+                menu = win32gui.GetMenu(subhadle4)  # get menu from handle
+                menu1 = win32gui.GetSubMenu(menu, 0)  # get server menu
+                cmd_ID = win32gui.GetMenuItemID(menu1, 5)  # get add server bottom
+                win32gui.PostMessage(subhadle4, win32con.WM_COMMAND, cmd_ID, 0)  # bottom
+            else:
+                handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+                subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
+                subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename.split(':')[0])
+                subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename.split(':')[0])
+                subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename.split(':')[0] + " - PuTTY")
+                menu = win32gui.GetMenu(subhadle4)  # get menu from handle
+                menu1 = win32gui.GetSubMenu(menu, 0)  # get server menu
+                cmd_ID = win32gui.GetMenuItemID(menu1, 5)  # get add server bottom
+                win32gui.PostMessage(subhadle4, win32con.WM_COMMAND, cmd_ID, 0)  # bottom
+        except:
+            self.popwarningwin('获取句柄失败，重试一次')
+            try:
+                handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+                subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
+                subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename)
+                subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename)
+                subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename)
+                if subhadle4:  # ---找到mtputty中对应子窗口
+                    menu = win32gui.GetMenu(subhadle4)  # get menu from handle
+                    menu1 = win32gui.GetSubMenu(menu, 0)  # get server menu
+                    cmd_ID = win32gui.GetMenuItemID(menu1, 5)  # get add server bottom
+                    win32gui.PostMessage(subhadle4, win32con.WM_COMMAND, cmd_ID, 0)  # bottom
+                else:
+                    handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+                    subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
+                    subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename.split(':')[0])
+                    subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename.split(':')[0])
+                    subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename.split(':')[0] + " - PuTTY")
+                    menu = win32gui.GetMenu(subhadle4)  # get menu from handle
+                    menu1 = win32gui.GetSubMenu(menu, 0)  # get server menu
+                    cmd_ID = win32gui.GetMenuItemID(menu1, 5)  # get add server bottom
+                    win32gui.PostMessage(subhadle4, win32con.WM_COMMAND, cmd_ID, 0)  # bottom
+            except:
+                self.popwarningwin('获取句柄失败！')
 
         # def get_menu_item_txt(menu, idx):
         #     import win32gui_struct
