@@ -202,6 +202,38 @@ class generateNetconfTcl:
 
         return result_data, print_data, configreturn
 
+    def getnetconflog(self):
+        netconfdata = []
+        # patten_netconflog = re.compile("%[A-Za-z]*\s*\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}:\d{1,3}\s\d{4}\s*([^%]*)</rpc>")
+        patten_netconflog = re.compile("(\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}]\s*[[<\[]*.*[>\]]*]*%[A-Za-z]*\s*\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}:\d{1,3}\s\d{4}\s*)([^%]*)(</rpc>)")
+        # patten_netconflog = re.compile(
+            # "\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}]\s*[[<\[]*.*[>\]]*]*%[A-Za-z]*\s*\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}:\d{1,3}\s\d{4}\s*")
+        for path, dirlist, filelist in os.walk(self.filepath):
+            for filename in filelist:
+                txtname = self.filepath + filename
+                filetype_l = re.compile('.log').findall(filename)
+                if filetype_l:
+                    comand = open(txtname, encoding='utf-8')
+                    lines = comand.read()
+                    netconflog = patten_netconflog.findall(lines)
+                    if netconflog:
+                        for log in netconflog:
+                            log = log[0]+log[1]+log[2]
+                            date = re.sub(re.compile('[\[\]]{1}'), "", re.compile(
+                                "\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]").findall(
+                                log)[
+                                0])
+                            log = ''.join(log.split('\n'))
+                            log = re.sub(re.compile('\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s*'), '', log)
+                            netconfdata.append({
+                                'time': date,
+                                'config': log
+                            })
+        comand.close()
+        # netconfdata.sort(key=itemgetter('time'))
+        return netconfdata
+
+
     # 生成tcl
     def creattcl(self):
         result_data, print_data, configreturn = self.disposelog()
@@ -683,4 +715,10 @@ class generateNetconfTcl:
         result_file_o.close()
 
 
-
+# ss = generateNetconfTcl()
+# aa = ss.getnetconflog()
+# print(aa)
+# zz = '[2022/04/25 17:20:10] %Apr 25 16:57:33:648 2022 H3C XMLSOAP/6/XML_REQUEST: -MDC=1; netconf from 172.17.0.232,session id 3,message-id 101,receive get request.<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:web="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101"><get><filter type="subtree"><top xmlns="http://www.h3c.com/netconf/data:1.0"><ND><NdProxySendEnable><SendEnable><IfIndex>433</IfIndex><Enable>0</Enable></SendEnable></NdProxySendEnable></ND></top></filter></get></rpc>'
+# qq = re.compile(
+#             "\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}]\s*[[<\[]*.*[>\]]*]*%[A-Za-z]*\s*\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}:\d{1,3}\s\d{4}\s*.*").findall(zz)
+# print(qq)

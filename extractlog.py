@@ -100,11 +100,11 @@ class ExtractLog:
         print_data = []
         configreturn = []
         partten_norule = "\[\d{4}(?:-|\/|.)\d{1,2}(?:-|\/|.)\d{1,2}\s\d{1,2}\:\d{1,2}\:\d{1,2}\]\s.*"
-        patten_allitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s[<\[]{1}.*[>\]]{1}.*")
+        patten_allitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s*[<\[]{1}.*[>\]]{1}.*")
         patten_sysnameitem = re.compile("[<\[>\]]{1}")
         partten_print = re.compile(
             '%[A-Za-z]*\s*\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}:\d{1,3}\s\d{4}\s.*')
-        partten_mainitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s[<\[]{1}\S*[>\]]{1}")
+        partten_mainitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s*[<\[]{1}\S*[>\]]{1}")
         for path, dirlist, filelist in os.walk(self.filepath):
             for filename in filelist:
                 txtname = self.filepath + filename
@@ -174,8 +174,8 @@ class ExtractLog:
                                                 continue
                                         # 此逻辑为没有logbuffer相关命令行
                                         else:
-                                            self.operatemtputty.popwarningwin('Log Winthout Logbuffer Config')
-                                            # print('Log Winthout Logbuffer Config')
+                                            # self.operatemtputty.popwarningwin('Log Winthout Logbuffer Config')
+                                            print('Log Winthout Logbuffer Config')
                                             viewlist = re.sub(
                                                 re.compile('[\[<>\]]{1}'), '',
                                                 re.compile(
