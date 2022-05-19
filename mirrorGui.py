@@ -96,7 +96,7 @@ class Gui_Mirror():
         top_log.resizable(width=False, height=False)
 
         def selectPath():
-            path_ = filedialog.askdirectory()  # 使用askdirectory()方法返回文件夹的路径
+            path_ = filedialog.askdirectory(initialdir='./devicelog')  # 使用askdirectory()方法返回文件夹的路径
             if path_ == "":
                 path_ = path.get()  # 当打开文件路径选择框后点击"取消" 输入框会清空路径，所以使用get()方法再获取一次路径
             else:
@@ -135,7 +135,7 @@ class Gui_Mirror():
         creat_Tcl.resizable(width=False, height=False)
 
         def selectPath():
-            path_ = filedialog.askdirectory()  # 使用askdirectory()方法返回文件夹的路径
+            path_ = filedialog.askdirectory(initialdir='./result')  # 使用askdirectory()方法返回文件夹的路径
             if path_ == "":
                 path_ = path.get()  # 当打开文件路径选择框后点击"取消" 输入框会清空路径，所以使用get()方法再获取一次路径
             else:
