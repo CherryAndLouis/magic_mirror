@@ -99,12 +99,12 @@ class ExtractLog:
         result_data = []
         print_data = []
         configreturn = []
-        partten_norule = "\[\d{4}(?:-|\/|.)\d{1,2}(?:-|\/|.)\d{1,2}\s\d{1,2}\:\d{1,2}\:\d{1,2}\]\s.*"
-        patten_allitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s*[<\[]{1}.*[>\]]{1}.*")
+        partten_norule = "\[\d{4}(?:-|\/|.)\d{1,2}(?:-|\/|.)\d{1,2}\s\d{1,2}\:\d{1,2}\:\d{1,2}\]\s*.*"
+        patten_allitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}]\s*[<\[]{1}.*[>\]]{1}.*")
         patten_sysnameitem = re.compile("[<\[>\]]{1}")
         partten_print = re.compile(
-            '%[A-Za-z]*\s*\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}:\d{1,3}\s\d{4}\s.*')
-        partten_mainitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s*[<\[]{1}\S*[>\]]{1}")
+            '%[A-Za-z]*\s*\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}:\d{1,3}\s\d{4}\s*.*')
+        partten_mainitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}]\s*[<\[]{1}\S*[>\]]{1}")
         for path, dirlist, filelist in os.walk(self.filepath):
             for filename in filelist:
                 txtname = self.filepath + filename
@@ -112,7 +112,7 @@ class ExtractLog:
                 if filetype_l:
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
-                    logbufferitem = re.compile(".*;\sCommand\sis\s.*").findall(lines)
+                    logbufferitem = re.compile(".*;\s*Command\s*is\s*.*").findall(lines)
                     # logbufferitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s%.*;\sCommand\sis\s.*").findall(lines)
                     logbufferlist = []
                     for logbuffer in logbufferitem:
@@ -122,12 +122,12 @@ class ExtractLog:
                     allItem = patten_allitem.findall(lines)
                     sysName_f = re.compile("^[A-Za-z0-9\-]*").findall(filename)
                     sysName = re.sub(patten_sysnameitem, '', re.sub(re.compile(
-                        "\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]"), "", partten_mainitem.findall(allItem[1])[0]))
+                        "\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}]"), "", partten_mainitem.findall(allItem[1])[0]))
                     for item in noruleItem:
                         incSysname = patten_allitem.findall(item)
                         printItem = partten_print.findall(item)
                         date = re.sub(re.compile('[\[\]]{1}'), "", re.compile(
-                            "\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]").findall(
+                            "\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s*\d{1,2}:\d{1,2}:\d{1,2}]").findall(
                             item)[
                             0])
                         if not printItem:
@@ -454,6 +454,7 @@ class ExtractLog:
                 check_num = 3 为dir查看文件check
                 check_num = 4 为tracert查看文件check
                 check_num = 5 为校验debug信息
+                check_num = 99 为当前命令为display不带include，下条命令是display带include
                 '''
                 disItem = re.compile("^dis").findall(k.get("config").lstrip())
                 includecheck = re.compile("include").findall(k.get("config"))
@@ -468,17 +469,34 @@ class ExtractLog:
                 if disItem or ping_check or capture_check or dir_check or tracert_check or debug_check:
                     # display 显示类信息流程处理
                     if disItem:
-                        if re.compile("include").findall(k.get("config")) or re.compile("exclude").findall(k.get("config")):
+                        if re.compile("|\s*in").findall(k.get("config")) or re.compile("|\s*ex").findall(k.get("config")):
                             dutlist.append(dut)
                             checkdatelist.append(date)
                             checknumlist.append(0)
                             checklist.append(k.get('config'))
                         # display不带include命令处理逻辑
-                        # else:
-                        #     dutlist.append(dut)
-                        #     checkdatelist.append(date)
-                        #     checknumlist.append(99)
-                        #     checklist.append(k.get('config'))
+                        else:
+                            # 判断是不是最后一条命令
+                            if result_data[i+1] :
+                                next_data = result_data[i+1]
+                                # 判断下一条命令是不是dis 相关
+                                if re.compile("^dis").findall(next_data.get("config").lstrip()):
+                                    # 下条命令是否带include或者exclude
+                                    if re.compile("|\s*in").findall(next_data.get("config")) or re.compile("|\s*ex").findall(next_data.get("config")):
+                                        dutlist.append(dut)
+                                        checkdatelist.append(date)
+                                        checknumlist.append(99)
+                                        checklist.append(k.get('config'))
+                                    # 下条命令不带include或者exclude，是一条正常的display命令
+                                    else:
+                                        continue
+                                # 下条命令不带display
+                                else:
+                                    continue
+                            # 最后一条命令
+                            else:
+                                continue
+
                     if dir_check:
                         if re.compile("include").findall(k.get("config")) or re.compile("exclude").findall(k.get("config")):
                             dutlist.append(dut)
@@ -670,7 +688,7 @@ class ExtractLog:
                     })
                 id = id + 1
         else:
-            self.operatemtputty.popwarningwin('If no log meets requirements, check logs in the path')
+            self.operatemtputty.popwarningwin('请检查log文件夹下是否存在log')
             # print('If no log meets requirements, check logs in the path')
         return config_data
 
@@ -996,7 +1014,6 @@ class ExtractLog:
                             result_file_o.write(check)
         result_file_o.write(ender)
         result_file_o.close()
-
 
     def generatenetconftcl(self):
         result_data, print_data, configreturn = self.disposelog()
@@ -1507,7 +1524,6 @@ class ExtractLog:
             if index == len(temp_check) - 1:
                 check = '}'
                 result_file_o.write(check)
-
 
     def check_2(self, result_file_o, j):
         pass

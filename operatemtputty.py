@@ -552,6 +552,28 @@ class Operatemtputty():
         win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
         win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
         win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('v'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('a'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('b'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
         win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
         win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
         win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
@@ -1069,7 +1091,7 @@ class Operatemtputty():
                     f_w.write(str(line, 'utf-8'))
                 # 为了暴露出错误，最好此处不print测试log.log
                 except UnicodeDecodeError:
-                    Operatemtputty.popwarningwin('请修改文件编码格式')
+                    self.popwarningwin('请修改文件编码格式')
                     print(str(line))
                 continue
         f.close()
