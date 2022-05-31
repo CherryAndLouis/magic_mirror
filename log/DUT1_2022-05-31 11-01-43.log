@@ -1,0 +1,1715 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2022.05.31 11:02:01 =~=~=~=~=~=~=~=~=~=~=~=
+
+[2022/05/31 11:02:05] <DUT1>
+[2022/05/31 11:02:05] <DUT1>save mirror.cfg
+[2022/05/31 11:02:05] The current configuration will be saved to flash:/mirror.cfg. Continue? [Y/N]:
+[2022/05/31 11:02:05] Before pressing ENTER you must choose 'YES' or 'NO'[Y/N]:y
+[2022/05/31 11:02:07] flash:/mirror.cfg exists, overwrite? [Y/N]:
+[2022/05/31 11:02:07] Before pressing ENTER you must choose 'YES' or 'NO'[Y/N]:y
+[2022/05/31 11:02:10] Now saving current configuration to the device.
+[2022/05/31 11:02:10] Saving configuration flash:/mirror.cfg.Please wait...
+[2022/05/31 11:02:11] Configuration is saved to device successfully.
+[2022/05/31 11:02:11] <DUT1>
+[2022/05/31 11:02:11] <DUT1>
+[2022/05/31 11:02:14] <DUT1>
+[2022/05/31 11:02:14] <DUT1>reset logbuffer
+[2022/05/31 11:02:14] <DUT1>
+[2022/05/31 11:02:14] <DUT1>
+[2022/05/31 11:02:14] <DUT1>
+[2022/05/31 11:02:14] <DUT1>
+[2022/05/31 11:02:14] <DUT1>
+[2022/05/31 11:02:14] <DUT1>####start####
+[2022/05/31 11:02:14] <DUT1>
+[2022/05/31 11:02:14] <DUT1>sy
+[2022/05/31 11:04:44] System View: return to User View with Ctrl+Z.
+[2022/05/31 11:04:44] [DUT1]
+[2022/05/31 11:04:45] [DUT1]        segment-routing ipv6
+[2022/05/31 11:04:45] [DUT1-segment-routing-ipv6]        traffic-engineering
+[2022/05/31 11:04:45] [DUT1-srv6-te]        policy p1
+[2022/05/31 11:04:45] [DUT1-srv6-te-policy-p1]        binding-sid ipv6 3456::11
+[2022/05/31 11:04:46] [DUT1-srv6-te-policy-p1]int g 2/0/1
+[2022/05/31 11:05:35] [DUT1-GigabitEthernet2/0/1]dis th
+[2022/05/31 11:05:37] #
+[2022/05/31 11:05:37] interface GigabitEthernet2/0/1
+[2022/05/31 11:05:37]  port link-mode route
+[2022/05/31 11:05:37]  combo enable fiber
+[2022/05/31 11:05:37]  ip binding vpn-instance v1
+[2022/05/31 11:05:37]  ip address 101.0.0.1 255.255.255.0
+[2022/05/31 11:05:37]  ipv6 address 101::1/64
+[2022/05/31 11:05:37] #
+[2022/05/31 11:05:37] return
+[2022/05/31 11:05:37] [DUT1-GigabitEthernet2/0/1]
+[2022/05/31 11:05:46] [DUT1-GigabitEthernet2/0/1]        undo ip binding vpn-instance
+[2022/05/31 11:05:46] Some configurations on the interface are removed.
+[2022/05/31 11:05:46] [DUT1-GigabitEthernet2/0/1]        ip address 101.0.0.1 255.255.255.0
+[2022/05/31 11:05:46] [DUT1-GigabitEthernet2/0/1]        ipv6 address 101::1/64
+[2022/05/31 11:05:46] [DUT1-GigabitEthernet2/0/1]        
+[2022/05/31 11:05:46] [DUT1-GigabitEthernet2/0/1]        ipv6 route-static 110::1 128 101::2
+[2022/05/31 11:05:46] [DUT1]int g 2/0/3
+[2022/05/31 11:06:18] [DUT1-GigabitEthernet2/0/3]dsi th
+[2022/05/31 11:06:19]                            ^
+[2022/05/31 11:06:19]  % Unrecognized command found at '^' position.
+[2022/05/31 11:06:19] [DUT1-GigabitEthernet2/0/3]dis th
+[2022/05/31 11:06:21] #
+[2022/05/31 11:06:21] interface GigabitEthernet2/0/3
+[2022/05/31 11:06:21]  port link-mode route
+[2022/05/31 11:06:21]  combo enable fiber
+[2022/05/31 11:06:21]  ip address 20.0.13.1 255.255.255.0
+[2022/05/31 11:06:21]  ipv6 address 20:0:13::1/64
+[2022/05/31 11:06:21] #
+[2022/05/31 11:06:21] return
+[2022/05/31 11:06:21] [DUT1-GigabitEthernet2/0/3]quit
+[2022/05/31 11:07:33] [DUT1]dis seg ipv6 te po stat
+[2022/05/31 11:07:39] [DUT1]dis seg ipv6 te po stat
+[2022/05/31 11:07:40]                       ^
+[2022/05/31 11:07:40]  % Ambiguous command found at '^' position.
+[2022/05/31 11:07:40] [DUT1]display seg
+[2022/05/31 11:07:46] [DUT1]display segment-routing [1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[Jdi[1D[J[1D[J
+[2022/05/31 11:07:50] [DUT1]
+[2022/05/31 11:07:50] [DUT1]dis seg ipv6 te policy stat
+[2022/05/31 11:07:56]                              ^
+[2022/05/31 11:07:56]  % Ambiguous command found at '^' position.
+[2022/05/31 11:07:56] [DUT1]display segm ipv6 te policy ?
+[2022/05/31 11:08:05]   >                 Redirect it to a file
+[2022/05/31 11:08:05]   >>                Redirect it to a file in append mode
+[2022/05/31 11:08:05]   color             Specify SRv6-TE policies by color
+[2022/05/31 11:08:05]   down              Specify SRv6-TE policies by down state
+[2022/05/31 11:08:05]   end-point         Specify SRv6-TE policies by end point address
+[2022/05/31 11:08:05]   last-down-reason  The reason for SRv6-TE policy became down last
+[2022/05/31 11:08:05]   name              Specify an SRv6-TE policy by its name
+[2022/05/31 11:08:05]   odn               Specify SRv6-TE policies created by ODN
+[2022/05/31 11:08:05]   pce               Specify SRv6-TE policies computed by PCE
+[2022/05/31 11:08:05]   statistics        SRv6-TE policy statistics
+[2022/05/31 11:08:05]   status            SRv6-TE policy status information
+[2022/05/31 11:08:05]   up                Specify SRv6-TE policies by up state
+[2022/05/31 11:08:05]   |                 Matching output
+[2022/05/31 11:08:05]   <cr>              
+[2022/05/31 11:08:05] 
+[2022/05/31 11:08:05] [DUT1]display segm ipv6 te policy static
+[2022/05/31 11:08:09]                                   ^
+[2022/05/31 11:08:09]  % Too many parameters found at '^' position.
+[2022/05/31 11:08:09] [DUT1]display seg ipv6 te policy statisti
+[2022/05/31 11:08:21] 
+[2022/05/31 11:08:21]          IPv6 TE Policy Database Statistics  
+[2022/05/31 11:08:21] Total policies: 1 (0 up 1 down)
+[2022/05/31 11:08:21]     Configured: 1 (0 up 1 down)
+[2022/05/31 11:08:21]     From BGP: 0 (Added 0 deleted 0   0 up 0 down)
+[2022/05/31 11:08:21]     From ODN: 0 (Added 0 deleted 0   0 up 0 down)
+[2022/05/31 11:08:21]     From PCE: 0 (Added 0 deleted 0   0 up 0 down)
+[2022/05/31 11:08:21] Total candidate paths: 1
+[2022/05/31 11:08:21]     Configured: 1
+[2022/05/31 11:08:21]     From BGP: 0 (Added 0 deleted 0)
+[2022/05/31 11:08:21]     From ODN: 0 (Added 0 deleted 0)
+[2022/05/31 11:08:21]     From PCE: 0 (Added 0 deleted 0)
+[2022/05/31 11:08:21] Total SID lists: 1 (0 up 1 down)
+[2022/05/31 11:08:21]     Configured: 1 (0 up 1 down)
+[2022/05/31 11:08:21]     Dynamic : 0 (0 up 0 down)
+[2022/05/31 11:08:21]     From BGP: 0 (0 up 0 down)
+[2022/05/31 11:08:21]     From PCE: 0 (0 up 0 down)
+[2022/05/31 11:08:21] SRv6-TE policy group resource information:
+[2022/05/31 11:08:21]   Max resources: 1024
+[2022/05/31 11:08:21]   Used resources: 0
+[2022/05/31 11:08:21]   Upper threshold: 820 (80%)
+[2022/05/31 11:08:21]   Lower threshold: 768 (75%)
+[2022/05/31 11:08:21] SRv6-TE policy resource information:
+[2022/05/31 11:08:21] ---- More ----                 Max resources: 1024
+[2022/05/31 11:08:30]   Used resources: 1
+[2022/05/31 11:08:30]   Upper threshold: 820 (80%)
+[2022/05/31 11:08:30]   Lower threshold: 768 (75%)
+[2022/05/31 11:08:30] SID list resource information:
+[2022/05/31 11:08:30]   Max resources: 4096
+[2022/05/31 11:08:30]   Used resources: 2
+[2022/05/31 11:08:30]   Upper threshold: 3277 (80%)
+[2022/05/31 11:08:30]   Lower threshold: 3072 (75%)
+[2022/05/31 11:08:30] Forwarding path resource information:
+[2022/05/31 11:08:30]   Max resources: 65535
+[2022/05/31 11:08:30]   Used resources: 0
+[2022/05/31 11:08:30]   Upper threshold: 52428 (80%)
+[2022/05/31 11:08:30]   Lower threshold: 49151 (75%)
+[2022/05/31 11:08:30] [DUT1]display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:18:59] [DUT1]dis seg ipv6 te policy
+[2022/05/31 11:19:10] 
+[2022/05/31 11:19:10] Name/ID: p1/0
+[2022/05/31 11:19:10]  Color: 100
+[2022/05/31 11:19:10]  End-point: 113::1
+[2022/05/31 11:19:10]  Name from BGP: 
+[2022/05/31 11:19:10]  Name from PCE: 
+[2022/05/31 11:19:10]  BSID: 
+[2022/05/31 11:19:10]   Mode: Explicit            Type: Type_2              Request state: Succeeded
+[2022/05/31 11:19:10]   Current BSID: 3456::11    Explicit BSID: 3456::11   Dynamic BSID: -
+[2022/05/31 11:19:10]  Reference counts: 5
+[2022/05/31 11:19:10]  Flags: BS/NC 
+[2022/05/31 11:19:10]  Status: Down
+[2022/05/31 11:19:10]  AdminStatus: Up
+[2022/05/31 11:19:10]  Up time: -
+[2022/05/31 11:19:10]  Down time: 2022-06-03 04:07:26
+[2022/05/31 11:19:10]  Hot backup: Disabled
+[2022/05/31 11:19:10]  Statistics: Disabled
+[2022/05/31 11:19:10]   Statistics by service class: Disabled
+[2022/05/31 11:19:10]  Path verification: Not configured
+[2022/05/31 11:19:10]  Drop-upon-invalid: Disabled
+[2022/05/31 11:19:10]  BFD trigger path-down: Disabled
+[2022/05/31 11:19:10]  SBFD: Disabled 
+[2022/05/31 11:19:10]  BFD Echo: Disabled
+[2022/05/31 11:19:10] ---- More ----                BFD no-bypass: Disabled
+[2022/05/31 11:19:12]  Forwarding index: 2150629377 
+[2022/05/31 11:19:12]  Association ID: 1
+[2022/05/31 11:19:12]  Service-class: - 
+[2022/05/31 11:19:12]  Rate-limit: - 
+[2022/05/31 11:19:12]  PCE delegation: Disabled
+[2022/05/31 11:19:12]  PCE delegate report-only: Disabled
+[2022/05/31 11:19:12]  Reoptimization: Disabled
+[2022/05/31 11:19:12]  Encapsulation mode: -[2022/05/31 11:19:12] 
+[2022/05/31 11:19:12]  Flapping suppression Remaining interval: -
+[2022/05/31 11:19:12]  Candidate paths state: Configured 
+[2022/05/31 11:19:12]  Candidate paths statistics:
+[2022/05/31 11:19:12]   CLI paths: 1          BGP paths: 0          PCEP paths: 0          ODN paths: 0
+[2022/05/31 11:19:12]  Candidate paths:
+[2022/05/31 11:19:12]   Preference : 65535     
+[2022/05/31 11:19:12]    Network slice ID: -
+[2022/05/31 11:19:12]    CPathName: 
+[2022/05/31 11:19:12]    ProtoOrigin: CLI        Discriminator: 65535     
+[2022/05/31 11:19:12]    Instance ID: 0          Node address: 0.0.0.0
+[2022/05/31 11:19:12]    Originator:  0, ::
+[2022/05/31 11:19:12]    Optimal: N              Flags: None
+[2022/05/31 11:19:12]    Dynamic: Not configured
+[2022/05/31 11:19:12]    PCEP: Not configured
+[2022/05/31 11:19:12] ---- More ----                  Explicit SID list:
+[2022/05/31 11:19:13]     ID: 1                     Name: 101
+[2022/05/31 11:19:13]     Weight: 1                 Forwarding index: 2149580802
+[2022/05/31 11:19:13]     State: Down               State(-): -
+[2022/05/31 11:19:13]     Verification State: -
+[2022/05/31 11:19:13]     Path MTU: 1500            Path MTU Reserved: 0
+[2022/05/31 11:19:13]     Local BSID: -
+[2022/05/31 11:19:13]     Reverse BSID: -
+[2022/05/31 11:19:13] [DUT1]seg ipv6
+[2022/05/31 11:19:19] [DUT1-segment-routing-ipv6]dis th
+[2022/05/31 11:19:20] #
+[2022/05/31 11:19:20] segment-routing ipv6
+[2022/05/31 11:19:20]  encapsulation source-address 1101::1
+[2022/05/31 11:19:20]  #
+[2022/05/31 11:19:20]  locator a ipv6-prefix 3456:: 96 static 8 
+[2022/05/31 11:19:20]  #
+[2022/05/31 11:19:20]  locator aaa ipv6-prefix 1223:: 64 static 32 
+[2022/05/31 11:19:20]   opcode 1 end psp
+[2022/05/31 11:19:20]   opcode 2 end psp
+[2022/05/31 11:19:20]   opcode 33 end-x interface GigabitEthernet2/0/3 nexthop 20:0:13::2 psp
+[2022/05/31 11:19:20]   opcode 65537 end-dt4 vpn-instance v1
+[2022/05/31 11:19:20]   opcode 65538 end-dt6 vpn-instance v1
+[2022/05/31 11:19:20]   opcode 131073 end-dt46 vpn-instance v1
+[2022/05/31 11:19:20]  #
+[2022/05/31 11:19:20]  traffic-engineering
+[2022/05/31 11:19:20]   srv6-policy locator a
+[2022/05/31 11:19:20]   #
+[2022/05/31 11:19:20]   segment-list 101
+[2022/05/31 11:19:20]   #
+[2022/05/31 11:19:20]   policy p1
+[2022/05/31 11:19:20]    binding-sid ipv6 3456::11
+[2022/05/31 11:19:20]    color 100 end-point ipv6 113::1
+[2022/05/31 11:19:20]    #
+[2022/05/31 11:19:20] ---- More ----               [2022/05/31 11:19:20] [DUT1-segment-routing-ipv6]traf
+[2022/05/31 11:19:22] [DUT1-srv6-te]seg 101
+[2022/05/31 11:19:24] [DUT1-srv6-te-sl-101]ipv[1D[J[1D[J[1D[J
+[2022/05/31 11:19:33] [DUT1-srv6-te-sl-101]
+[2022/05/31 11:19:33] [DUT1-srv6-te-sl-101]sid ind 3223::1
+[2022/05/31 11:19:38]                      ^
+[2022/05/31 11:19:38]  % Unrecognized command found at '^' position.
+[2022/05/31 11:19:38] [DUT1-srv6-te-sl-101]
+[2022/05/31 11:19:50] [DUT1-srv6-te-sl-101]        segment-list 101
+[2022/05/31 11:19:50] [DUT1-srv6-te-sl-101]        index 11 ipv6 1223::1
+[2022/05/31 11:19:50] [DUT1-srv6-te-sl-101]index 12 ipv6 3223::1
+[2022/05/31 11:19:56] [DUT1-srv6-te-sl-101]undo ind 11
+[2022/05/31 11:19:59] [DUT1-srv6-te-sl-101]display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:20:20] [DUT1-srv6-te-sl-101]di seg ip6[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J
+[2022/05/31 11:20:41] [DUT1-srv6-te-sl-101]
+[2022/05/31 11:20:41] [DUT1-srv6-te-sl-101]
+[2022/05/31 11:20:42] [DUT1-srv6-te-sl-101]dis seg ipv te policy
+[2022/05/31 11:20:48] 
+[2022/05/31 11:20:48] Name/ID: p1/0
+[2022/05/31 11:20:48]  Color: 100
+[2022/05/31 11:20:48]  End-point: 113::1
+[2022/05/31 11:20:48]  Name from BGP: 
+[2022/05/31 11:20:48]  Name from PCE: 
+[2022/05/31 11:20:48]  BSID: 
+[2022/05/31 11:20:48]   Mode: Explicit            Type: Type_2              Request state: Succeeded
+[2022/05/31 11:20:48]   Current BSID: 3456::11    Explicit BSID: 3456::11   Dynamic BSID: -
+[2022/05/31 11:20:48]  Reference counts: 5
+[2022/05/31 11:20:48]  Flags: A/BS/NC 
+[2022/05/31 11:20:48]  Status: Up
+[2022/05/31 11:20:48]  AdminStatus: Up
+[2022/05/31 11:20:48]  Up time: 2022-06-03 05:55:11
+[2022/05/31 11:20:48]  Down time: 2022-06-03 04:07:26
+[2022/05/31 11:20:48]  Hot backup: Disabled
+[2022/05/31 11:20:48]  Statistics: Disabled
+[2022/05/31 11:20:48]   Statistics by service class: Disabled
+[2022/05/31 11:20:48]  Path verification: Not configured
+[2022/05/31 11:20:48]  Drop-upon-invalid: Disabled
+[2022/05/31 11:20:48]  BFD trigger path-down: Disabled
+[2022/05/31 11:20:48]  SBFD: Disabled 
+[2022/05/31 11:20:48]  BFD Echo: Disabled
+[2022/05/31 11:20:48] ---- More ----                BFD no-bypass: Disabled
+[2022/05/31 11:20:49]  Forwarding index: 2150629377 
+[2022/05/31 11:20:49]  Association ID: 1
+[2022/05/31 11:20:49]  Service-class: - 
+[2022/05/31 11:20:49]  Rate-limit: - 
+[2022/05/31 11:20:49]  PCE delegation: Disabled
+[2022/05/31 11:20:49]  PCE delegate report-only: Disabled
+[2022/05/31 11:20:49]  Reoptimization: Disabled
+[2022/05/31 11:20:49]  Encapsulation mode: -[2022/05/31 11:20:49] 
+[2022/05/31 11:20:49]  Flapping suppression Remaining interval: -
+[2022/05/31 11:20:49]  Candidate paths state: Configured 
+[2022/05/31 11:20:49]  Candidate paths statistics:
+[2022/05/31 11:20:49]   CLI paths: 1          BGP paths: 0          PCEP paths: 0          ODN paths: 0
+[2022/05/31 11:20:49]  Candidate paths:
+[2022/05/31 11:20:49]   Preference : 65535     
+[2022/05/31 11:20:49]    Network slice ID: -
+[2022/05/31 11:20:49]    CPathName: 
+[2022/05/31 11:20:49]    ProtoOrigin: CLI        Discriminator: 65535     
+[2022/05/31 11:20:49]    Instance ID: 0          Node address: 0.0.0.0
+[2022/05/31 11:20:49]    Originator:  0, ::
+[2022/05/31 11:20:49]    Optimal: Y              Flags: V/A
+[2022/05/31 11:20:49]    Dynamic: Not configured
+[2022/05/31 11:20:49]    PCEP: Not configured
+[2022/05/31 11:20:49] ---- More ----                  Explicit SID list:
+[2022/05/31 11:20:49]     ID: 1                     Name: 101
+[2022/05/31 11:20:49]     Weight: 1                 Forwarding index: 2149580802
+[2022/05/31 11:20:49]     State: Up                 State(-): -
+[2022/05/31 11:20:49]     Verification State: -
+[2022/05/31 11:20:49]     Path MTU: 1500            Path MTU Reserved: 0
+[2022/05/31 11:20:49]     Local BSID: -
+[2022/05/31 11:20:49]     Reverse BSID: -
+[2022/05/31 11:20:49] [DUT1-srv6-te-sl-101]
+[2022/05/31 11:21:00] [DUT1-srv6-te-sl-101]display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:21:05] [DUT1-srv6-te-sl-101]
+[2022/05/31 11:22:32] [DUT1-srv6-te-sl-101]        segment-routing ipv6
+[2022/05/31 11:22:32] [DUT1-segment-routing-ipv6]        traffic-engineering
+[2022/05/31 11:22:33] [DUT1-srv6-te]        segment-list 101
+[2022/05/31 11:22:33] [DUT1-srv6-te-sl-101]        undo index 10
+[2022/05/31 11:22:33] [DUT1-srv6-te-sl-101]        policy p1
+[2022/05/31 11:22:33] [DUT1-srv6-te-policy-p1]        undo binding-sid
+[2022/05/31 11:22:33] [DUT1-srv6-te-policy-p1]dis seg ipv6 te policy
+[2022/05/31 11:23:08] 
+[2022/05/31 11:23:08] Name/ID: p1/0
+[2022/05/31 11:23:08]  Color: 100
+[2022/05/31 11:23:08]  End-point: 113::1
+[2022/05/31 11:23:08]  Name from BGP: 
+[2022/05/31 11:23:08]  Name from PCE: 
+[2022/05/31 11:23:08]  BSID: 
+[2022/05/31 11:23:08]   Mode: Dynamic             Type: Type_2              Request state: Succeeded
+[2022/05/31 11:23:08]   Current BSID: 3456::100   Explicit BSID: -          Dynamic BSID: 3456::100
+[2022/05/31 11:23:08]  Reference counts: 5
+[2022/05/31 11:23:08]  Flags: A/BS/NC 
+[2022/05/31 11:23:08]  Status: Up
+[2022/05/31 11:23:08]  AdminStatus: Up
+[2022/05/31 11:23:08]  Up time: 2022-06-03 05:55:11
+[2022/05/31 11:23:08]  Down time: 2022-06-03 04:07:26
+[2022/05/31 11:23:08]  Hot backup: Disabled
+[2022/05/31 11:23:08]  Statistics: Disabled
+[2022/05/31 11:23:08]   Statistics by service class: Disabled
+[2022/05/31 11:23:08]  Path verification: Not configured
+[2022/05/31 11:23:08]  Drop-upon-invalid: Disabled
+[2022/05/31 11:23:08]  BFD trigger path-down: Disabled
+[2022/05/31 11:23:08]  SBFD: Disabled 
+[2022/05/31 11:23:08]  BFD Echo: Disabled
+[2022/05/31 11:23:08] ---- More ----                BFD no-bypass: Disabled
+[2022/05/31 11:23:11]  Forwarding index: 2150629377 
+[2022/05/31 11:23:11]  Association ID: 1
+[2022/05/31 11:23:11]  Service-class: - 
+[2022/05/31 11:23:11]  Rate-limit: - 
+[2022/05/31 11:23:11]  PCE delegation: Disabled
+[2022/05/31 11:23:11]  PCE delegate report-only: Disabled
+[2022/05/31 11:23:11]  Reoptimization: Disabled
+[2022/05/31 11:23:11]  Encapsulation mode: -[2022/05/31 11:23:11] 
+[2022/05/31 11:23:11]  Flapping suppression Remaining interval: -
+[2022/05/31 11:23:11]  Candidate paths state: Configured 
+[2022/05/31 11:23:11]  Candidate paths statistics:
+[2022/05/31 11:23:11]   CLI paths: 1          BGP paths: 0          PCEP paths: 0          ODN paths: 0
+[2022/05/31 11:23:11]  Candidate paths:
+[2022/05/31 11:23:11]   Preference : 65535     
+[2022/05/31 11:23:11]    Network slice ID: -
+[2022/05/31 11:23:11]    CPathName: 
+[2022/05/31 11:23:11]    ProtoOrigin: CLI        Discriminator: 65535     
+[2022/05/31 11:23:11]    Instance ID: 0          Node address: 0.0.0.0
+[2022/05/31 11:23:11]    Originator:  0, ::
+[2022/05/31 11:23:11]    Optimal: Y              Flags: V/A
+[2022/05/31 11:23:11]    Dynamic: Not configured
+[2022/05/31 11:23:11]    PCEP: Not configured
+[2022/05/31 11:23:11] ---- More ----                  Explicit SID list:
+[2022/05/31 11:23:12]     ID: 1                     Name: 101
+[2022/05/31 11:23:12]     Weight: 1                 Forwarding index: 2149580802
+[2022/05/31 11:23:12]     State: Up                 State(-): -
+[2022/05/31 11:23:12]     Verification State: -
+[2022/05/31 11:23:12]     Path MTU: 1500            Path MTU Reserved: 0
+[2022/05/31 11:23:12]     Local BSID: -
+[2022/05/31 11:23:12]     Reverse BSID: -
+[2022/05/31 11:23:12] [DUT1-srv6-te-policy-p1]display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:23:31] [DUT1-srv6-te-policy-p1]return
+[2022/05/31 11:24:02] <DUT1>deb srv6 al[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[Jdeb srv6 pa
+[2022/05/31 11:24:11] <DUT1>t m
+[2022/05/31 11:24:12] The current terminal is enabled to display logs.
+[2022/05/31 11:24:12] <DUT1>t d
+[2022/05/31 11:24:13] The current terminal is enabled to display debugging logs.
+[2022/05/31 11:24:13] <DUT1>sy
+[2022/05/31 11:24:13] System View: return to User View with Ctrl+Z.
+[2022/05/31 11:24:13] [DUT1]in en
+[2022/05/31 11:24:14] Information center is enabled.
+[2022/05/31 11:24:14] [DUT1]display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:24:19] [DUT1]*Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:29]  60 00 00 00 00 78 2b 40 01 10 00 00 00 00 00 00
+[2022/05/31 11:24:29]  00 00 00 00 00 00 00 01 34 56 00 00 00 00 00 00
+[2022/05/31 11:24:29]  00 00 00 00 00 00 01 00 3a 06 04 02 02 00 00 00
+[2022/05/31 11:24:29]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 11:24:29]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 03
+[2022/05/31 11:24:29]  34 56 00 00 00 00 00 00 00 00 00 00 00 00 01 00
+[2022/05/31 11:24:29]  80 00 ac 5b 14 1b 00 00 62 95 98 f4 00 04 d6 48
+[2022/05/31 11:24:29]  08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17
+[2022/05/31 11:24:29] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:29]  Next IPv6 extension header: Offset = 40,Protocol = 43,MdcProtocol = 0.
+[2022/05/31 11:24:29] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:29] NID protocol 3
+[2022/05/31 11:24:29] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:29] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 2776593234, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 11:24:29] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:29]  Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 11:24:29] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:29]  Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 11:24:29] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:29]  Get Mtu uiMinMtu:1500.
+[2022/05/31 11:24:29] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:29]  Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 11:24:29] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:29]  Get Mtu FINAL uiMinMtu:1500.
+[2022/05/31 11:24:29] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:29] SRv6 encapsulation: Encaps:1, XSRHType:0, sidNum:1, sidLen:1, sidoff:0.
+[2022/05/31 11:24:30] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:30]  60 00 00 00 00 b8 2b ff 11 01 00 00 00 00 00 00
+[2022/05/31 11:24:30]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 11:24:30]  00 00 00 00 00 00 00 01 29 02 04 00 00 00 00 00
+[2022/05/31 11:24:30]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 11:24:30]  60 00 00 00 00 78 2b 3f 01 10 00 00 00 00 00 00
+[2022/05/31 11:24:30]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 11:24:30]  00 00 00 00 00 00 00 03 3a 06 04 01 02 00 00 00
+[2022/05/31 11:24:30]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 11:24:30] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:30]  packet: After encapsulation,
+[2022/05/31 11:24:30]    1101::1->3223::1 (length = 224)
+[2022/05/31 11:24:30] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:30] SRv6 Encap: Forwarded the IPv6 encapsulated packet.
+[2022/05/31 11:24:30] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:30] SRv6 Encap: Add statstics to Lfib, NID:2148532226
+[2022/05/31 11:24:30] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:30] SRv6 Encap: Add statstics to Lfib, FwOctets:160,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 11:24:30] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:30]  Forwarded the IPv6 B6-encapsulated packet.
+[2022/05/31 11:24:30] *Jun  3 06:02:57:160 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:24:30] De-encapsulated IPv6 extension header: Protocol = 43, result: 60e0001.
+[2022/05/31 11:24:47] display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:24:47] [DUT1]display segment-routing ipv6 te forwarding verbose
+[2022/05/31 11:26:12] Total forwarding entries: 1   
+[2022/05/31 11:26:12] 
+[2022/05/31 11:26:12] Policy name/ID: p1/0
+[2022/05/31 11:26:12]  Binding SID: 3456::100
+[2022/05/31 11:26:12]  Forwarding index: 2150629377
+[2022/05/31 11:26:12]  Main path:
+[2022/05/31 11:26:12]    Seglist ID: 1
+[2022/05/31 11:26:12]      Seglist forwarding index: 2149580802
+[2022/05/31 11:26:12]      Weight: 1
+[2022/05/31 11:26:12]      Outgoing forwarding index: 2148532226
+[2022/05/31 11:26:12]        Interface: GE2/0/4
+[2022/05/31 11:26:12]        Nexthop: FE80::A420:DFFF:FE6A:532
+[2022/05/31 11:26:12]        Discriminator: 65535
+[2022/05/31 11:26:12]        LoadShareWeight: 1
+[2022/05/31 11:26:12]          Path ID: 0
+[2022/05/31 11:26:12]          SID list: {3223::1}
+[2022/05/31 11:26:12] [DUT1]seg ipv6
+[2022/05/31 11:30:35] [DUT1-segment-routing-ipv6]traf
+[2022/05/31 11:30:37] [DUT1-srv6-te]poliy[1D[J[1D[J[1D[J[1D[J[1D[J
+[2022/05/31 11:30:47] [DUT1-srv6-te]policy p1
+[2022/05/31 11:30:49] [DUT1-srv6-te-policy-p1]forwarding statistics enable
+[2022/05/31 11:30:54] [DUT1-srv6-te-policy-p1]display segment-routing ipv6 te forwarding verbose
+[2022/05/31 11:30:58] Total forwarding entries: 1   
+[2022/05/31 11:30:58] 
+[2022/05/31 11:30:58] Policy name/ID: p1/0
+[2022/05/31 11:30:58]  Binding SID: 3456::100
+[2022/05/31 11:30:58]  Forwarding index: 2150629377
+[2022/05/31 11:30:58]  Main path:
+[2022/05/31 11:30:58]    Seglist ID: 1
+[2022/05/31 11:30:58]      Seglist forwarding index: 2149580802
+[2022/05/31 11:30:58]      Weight: 1
+[2022/05/31 11:30:58]      Outgoing forwarding index: 2148532225
+[2022/05/31 11:30:58]        Interface: GE2/0/4
+[2022/05/31 11:30:58]        Nexthop: FE80::A420:DFFF:FE6A:532
+[2022/05/31 11:30:58]        Discriminator: 65535
+[2022/05/31 11:30:58]        LoadShareWeight: 1
+[2022/05/31 11:30:58]          Path ID: 0
+[2022/05/31 11:30:58]          SID list: {3223::1}
+[2022/05/31 11:30:58] [DUT1-srv6-te-policy-p1]display segment-routing ipv6 te forwarding verbose
+[2022/05/31 11:31:26] Total forwarding entries: 1   
+[2022/05/31 11:31:26] 
+[2022/05/31 11:31:26] Policy name/ID: p1/0
+[2022/05/31 11:31:26]  Binding SID: 3456::100
+[2022/05/31 11:31:26]  Forwarding index: 2150629377
+[2022/05/31 11:31:26]  Main path:
+[2022/05/31 11:31:26]    Seglist ID: 1
+[2022/05/31 11:31:26]      Seglist forwarding index: 2149580802
+[2022/05/31 11:31:26]      Weight: 1
+[2022/05/31 11:31:26]      Outgoing forwarding index: 2148532225
+[2022/05/31 11:31:26]        Interface: GE2/0/4
+[2022/05/31 11:31:26]        Nexthop: FE80::A420:DFFF:FE6A:532
+[2022/05/31 11:31:26]        Discriminator: 65535
+[2022/05/31 11:31:26]        LoadShareWeight: 1
+[2022/05/31 11:31:26]          Path ID: 0
+[2022/05/31 11:31:26]          SID list: {3223::1}
+[2022/05/31 11:31:26] [DUT1-srv6-te-policy-p1]srv6-policy forwarding statistics enable
+[2022/05/31 11:31:31] [DUT1-srv6-te]display segment-routing ipv6 te forwarding verbose
+[2022/05/31 11:31:39] Total forwarding entries: 1   
+[2022/05/31 11:31:39] 
+[2022/05/31 11:31:39] Policy name/ID: p1/0
+[2022/05/31 11:31:39]  Binding SID: 3456::100
+[2022/05/31 11:31:39]  Forwarding index: 2150629377
+[2022/05/31 11:31:39]  Main path:
+[2022/05/31 11:31:39]    Seglist ID: 1
+[2022/05/31 11:31:39]      Seglist forwarding index: 2149580802
+[2022/05/31 11:31:39]      Weight: 1
+[2022/05/31 11:31:39]      Outgoing forwarding index: 2148532225
+[2022/05/31 11:31:39]        Interface: GE2/0/4
+[2022/05/31 11:31:39]        Nexthop: FE80::A420:DFFF:FE6A:532
+[2022/05/31 11:31:39]        Discriminator: 65535
+[2022/05/31 11:31:39]        LoadShareWeight: 1
+[2022/05/31 11:31:39]          Path ID: 0
+[2022/05/31 11:31:39]          SID list: {3223::1}
+[2022/05/31 11:31:39] [DUT1-srv6-te]*Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43]  60 00 00 00 00 78 2b 40 01 10 00 00 00 00 00 00
+[2022/05/31 11:31:43]  00 00 00 00 00 00 00 01 34 56 00 00 00 00 00 00
+[2022/05/31 11:31:43]  00 00 00 00 00 00 01 00 3a 06 04 02 02 00 00 00
+[2022/05/31 11:31:43]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 11:31:43]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 03
+[2022/05/31 11:31:43]  34 56 00 00 00 00 00 00 00 00 00 00 00 00 01 00
+[2022/05/31 11:31:43]  80 00 a5 11 14 1c 00 00 62 95 9a 84 00 05 dc 00
+[2022/05/31 11:31:43]  08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43]  Next IPv6 extension header: Offset = 40,Protocol = 43,MdcProtocol = 0.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43] NID protocol 3
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 2776593234, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43]  Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43]  Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43]  Get Mtu uiMinMtu:1500.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43]  Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43]  Get Mtu FINAL uiMinMtu:1500.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43] SRv6 encapsulation: Encaps:1, XSRHType:0, sidNum:1, sidLen:1, sidoff:0.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43]  60 00 00 00 00 b8 2b ff 11 01 00 00 00 00 00 00
+[2022/05/31 11:31:43]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 11:31:43]  00 00 00 00 00 00 00 01 29 02 04 00 00 00 00 00
+[2022/05/31 11:31:43]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 11:31:43]  60 00 00 00 00 78 2b 3f 01 10 00 00 00 00 00 00
+[2022/05/31 11:31:43]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 11:31:43]  00 00 00 00 00 00 00 03 3a 06 04 01 02 00 00 00
+[2022/05/31 11:31:43]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 11:31:43] *Jun  3 06:15:23:093 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43]  packet: After encapsulation,
+[2022/05/31 11:31:43]    1101::1->3223::1 (length = 224)
+[2022/05/31 11:31:43] *Jun  3 06:15:23:094 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43] SRv6 Encap: Forwarded the IPv6 encapsulated packet.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:094 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43] SRv6 Encap: Add statstics to Lfib, NID:2149580802
+[2022/05/31 11:31:43] *Jun  3 06:15:23:094 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43] SRv6 Encap: Add statstics to Lfib, FwOctets:160,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:094 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43]  Forwarded the IPv6 B6-encapsulated packet.
+[2022/05/31 11:31:43] *Jun  3 06:15:23:094 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 11:31:43] De-encapsulated IPv6 extension header: Protocol = 43, result: 60e0001.
+[2022/05/31 11:31:46] 
+[2022/05/31 11:31:46] [DUT1-srv6-te]display segment-routing ipv6 te forwarding verbose
+[2022/05/31 11:31:47] Total forwarding entries: 1   
+[2022/05/31 11:31:47] 
+[2022/05/31 11:31:47] Policy name/ID: p1/0
+[2022/05/31 11:31:47]  Binding SID: 3456::100
+[2022/05/31 11:31:47]  Forwarding index: 2150629377
+[2022/05/31 11:31:47]  Inbound statistics:
+[2022/05/31 11:31:47]    Total octets: 160 
+[2022/05/31 11:31:47]    Total packets: 1 
+[2022/05/31 11:31:47]    Erroneous packets: 0 
+[2022/05/31 11:31:47]    Dropped packets: 0 
+[2022/05/31 11:31:47]    Input rate in the last 300 seconds:
+[2022/05/31 11:31:47]      8 bits/sec, 1 pkts/sec
+[2022/05/31 11:31:47]    Input rate in the last statistical period (30 sec):
+[2022/05/31 11:31:47]      0 bits/sec, 0 pkts/sec
+[2022/05/31 11:31:47]  Outbound statistics:
+[2022/05/31 11:31:47]    Total octets: 160 
+[2022/05/31 11:31:47]    Total packets: 1 
+[2022/05/31 11:31:47]    Erroneous packets: 0 
+[2022/05/31 11:31:47]    Dropped packets: 0 
+[2022/05/31 11:31:47]    Output rate in the last 300 seconds:
+[2022/05/31 11:31:47]      8 bits/sec, 1 pkts/sec
+[2022/05/31 11:31:47]    Output rate in the last statistical period (30 sec):
+[2022/05/31 11:31:47]      48 bits/sec, 1 pkts/sec
+[2022/05/31 11:31:47] ---- More ----                Main path:
+[2022/05/31 11:31:48]    Seglist ID: 1
+[2022/05/31 11:31:48]      Seglist forwarding index: 2149580802
+[2022/05/31 11:31:48]      Weight: 1
+[2022/05/31 11:31:48]      Outbound statistics:
+[2022/05/31 11:31:48]        Total octets: 160 
+[2022/05/31 11:31:48]        Total packets: 1 
+[2022/05/31 11:31:48]        Erroneous packets: 0 
+[2022/05/31 11:31:48]        Dropped packets: 0 
+[2022/05/31 11:31:48]        Output rate in the last 300 seconds:
+[2022/05/31 11:31:48]          8 bits/sec, 1 pkts/sec
+[2022/05/31 11:31:48]        Output rate in the last statistical period (30 sec):
+[2022/05/31 11:31:48]          48 bits/sec, 1 pkts/sec
+[2022/05/31 11:31:48]      Outgoing forwarding index: 2148532225
+[2022/05/31 11:31:48]        Interface: GE2/0/4
+[2022/05/31 11:31:48]        Nexthop: FE80::A420:DFFF:FE6A:532
+[2022/05/31 11:31:48]        Discriminator: 65535
+[2022/05/31 11:31:48]        LoadShareWeight: 1
+[2022/05/31 11:31:48]          Path ID: 0
+[2022/05/31 11:31:48]          SID list: {3223::1}
+[2022/05/31 11:31:48] [DUT1-srv6-te]Total packets: 1[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J
+[2022/05/31 11:32:55] [DUT1-srv6-te]
+[2022/05/31 11:32:55] [DUT1-srv6-te]
+[2022/05/31 11:32:55] [DUT1-srv6-te]display segment-routing ipv6 te forwarding verbose ?
+[2022/05/31 11:33:01]   >     Redirect it to a file
+[2022/05/31 11:33:01]   >>    Redirect it to a file in append mode
+[2022/05/31 11:33:01]   |     Matching output
+[2022/05/31 11:33:01]   <cr>  
+[2022/05/31 11:33:01] 
+[2022/05/31 11:33:01] [DUT1-srv6-te]display segment-routing ipv6 te forwarding verbose [1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J?
+[2022/05/31 11:33:04]   >                   Redirect it to a file
+[2022/05/31 11:33:04]   >>                  Redirect it to a file in append mode
+[2022/05/31 11:33:04]   binding-sid         Specify a binding SID
+[2022/05/31 11:33:04]   policy              Specify an SR-TE policy
+[2022/05/31 11:33:04]   traffic-statistics  Outbound-statistics information
+[2022/05/31 11:33:04]   verbose             Detailed information
+[2022/05/31 11:33:04]   |                   Matching output
+[2022/05/31 11:33:04]   <cr>                
+[2022/05/31 11:33:04] 
+[2022/05/31 11:33:05] [DUT1-srv6-te]display segment-routing ipv6 te forwarding policy p1 ?
+[2022/05/31 11:33:11]                                                                 ^
+[2022/05/31 11:33:11]  % Unrecognized command found at '^' position.
+[2022/05/31 11:33:11] [DUT1-srv6-te]display segment-routing ipv6 te forwarding policy p1 [1D[J[1D[J[1D[J?
+[2022/05/31 11:33:13]   color      Specify a color
+[2022/05/31 11:33:13]   end-point  Specify an endpoint
+[2022/05/31 11:33:13]   name       Policy name
+[2022/05/31 11:33:13] 
+[2022/05/31 11:33:13] [DUT1-srv6-te]display segment-routing ipv6 te forwarding policy na p1 ?
+[2022/05/31 11:33:18]   >                   Redirect it to a file
+[2022/05/31 11:33:18]   >>                  Redirect it to a file in append mode
+[2022/05/31 11:33:18]   traffic-statistics  Outbound-statistics information
+[2022/05/31 11:33:18]   verbose             Detailed information
+[2022/05/31 11:33:18]   |                   Matching output
+[2022/05/31 11:33:18]   <cr>                
+[2022/05/31 11:33:18] 
+[2022/05/31 11:33:18] [DUT1-srv6-te]display segment-routing ipv6 te forwarding policy na p1 v
+[2022/05/31 11:33:21] Total forwarding entries: 1   
+[2022/05/31 11:33:21] 
+[2022/05/31 11:33:21] Policy name/ID: p1/0
+[2022/05/31 11:33:21]  Binding SID: 3456::100
+[2022/05/31 11:33:21]  Forwarding index: 2150629377
+[2022/05/31 11:33:21]  Inbound statistics:
+[2022/05/31 11:33:21]    Total octets: 160 
+[2022/05/31 11:33:21]    Total packets: 1 
+[2022/05/31 11:33:21]    Erroneous packets: 0 
+[2022/05/31 11:33:21]    Dropped packets: 0 
+[2022/05/31 11:33:21]    Input rate in the last 300 seconds:
+[2022/05/31 11:33:21]      8 bits/sec, 1 pkts/sec
+[2022/05/31 11:33:21]    Input rate in the last statistical period (30 sec):
+[2022/05/31 11:33:21]      0 bits/sec, 0 pkts/sec
+[2022/05/31 11:33:21]  Outbound statistics:
+[2022/05/31 11:33:21]    Total octets: 160 
+[2022/05/31 11:33:21]    Total packets: 1 
+[2022/05/31 11:33:21]    Erroneous packets: 0 
+[2022/05/31 11:33:21]    Dropped packets: 0 
+[2022/05/31 11:33:21]    Output rate in the last 300 seconds:
+[2022/05/31 11:33:21]      8 bits/sec, 1 pkts/sec
+[2022/05/31 11:33:21]    Output rate in the last statistical period (30 sec):
+[2022/05/31 11:33:21]      0 bits/sec, 0 pkts/sec
+[2022/05/31 11:33:21] ---- More ----                Main path:
+[2022/05/31 11:33:23]    Seglist ID: 1
+[2022/05/31 11:33:23]      Seglist forwarding index: 2149580802
+[2022/05/31 11:33:23]      Weight: 1
+[2022/05/31 11:33:23]      Outbound statistics:
+[2022/05/31 11:33:23]        Total octets: 160 
+[2022/05/31 11:33:23]        Total packets: 1 
+[2022/05/31 11:33:23]        Erroneous packets: 0 
+[2022/05/31 11:33:23]        Dropped packets: 0 
+[2022/05/31 11:33:23]        Output rate in the last 300 seconds:
+[2022/05/31 11:33:23]          8 bits/sec, 1 pkts/sec
+[2022/05/31 11:33:23]        Output rate in the last statistical period (30 sec):
+[2022/05/31 11:33:23]          0 bits/sec, 0 pkts/sec
+[2022/05/31 11:33:23]      Outgoing forwarding index: 2148532225
+[2022/05/31 11:33:23]        Interface: GE2/0/4
+[2022/05/31 11:33:23]        Nexthop: FE80::A420:DFFF:FE6A:532
+[2022/05/31 11:33:23]        Discriminator: 65535
+[2022/05/31 11:33:23]        LoadShareWeight: 1
+[2022/05/31 11:33:23]          Path ID: 0
+[2022/05/31 11:33:23]          SID list: {3223::1}
+[2022/05/31 11:33:23] [DUT1-srv6-te]display segment-routing ipv6 te forwarding verbose | include " Total packets: 1"
+[2022/05/31 11:33:55]    Total packets: 1 
+[2022/05/31 11:33:55]    Total packets: 1 
+[2022/05/31 11:33:55]        Total packets: 1 
+[2022/05/31 11:33:55] [DUT1-srv6-te]
+[2022/05/31 11:34:08] [DUT1-srv6-te]
+[2022/05/31 11:34:08] [DUT1-srv6-te]dis logbuffer
+[2022/05/31 11:34:08] Log buffer: Enabled
+[2022/05/31 11:34:08] Max buffer size: 1024
+[2022/05/31 11:34:08] Actual buffer size: 512
+[2022/05/31 11:34:08] Dropped messages: 0
+[2022/05/31 11:34:08] Overwritten messages: 0
+[2022/05/31 11:34:08] Current messages: 70
+[2022/05/31 11:34:08] Some messages might not be displayed due to permission issues.
+[2022/05/31 11:34:08] %Jun  3 05:24:35:010 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is reset logbuffer
+[2022/05/31 11:34:08] %Jun  3 05:28:55:713 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is sy
+[2022/05/31 11:34:08] %Jun  3 05:28:57:232 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is segment-routing ipv6
+[2022/05/31 11:34:08] %Jun  3 05:28:57:256 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is traffic-engineering
+[2022/05/31 11:34:08] %Jun  3 05:28:57:260 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is policy p1
+[2022/05/31 11:34:08] %Jun  3 05:28:59:073 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is binding-sid ipv6 3456::11
+[2022/05/31 11:34:08] %Jun  3 05:30:23:586 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is int g 2/0/1
+[2022/05/31 11:34:08] %Jun  3 05:30:25:713 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is dis th
+[2022/05/31 11:34:08] %Jun  3 05:30:41:387 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is undo ip binding vpn-instance
+[2022/05/31 11:34:08] %Jun  3 05:30:41:389 2022 DUT1 L3VPN/6/L3VPN_VRF_IFDOWN: The interface bound to the VPN instance went down.(VPN instance name=v1,Interface name=GigabitEthernet2/0/1,I
+[2022/05/31 11:34:08] nterface status=active,VPN instance status=down)
+[2022/05/31 11:34:08] %Jun  3 05:30:41:389 2022 DUT1 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN: The IPv6 status of interface bound to a VPN instance went down.(VPN instance name=v1,Interface name=Giga
+[2022/05/31 11:34:08] bitEthernet2/0/1)
+[2022/05/31 11:34:08] %Jun  3 05:30:41:395 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: Peer state changed after BGP received an event.(PrevState=ESTABLISHED,CurrState=IDLE,input event=ManualStop,p
+[2022/05/31 11:34:08] eer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 11:34:08] %Jun  3 05:30:41:395 2022 DUT1 BGP/3/BGP_STATE_CHANGED: BGP default.v1: 101.0.0.2 state has changed from ESTABLISHED to IDLE for physical interface configuration chan
+[2022/05/31 11:34:08] ged.
+[2022/05/31 11:34:08] %Jun  3 05:30:41:397 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: Peer state changed after BGP received an event.(PrevState=ESTABLISHED,CurrState=IDLE,input event=ManualStop,p
+[2022/05/31 11:34:08] eer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 11:34:08] %Jun  3 05:30:41:397 2022 DUT1 BGP/3/BGP_STATE_CHANGED: BGP default.v1: 101::2 state has changed from ESTABLISHED to IDLE for physical interface configuration changed
+[2022/05/31 11:34:08] .
+[2022/05/31 11:34:08] %Jun  3 05:30:41:453 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is ip address 101.0.0.1 255.255.255.0
+[2022/05/31 11:34:08] ---- More ----               [2022/05/31 11:34:08] %Jun  3 05:30:41:478 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is ipv6 address 101::1/64
+[2022/05/31 11:34:08] ---- More ----               %Jun  3 05:30:42:582 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is ipv6 route-static 110::1 128 101::2
+[2022/05/31 11:34:08] %Jun  3 05:30:43:742 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: Peer state changed after BGP received an event.(PrevState=IDLE,CurrState=CONNECT,input event=ManualStart,peer
+[2022/05/31 11:34:08] =101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 11:34:08] %Jun  3 05:30:43:744 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: Peer state changed after BGP received an event.(PrevState=IDLE,CurrState=CONNECT,input event=ManualStart,peer
+[2022/05/31 11:34:08] =101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 11:34:08] %Jun  3 05:31:37:120 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is int g 2/0/3
+[2022/05/31 11:34:08] %Jun  3 05:31:38:619 2022 DUT1 SHELL/4/SHELL_CMD_MATCHFAIL: -User=**-IPAddr=221.0.0.1; Command dsi th in view GigabitEthernet2/0/3 failed to be matched.
+[2022/05/31 11:34:08] %Jun  3 05:31:41:493 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is dis th
+[2022/05/31 11:34:08] %Jun  3 05:33:46:951 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is quit
+[2022/05/31 11:34:08] %Jun  3 05:33:58:844 2022 DUT1 SHELL/4/SHELL_CMD_MATCHFAIL: -User=**-IPAddr=221.0.0.1; Command dis seg ipv6 te po stat in view system failed to be matched.
+[2022/05/31 11:34:08] %Jun  3 05:34:25:775 2022 DUT1 SHELL/4/SHELL_CMD_MATCHFAIL: -User=**-IPAddr=221.0.0.1; Command dis seg ipv6 te policy stat in view system failed to be matched.
+[2022/05/31 11:34:08] %Jun  3 05:34:48:684 2022 DUT1 SHELL/4/SHELL_CMD_MATCHFAIL: -User=**-IPAddr=221.0.0.1; Command display segm ipv6 te policy static in view system failed to be matched.
+[2022/05/31 11:34:08] 
+[2022/05/31 11:34:08] %Jun  3 05:35:08:534 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display seg ipv6 te policy statisti
+[2022/05/31 11:34:08] %Jun  3 05:53:27:917 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:34:08] %Jun  3 05:53:47:974 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is dis seg ipv6 te policy
+[2022/05/31 11:34:08] %Jun  3 05:54:02:537 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is seg ipv6
+[2022/05/31 11:34:08] %Jun  3 05:54:04:427 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is dis th
+[2022/05/31 11:34:08] %Jun  3 05:54:08:659 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is traf
+[2022/05/31 11:34:08] %Jun  3 05:54:12:337 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is seg 101
+[2022/05/31 11:34:08] %Jun  3 05:54:36:560 2022 DUT1 SHELL/4/SHELL_CMD_MATCHFAIL: -User=**-IPAddr=221.0.0.1; Command sid ind 3223::1 in view srv6?te?sl?101 failed to be matched.
+[2022/05/31 11:34:08] %Jun  3 05:54:55:898 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is segment-list 101
+[2022/05/31 11:34:08] %Jun  3 05:54:57:397 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is index 11 ipv6 1223::1
+[2022/05/31 11:34:08] %Jun  3 05:55:06:358 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is index 12 ipv6 3223::1
+[2022/05/31 11:34:08] %Jun  3 05:55:11:326 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is undo ind 11
+[2022/05/31 11:34:08] %Jun  3 05:55:47:999 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:34:08] ---- More ----               [2022/05/31 11:34:08] %Jun  3 05:56:36:797 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is dis seg ipv te policy
+[2022/05/31 11:34:08] %Jun  3 05:57:05:575 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:34:08] %Jun  3 05:59:36:745 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is segment-routing ipv6
+[2022/05/31 11:34:08] %Jun  3 05:59:36:764 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is traffic-engineering
+[2022/05/31 11:34:08] %Jun  3 05:59:36:771 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is segment-list 101
+[2022/05/31 11:34:08] %Jun  3 05:59:36:775 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is undo index 10
+[2022/05/31 11:34:08] %Jun  3 05:59:36:779 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is policy p1
+[2022/05/31 11:34:08] %Jun  3 05:59:38:370 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is undo binding-sid
+[2022/05/31 11:34:08] %Jun  3 06:00:37:859 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is dis seg ipv6 te policy
+[2022/05/31 11:34:08] %Jun  3 06:01:17:246 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:34:08] %Jun  3 06:02:11:117 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is return
+[2022/05/31 11:34:08] %Jun  3 06:02:26:508 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is deb srv6 pa
+[2022/05/31 11:34:08] %Jun  3 06:02:27:860 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is t m
+[2022/05/31 11:34:08] %Jun  3 06:02:29:162 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is t d
+[2022/05/31 11:34:08] %Jun  3 06:02:30:250 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is sy
+[2022/05/31 11:34:08] %Jun  3 06:02:31:698 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is in en
+[2022/05/31 11:34:08] %Jun  3 06:02:40:419 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:34:08] %Jun  3 06:03:29:337 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding traffic-statistics
+[2022/05/31 11:34:08] %Jun  3 06:05:55:804 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding verbose
+[2022/05/31 11:34:08] %Jun  3 06:13:28:157 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is seg ipv6
+[2022/05/31 11:34:08] %Jun  3 06:13:32:202 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is traf
+[2022/05/31 11:34:08] %Jun  3 06:13:52:798 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is policy p1
+[2022/05/31 11:34:08] %Jun  3 06:14:00:123 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is forwarding statistics enable
+[2022/05/31 11:34:08] ---- More ----               [2022/05/31 11:34:08] %Jun  3 06:14:07:544 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding verbose
+[2022/05/31 11:34:08] %Jun  3 06:14:56:074 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding verbose
+[2022/05/31 11:34:08] %Jun  3 06:15:04:493 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is srv6-policy forwarding statistics enable
+[2022/05/31 11:34:08] %Jun  3 06:15:17:685 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding verbose
+[2022/05/31 11:34:08] %Jun  3 06:15:31:960 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding verbose
+[2022/05/31 11:34:08] %Jun  3 06:18:14:202 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding policy na p1 v
+[2022/05/31 11:34:08] %Jun  3 06:19:13:011 2022 DUT1 SHELL/6/SHELL_CMD: -Line=vty1-IPAddr=221.0.0.1-User=**; Command is display segment-routing ipv6 te forwarding verbose | include " Total
+[2022/05/31 11:34:08]  packets: 1"
+[2022/05/31 11:34:08] [DUT1-srv6-te]
+[2022/05/31 11:34:08] [DUT1-srv6-te]*Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41]  60 00 00 00 00 78 2b 40 00 06 00 00 00 00 00 00
+[2022/05/31 12:43:41]  00 00 00 00 00 00 00 06 34 56 00 00 00 00 00 00
+[2022/05/31 12:43:41]  00 00 00 00 00 00 01 00 3a 06 04 02 02 00 00 00
+[2022/05/31 12:43:41]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:43:41]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 03
+[2022/05/31 12:43:41]  34 56 00 00 00 00 00 00 00 00 00 00 00 00 01 00
+[2022/05/31 12:43:41]  80 00 3e 36 14 1f 00 00 62 95 aa 14 00 03 34 50
+[2022/05/31 12:43:41]  08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41]  Next IPv6 extension header: Offset = 40,Protocol = 43,MdcProtocol = 0.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41] NID protocol 3
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 3462544920, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41]  Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41]  Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41]  Get Mtu uiMinMtu:1500.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41]  Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41]  Get Mtu FINAL uiMinMtu:1500.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41] SRv6 encapsulation: Encaps:1, XSRHType:0, sidNum:1, sidLen:1, sidoff:0.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41]  60 00 00 00 00 b8 2b ff 11 01 00 00 00 00 00 00
+[2022/05/31 12:43:41]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:43:41]  00 00 00 00 00 00 00 01 29 02 04 00 00 00 00 00
+[2022/05/31 12:43:41]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:43:41]  60 00 00 00 00 78 2b 3f 00 06 00 00 00 00 00 00
+[2022/05/31 12:43:41]  00 00 00 00 00 00 00 06 32 23 00 00 00 00 00 00
+[2022/05/31 12:43:41]  00 00 00 00 00 00 00 03 3a 06 04 01 02 00 00 00
+[2022/05/31 12:43:41]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41]  packet: After encapsulation,
+[2022/05/31 12:43:41]    1101::1->3223::1 (length = 224)
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41] SRv6 Encap: Forwarded the IPv6 encapsulated packet.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41] SRv6 Encap: Add statstics to Lfib, NID:2149580802
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41] SRv6 Encap: Add statstics to Lfib, FwOctets:160,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41]  Forwarded the IPv6 B6-encapsulated packet.
+[2022/05/31 12:43:41] *Jun  3 08:19:57:545 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:41] De-encapsulated IPv6 extension header: Protocol = 43, result: 60e0001.
+[2022/05/31 12:43:50] *Jun  3 08:20:15:021 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:50]  60 00 00 00 00 78 2b 40 01 10 00 00 00 00 00 00
+[2022/05/31 12:43:50]  00 00 00 00 00 00 00 01 34 56 00 00 00 00 00 00
+[2022/05/31 12:43:50]  00 00 00 00 00 00 01 00 3a 06 04 02 02 00 00 00
+[2022/05/31 12:43:50]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:43:50]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 03
+[2022/05/31 12:43:50]  34 56 00 00 00 00 00 00 00 00 00 00 00 00 01 00
+[2022/05/31 12:43:50]  80 00 d0 df 14 20 00 00 62 95 aa 1c 00 0b a0 90
+[2022/05/31 12:43:50]  08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17
+[2022/05/31 12:43:50] *Jun  3 08:20:15:021 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:50]  Next IPv6 extension header: Offset = 40,Protocol = 43,MdcProtocol = 0.
+[2022/05/31 12:43:50] *Jun  3 08:20:15:021 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:50] NID protocol 3
+[2022/05/31 12:43:50] *Jun  3 08:20:15:021 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:50] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 2776593234, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 12:43:50] *Jun  3 08:20:15:021 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:50]  Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 12:43:50] *Jun  3 08:20:15:021 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:50]  Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 12:43:50] *Jun  3 08:20:15:021 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:50]  Get Mtu uiMinMtu:1500.
+[2022/05/31 12:43:50] *Jun  3 08:20:15:021 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:50]  Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 12:43:50] *Jun  3 08:20:15:021 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:50]  Get Mtu FINAL uiMinMtu:1500.
+[2022/05/31 12:43:50] *Jun  3 08:20:15:021 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:50] SRv6 encapsulation: Encaps:1, XSRHType:0, sidNum:1, sidLen:1, sidoff:0.
+[2022/05/31 12:43:51] *Jun  3 08:20:15:022 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:51]  60 00 00 00 00 b8 2b ff 11 01 00 00 00 00 00 00
+[2022/05/31 12:43:51]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:43:51]  00 00 00 00 00 00 00 01 29 02 04 00 00 00 00 00
+[2022/05/31 12:43:51]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:43:51]  60 00 00 00 00 78 2b 3f 01 10 00 00 00 00 00 00
+[2022/05/31 12:43:51]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:43:51]  00 00 00 00 00 00 00 03 3a 06 04 01 02 00 00 00
+[2022/05/31 12:43:51]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:43:51] *Jun  3 08:20:15:022 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:51]  packet: After encapsulation,
+[2022/05/31 12:43:51]    1101::1->3223::1 (length = 224)
+[2022/05/31 12:43:51] *Jun  3 08:20:15:022 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:51] SRv6 Encap: Forwarded the IPv6 encapsulated packet.
+[2022/05/31 12:43:51] *Jun  3 08:20:15:022 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:51] SRv6 Encap: Add statstics to Lfib, NID:2149580802
+[2022/05/31 12:43:51] *Jun  3 08:20:15:022 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:51] SRv6 Encap: Add statstics to Lfib, FwOctets:160,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 12:43:51] *Jun  3 08:20:15:022 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:51]  Forwarded the IPv6 B6-encapsulated packet.
+[2022/05/31 12:43:51] *Jun  3 08:20:15:022 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:43:51] De-encapsulated IPv6 extension header: Protocol = 43, result: 60e0001.
+[2022/05/31 12:44:43] *Jun  3 08:21:43:873 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:43]  60 00 00 00 00 78 2b 40 01 10 00 00 00 00 00 00
+[2022/05/31 12:44:43]  00 00 00 00 00 00 00 01 34 56 00 00 00 00 00 00
+[2022/05/31 12:44:43]  00 00 00 00 00 00 01 00 3a 06 04 02 02 00 00 00
+[2022/05/31 12:44:43]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:44:43]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 03
+[2022/05/31 12:44:43]  34 56 00 00 00 00 00 00 00 00 00 00 00 00 01 00
+[2022/05/31 12:44:43]  80 00 1c fd 14 21 00 00 62 95 aa 4d 00 0c 54 40
+[2022/05/31 12:44:43]  08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17
+[2022/05/31 12:44:43] *Jun  3 08:21:43:873 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:43]  Next IPv6 extension header: Offset = 40,Protocol = 43,MdcProtocol = 0.
+[2022/05/31 12:44:43] *Jun  3 08:21:43:873 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:43] NID protocol 3
+[2022/05/31 12:44:43] *Jun  3 08:21:43:873 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:43] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 2776593234, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 12:44:43] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:43]  Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 12:44:43] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:43]  Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 12:44:43] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:43]  Get Mtu uiMinMtu:1500.
+[2022/05/31 12:44:43] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:43]  Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 12:44:43] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:43]  Get Mtu FINAL uiMinMtu:1500.
+[2022/05/31 12:44:43] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:43] SRv6 encapsulation: Encaps:1, XSRHType:0, sidNum:1, sidLen:1, sidoff:0.
+[2022/05/31 12:44:44] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:44]  60 00 00 00 00 b8 2b ff 11 01 00 00 00 00 00 00
+[2022/05/31 12:44:44]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:44:44]  00 00 00 00 00 00 00 01 29 02 04 00 00 00 00 00
+[2022/05/31 12:44:44]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:44:44]  60 00 00 00 00 78 2b 3f 01 10 00 00 00 00 00 00
+[2022/05/31 12:44:44]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:44:44]  00 00 00 00 00 00 00 03 3a 06 04 01 02 00 00 00
+[2022/05/31 12:44:44]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:44:44] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:44]  packet: After encapsulation,
+[2022/05/31 12:44:44]    1101::1->3223::1 (length = 224)
+[2022/05/31 12:44:44] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:44] SRv6 Encap: Forwarded the IPv6 encapsulated packet.
+[2022/05/31 12:44:44] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:44] SRv6 Encap: Add statstics to Lfib, NID:2149580802
+[2022/05/31 12:44:44] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:44] SRv6 Encap: Add statstics to Lfib, FwOctets:160,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 12:44:44] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:44]  Forwarded the IPv6 B6-encapsulated packet.
+[2022/05/31 12:44:44] *Jun  3 08:21:43:874 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:44] De-encapsulated IPv6 extension header: Protocol = 43, result: 60e0001.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58]  60 00 00 00 04 28 2b 40 01 10 00 00 00 00 00 00
+[2022/05/31 12:44:58]  00 00 00 00 00 00 00 01 34 56 00 00 00 00 00 00
+[2022/05/31 12:44:58]  00 00 00 00 00 00 01 00 3a 06 04 02 02 00 00 00
+[2022/05/31 12:44:58]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:44:58]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 03
+[2022/05/31 12:44:58]  34 56 00 00 00 00 00 00 00 00 00 00 00 00 01 00
+[2022/05/31 12:44:58]  80 00 d5 bc 14 22 00 00 62 95 aa 5b 00 04 fd 58
+[2022/05/31 12:44:58]  08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58]  Next IPv6 extension header: Offset = 40,Protocol = 43,MdcProtocol = 0.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58] NID protocol 3
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 2776593234, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58]  Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58]  Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58]  Get Mtu uiMinMtu:1500.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58]  Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58]  Get Mtu FINAL uiMinMtu:1500.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58] SRv6 encapsulation: Encaps:1, XSRHType:0, sidNum:1, sidLen:1, sidoff:0.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58]  60 00 00 00 04 68 2b ff 11 01 00 00 00 00 00 00
+[2022/05/31 12:44:58]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:44:58]  00 00 00 00 00 00 00 01 29 02 04 00 00 00 00 00
+[2022/05/31 12:44:58]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:44:58]  60 00 00 00 04 28 2b 3f 01 10 00 00 00 00 00 00
+[2022/05/31 12:44:58]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:44:58]  00 00 00 00 00 00 00 03 3a 06 04 01 02 00 00 00
+[2022/05/31 12:44:58]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58]  packet: After encapsulation,
+[2022/05/31 12:44:58]    1101::1->3223::1 (length = 1168)
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58] SRv6 Encap: Forwarded the IPv6 encapsulated packet.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58] SRv6 Encap: Add statstics to Lfib, NID:2149580802
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58] SRv6 Encap: Add statstics to Lfib, FwOctets:1104,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58]  Forwarded the IPv6 B6-encapsulated packet.
+[2022/05/31 12:44:58] *Jun  3 08:22:10:605 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:44:58] De-encapsulated IPv6 extension header: Protocol = 43, result: 60e0001.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06]  60 00 00 00 04 28 2b 40 01 10 00 00 00 00 00 00
+[2022/05/31 12:49:06]  00 00 00 00 00 00 00 01 34 56 00 00 00 00 00 00
+[2022/05/31 12:49:06]  00 00 00 00 00 00 01 00 3a 06 04 02 02 00 00 00
+[2022/05/31 12:49:06]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:49:06]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 03
+[2022/05/31 12:49:06]  34 56 00 00 00 00 00 00 00 00 00 00 00 00 01 00
+[2022/05/31 12:49:06]  80 00 ab f5 14 23 00 00 62 95 ab 40 00 06 26 38
+[2022/05/31 12:49:06]  08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06]  Next IPv6 extension header: Offset = 40,Protocol = 43,MdcProtocol = 0.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06] NID protocol 3
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 2776593234, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06]  Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06]  Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06]  Get Mtu uiMinMtu:1500.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06]  Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06]  Get Mtu FINAL uiMinMtu:1500.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06] SRv6 encapsulation: Encaps:1, XSRHType:0, sidNum:1, sidLen:1, sidoff:0.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06]  60 00 00 00 04 68 2b ff 11 01 00 00 00 00 00 00
+[2022/05/31 12:49:06]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:49:06]  00 00 00 00 00 00 00 01 29 02 04 00 00 00 00 00
+[2022/05/31 12:49:06]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:49:06]  60 00 00 00 04 28 2b 3f 01 10 00 00 00 00 00 00
+[2022/05/31 12:49:06]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:49:06]  00 00 00 00 00 00 00 03 3a 06 04 01 02 00 00 00
+[2022/05/31 12:49:06]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06]  packet: After encapsulation,
+[2022/05/31 12:49:06]    1101::1->3223::1 (length = 1168)
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06] SRv6 Encap: Forwarded the IPv6 encapsulated packet.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06] SRv6 Encap: Add statstics to Lfib, NID:2149580802
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06] SRv6 Encap: Add statstics to Lfib, FwOctets:1104,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06]  Forwarded the IPv6 B6-encapsulated packet.
+[2022/05/31 12:49:06] *Jun  3 08:29:19:443 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:06] De-encapsulated IPv6 extension header: Protocol = 43, result: 60e0001.
+[2022/05/31 12:49:20] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:20]  60 00 00 00 04 28 2b 40 01 10 00 00 00 00 00 00
+[2022/05/31 12:49:20]  00 00 00 00 00 00 00 01 34 56 00 00 00 00 00 00
+[2022/05/31 12:49:20]  00 00 00 00 00 00 01 00 3a 06 04 02 02 00 00 00
+[2022/05/31 12:49:20]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:49:20]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 03
+[2022/05/31 12:49:20]  34 56 00 00 00 00 00 00 00 00 00 00 00 00 01 00
+[2022/05/31 12:49:20]  80 00 9c 47 14 24 00 00 62 95 ab 4d 00 06 35 d8
+[2022/05/31 12:49:20]  08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17
+[2022/05/31 12:49:20] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:20]  Next IPv6 extension header: Offset = 40,Protocol = 43,MdcProtocol = 0.
+[2022/05/31 12:49:20] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:20] NID protocol 3
+[2022/05/31 12:49:20] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:20] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 2776593234, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 12:49:20] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:20]  Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 12:49:20] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:20]  Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 12:49:20] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:20]  Get Mtu uiMinMtu:1500.
+[2022/05/31 12:49:20] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:20]  Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 12:49:20] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:20]  Get Mtu FINAL uiMinMtu:1500.
+[2022/05/31 12:49:20] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:20] SRv6 encapsulation: Encaps:1, XSRHType:0, sidNum:1, sidLen:1, sidoff:0.
+[2022/05/31 12:49:21] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:21]  60 00 00 00 04 68 2b ff 11 01 00 00 00 00 00 00
+[2022/05/31 12:49:21]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:49:21]  00 00 00 00 00 00 00 01 29 02 04 00 00 00 00 00
+[2022/05/31 12:49:21]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:49:21]  60 00 00 00 04 28 2b 3f 01 10 00 00 00 00 00 00
+[2022/05/31 12:49:21]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:49:21]  00 00 00 00 00 00 00 03 3a 06 04 01 02 00 00 00
+[2022/05/31 12:49:21]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:49:21] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:21]  packet: After encapsulation,
+[2022/05/31 12:49:21]    1101::1->3223::1 (length = 1168)
+[2022/05/31 12:49:21] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:21] SRv6 Encap: Forwarded the IPv6 encapsulated packet.
+[2022/05/31 12:49:21] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:21] SRv6 Encap: Add statstics to Lfib, NID:2149580802
+[2022/05/31 12:49:21] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:21] SRv6 Encap: Add statstics to Lfib, FwOctets:1104,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 12:49:21] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:21]  Forwarded the IPv6 B6-encapsulated packet.
+[2022/05/31 12:49:21] *Jun  3 08:29:41:185 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:49:21] De-encapsulated IPv6 extension header: Protocol = 43, result: 60e0001.
+[2022/05/31 12:56:21] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:21]  60 00 00 00 04 28 2b 40 01 10 00 00 00 00 00 00
+[2022/05/31 12:56:21]  00 00 00 00 00 00 00 01 34 56 00 00 00 00 00 00
+[2022/05/31 12:56:21]  00 00 00 00 00 00 01 00 3a 06 04 02 02 00 00 00
+[2022/05/31 12:56:21]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:56:21]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 03
+[2022/05/31 12:56:21]  34 56 00 00 00 00 00 00 00 00 00 00 00 00 01 00
+[2022/05/31 12:56:21]  80 00 59 9e 14 25 00 00 62 95 ac d2 00 01 77 00
+[2022/05/31 12:56:21]  08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17
+[2022/05/31 12:56:21] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:21]  Next IPv6 extension header: Offset = 40,Protocol = 43,MdcProtocol = 0.
+[2022/05/31 12:56:21] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:21] NID protocol 3
+[2022/05/31 12:56:21] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:21] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 2776593234, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 12:56:21] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:21]  Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 12:56:21] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:21]  Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 12:56:21] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:21]  Get Mtu uiMinMtu:1500.
+[2022/05/31 12:56:21] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:21]  Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 12:56:21] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:21]  Get Mtu FINAL uiMinMtu:1500.
+[2022/05/31 12:56:21] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:21] SRv6 encapsulation: Encaps:1, XSRHType:0, sidNum:1, sidLen:1, sidoff:0.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22]  60 00 00 00 04 68 2b ff 11 01 00 00 00 00 00 00
+[2022/05/31 12:56:22]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:56:22]  00 00 00 00 00 00 00 01 29 02 04 00 00 00 00 00
+[2022/05/31 12:56:22]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:56:22]  60 00 00 00 04 28 2b 3f 01 10 00 00 00 00 00 00
+[2022/05/31 12:56:22]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 12:56:22]  00 00 00 00 00 00 00 03 3a 06 04 01 02 00 00 00
+[2022/05/31 12:56:22]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 12:56:22] *Jun  3 08:41:47:359 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22]  packet: After encapsulation,
+[2022/05/31 12:56:22]    1101::1->3223::1 (length = 1168)
+[2022/05/31 12:56:22] *Jun  3 08:41:47:360 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] SRv6 Encap: Forwarded the IPv6 encapsulated packet.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:360 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] SRv6 Encap: Add statstics to Lfib, NID:2149580802
+[2022/05/31 12:56:22] *Jun  3 08:41:47:360 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] SRv6 Encap: Add statstics to Lfib, FwOctets:1104,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:360 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22]  Forwarded the IPv6 B6-encapsulated packet.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:360 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] De-encapsulated IPv6 extension header: Protocol = 43, result: 60e0001.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22]  packet: Before de-encapsulation according to fast-forwarding table,
+[2022/05/31 12:56:22]    110::1->3456::100 (length = 1104)
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] NID protocol 3
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 2776593234, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22]  FS Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22]  FS Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22]  FS Get Mtu uiMinMtu:1500.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22]  FS Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22]  The min mtu is:1500.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] SRv6 Fast Encap: pstSRv6FwdInfo->ucEncaps:1, pstSRv6FwdInfo->ucXSRHType:0, sidNum:1, sidLen:1,offnum:0.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22]  packet: After encapsulation according to fast-forwarding table,
+[2022/05/31 12:56:22]    1101::1->3223::1 (length = 1168)
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] Fast forwarded the SRv6 encapsulated packet.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] SRv6 Encap: Add statstics to Lfib, NID:2149580802
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] SRv6 Encap: Add statstics to Lfib, FwOctets:1104,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 12:56:22] *Jun  3 08:41:47:559 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 12:56:22] De-encapsulated IPv6 extension header after fast forwarding: Protocol = 43, result = 60e0001.
+[2022/05/31 12:56:46] %Jun  3 08:42:33:572 2022 DUT1 SHELL/5/SHELL_LOGOUT: -MDC=1; VTY logged out from 221.0.0.1.
+[2022/05/31 12:56:46] %Jun  3 08:42:34:309 2022 DUT1 SHELL/5/SHELL_LOGIN: -MDC=1; VTY logged in from 221.0.0.1.
+[2022/05/31 13:06:56] %Jun  3 09:00:04:079 2022 DUT1 IFNET/3/PHY_UPDOWN: -MDC=1; Physical state on the interface GigabitEthernet2/0/1 changed to down.
+[2022/05/31 13:06:56] %Jun  3 09:00:04:080 2022 DUT1 IFNET/4/LINK_UPDOWN: -MDC=1; Line protocol state on the interface GigabitEthernet2/0/1 changed to down.
+[2022/05/31 13:06:56] %Jun  3 09:00:04:706 2022 DUT1 L3VPN/6/L3VPN_VRF_IFDOWN_CLEAR: -MDC=1; The interface bound to the VPN instance went up.(VPN instance name=v1,Interface name=GigabitE
+[2022/05/31 13:06:56] thernet2/0/1,Interface status=active,VPN instance status=up)
+[2022/05/31 13:06:56] %Jun  3 09:00:04:709 2022 DUT1 IFNET/3/PHY_UPDOWN: -MDC=1; Physical state on the interface GigabitEthernet2/0/1 changed to up.
+[2022/05/31 13:06:56] %Jun  3 09:00:04:709 2022 DUT1 IFNET/4/LINK_UPDOWN: -MDC=1; Line protocol state on the interface GigabitEthernet2/0/1 changed to up.
+[2022/05/31 13:06:57] %Jun  3 09:00:05:622 2022 DUT1 SHELL/5/SHELL_SAVEPOINT_EXIST: -MDC=1; The running configuration at this rollback point is the same as the configuration at the previ
+[2022/05/31 13:06:57] ous rollback point.
+[2022/05/31 13:06:57] %Jun  3 09:00:06:688 2022 DUT1 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN_CLEAR: -MDC=1; The IPv6 status of interface bound to a VPN instance went up.(VPN instance name=v1,Inter
+[2022/05/31 13:06:57] face name=GigabitEthernet2/0/1)
+[2022/05/31 13:07:00] %Jun  3 09:00:11:342 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=CONNECT,CurrState=OPENSENT,input event=TC
+[2022/05/31 13:07:00] PConnectionConfirmed,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 13:07:00] %Jun  3 09:00:11:342 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENSENT,CurrState=OPENCONFIRM,input even
+[2022/05/31 13:07:00] t=ReceiveOpenMessage,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 13:07:00] %Jun  3 09:00:11:344 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENCONFIRM,CurrState=ESTABLISHED,input e
+[2022/05/31 13:07:00] vent=ReceiveKeepAliveMsg,peer=101::2,source interface=GigabitEthernet2/0/1,VPN instance=v1,Instance=default)
+[2022/05/31 13:07:00] %Jun  3 09:00:11:344 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101::2 state has changed from OPENCONFIRM to ESTABLISHED.
+[2022/05/31 13:07:02] %Jun  3 09:00:15:054 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=CONNECT,CurrState=OPENSENT,input event=TC
+[2022/05/31 13:07:02] PConnectionConfirmed,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 13:07:02] %Jun  3 09:00:15:055 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENSENT,CurrState=OPENCONFIRM,input even
+[2022/05/31 13:07:02] t=ReceiveOpenMessage,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 13:07:02] %Jun  3 09:00:15:060 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENCONFIRM,CurrState=ESTABLISHED,input e
+[2022/05/31 13:07:02] vent=ReceiveKeepAliveMsg,peer=101.0.0.2,source interface=GigabitEthernet2/0/1,VPN instance=v1,Instance=default)
+[2022/05/31 13:07:02] %Jun  3 09:00:15:060 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101.0.0.2 state has changed from OPENCONFIRM to ESTABLISHED.
+[2022/05/31 13:07:32] %Jun  3 09:01:06:643 2022 DUT1 L3VPN/6/L3VPN_VRF_IFDOWN: -MDC=1; The interface bound to the VPN instance went down.(VPN instance name=v1,Interface name=GigabitEther
+[2022/05/31 13:07:32] net2/0/1,Interface status=active,VPN instance status=down)
+[2022/05/31 13:07:33] %Jun  3 09:01:07:060 2022 DUT1 L3VPN/6/L3VPN_VRF_IFDOWN_CLEAR: -MDC=1; The interface bound to the VPN instance went up.(VPN instance name=v1,Interface name=GigabitE
+[2022/05/31 13:07:33] thernet2/0/1,Interface status=active,VPN instance status=up)
+[2022/05/31 13:07:33] %Jun  3 09:01:07:377 2022 DUT1 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN: -MDC=1; The IPv6 status of interface bound to a VPN instance went down.(VPN instance name=v1,Interface
+[2022/05/31 13:07:33]  name=GigabitEthernet2/0/1)
+[2022/05/31 13:07:34] %Jun  3 09:01:09:882 2022 DUT1 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN_CLEAR: -MDC=1; The IPv6 status of interface bound to a VPN instance went up.(VPN instance name=v1,Inter
+[2022/05/31 13:07:34] face name=GigabitEthernet2/0/1)
+[2022/05/31 13:07:37] %Jun  3 09:01:14:963 2022 DUT1 ISIS/3/ISIS_NBR_CHG: -MDC=1; IS-IS 1, Level-2 adjacency 0000.0000.0004 (GigabitEthernet2/0/4), state changed to DOWN, Reason: circuit
+[2022/05/31 13:07:37]  data clean.
+[2022/05/31 13:07:39] %Jun  3 09:01:17:224 2022 DUT1 ISIS/3/ISIS_NBR_CHG: -MDC=1; IS-IS 1, Level-2 adjacency 0000.0000.0004 (GigabitEthernet2/0/4), state changed to UP, Reason: 2way-pass
+[2022/05/31 13:07:39] .
+[2022/05/31 13:07:57] %Jun  3 09:01:49:187 2022 DUT1 ISIS/3/ISIS_NBR_CHG: -MDC=1; IS-IS 1, Level-2 adjacency 0000.0000.0004 (GigabitEthernet2/0/4), state changed to INIT, Reason: 2way-fa
+[2022/05/31 13:07:57] il.
+[2022/05/31 13:08:00] %Jun  3 09:01:52:932 2022 DUT1 ISIS/3/ISIS_NBR_CHG: -MDC=1; IS-IS 1, Level-2 adjacency 0000.0000.0004 (GigabitEthernet2/0/4), state changed to UP, Reason: 2way-pass
+[2022/05/31 13:08:00] .
+[2022/05/31 13:08:19] %Jun  3 09:02:26:020 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=ESTABLISHED,CurrState=IDLE,input event=TC
+[2022/05/31 13:08:19] PConnectionFails,peer=101.0.0.2,source interface=GigabitEthernet2/0/1,VPN instance=v1,Instance=default)
+[2022/05/31 13:08:19] %Jun  3 09:02:26:020 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101.0.0.2 state has changed from ESTABLISHED to IDLE for TCP_Connection_Failed event
+[2022/05/31 13:08:19]  received.
+[2022/05/31 13:08:20] %Jun  3 09:02:27:742 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=IDLE,CurrState=CONNECT,input event=Manual
+[2022/05/31 13:08:20] Start,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 13:08:24] %Jun  3 09:02:34:593 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=ESTABLISHED,CurrState=IDLE,input event=TC
+[2022/05/31 13:08:24] PConnectionFails,peer=101::2,source interface=GigabitEthernet2/0/1,VPN instance=v1,Instance=default)
+[2022/05/31 13:08:24] %Jun  3 09:02:34:593 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101::2 state has changed from ESTABLISHED to IDLE for TCP_Connection_Failed event re
+[2022/05/31 13:08:24] ceived.
+[2022/05/31 13:08:25] %Jun  3 09:02:36:744 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=IDLE,CurrState=CONNECT,input event=Manual
+[2022/05/31 13:08:25] Start,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 13:13:55] %Jun  3 09:12:06:465 2022 DUT1 L3VPN/6/L3VPN_VRF_IFDOWN: -MDC=1; The interface bound to the VPN instance went down.(VPN instance name=v1,Interface name=GigabitEther
+[2022/05/31 13:13:55] net2/0/1,Interface status=active,VPN instance status=down)
+[2022/05/31 13:13:55] %Jun  3 09:12:06:465 2022 DUT1 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN: -MDC=1; The IPv6 status of interface bound to a VPN instance went down.(VPN instance name=v1,Interface
+[2022/05/31 13:13:55]  name=GigabitEthernet2/0/1)
+[2022/05/31 13:48:40] *Jun  3 10:12:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:48:40] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:48:40] *Jun  3 10:12:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:48:40] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:48:40] 
+[2022/05/31 13:48:40] *Jun  3 10:12:03:955 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:48:40] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:48:40] *Jun  3 10:12:03:955 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:48:40] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:48:40] 
+[2022/05/31 13:48:40] *Jun  3 10:12:02:836 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:48:40] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:48:40] *Jun  3 10:12:02:836 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:48:40] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:48:40] 
+[2022/05/31 13:48:57] *Jun  3 10:12:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:48:57] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:48:57] *Jun  3 10:12:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:48:57] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:48:57] 
+[2022/05/31 13:48:57] *Jun  3 10:12:31:127 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:48:57] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:48:57] *Jun  3 10:12:31:127 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:48:57] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:48:57] 
+[2022/05/31 13:48:57] *Jun  3 10:12:33:345 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:48:57] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:48:57] *Jun  3 10:12:33:345 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:48:57] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:48:57] 
+[2022/05/31 13:49:15] *Jun  3 10:13:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:49:15] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:49:15] *Jun  3 10:13:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:49:15] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:49:15] 
+[2022/05/31 13:49:15] *Jun  3 10:13:02:740 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:49:15] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:49:15] *Jun  3 10:13:02:740 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:49:15] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:49:15] 
+[2022/05/31 13:49:15] *Jun  3 10:13:03:043 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:49:15] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:49:15] *Jun  3 10:13:03:044 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:49:15] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:49:15] 
+[2022/05/31 13:49:32] *Jun  3 10:13:34:130 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:49:32] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:49:32] *Jun  3 10:13:34:130 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:49:32] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:49:32] 
+[2022/05/31 13:49:32] *Jun  3 10:13:31:369 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:49:32] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:49:32] *Jun  3 10:13:31:369 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:49:32] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:49:32] 
+[2022/05/31 13:49:32] *Jun  3 10:13:32:150 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:49:32] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:49:32] *Jun  3 10:13:32:150 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:49:32] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:49:32] 
+[2022/05/31 13:49:50] *Jun  3 10:14:04:129 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:49:50] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:49:50] *Jun  3 10:14:04:129 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:49:50] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:49:50] 
+[2022/05/31 13:49:50] *Jun  3 10:14:03:219 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:49:50] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:49:50] *Jun  3 10:14:01:465 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:49:50] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:49:50] *Jun  3 10:14:03:219 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:49:50] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:49:50] 
+[2022/05/31 13:49:50] *Jun  3 10:14:01:465 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:49:50] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:49:50] 
+[2022/05/31 13:50:07] *Jun  3 10:14:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:50:07] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:07] *Jun  3 10:14:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:50:07] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:07] 
+[2022/05/31 13:50:07] *Jun  3 10:14:31:511 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:50:07] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:07] *Jun  3 10:14:31:511 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:50:07] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:07] 
+[2022/05/31 13:50:07] *Jun  3 10:14:30:892 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:50:07] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:07] *Jun  3 10:14:30:892 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:50:07] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:07] 
+[2022/05/31 13:50:24] *Jun  3 10:15:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:50:24] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:24] *Jun  3 10:15:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:50:24] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:24] 
+[2022/05/31 13:50:24] *Jun  3 10:15:00:330 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:50:24] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:24] *Jun  3 10:15:00:330 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:50:24] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:24] 
+[2022/05/31 13:50:24] *Jun  3 10:15:03:470 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:50:24] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:24] *Jun  3 10:15:03:470 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:50:24] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:24] 
+[2022/05/31 13:50:42] *Jun  3 10:15:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:50:42] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:42] *Jun  3 10:15:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:50:42] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:42] 
+[2022/05/31 13:50:42] *Jun  3 10:15:29:750 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:50:42] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:42] *Jun  3 10:15:29:750 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:50:42] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:42] 
+[2022/05/31 13:50:42] *Jun  3 10:15:31:751 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:50:42] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:42] *Jun  3 10:15:31:751 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:50:42] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:42] 
+[2022/05/31 13:50:59] *Jun  3 10:16:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:50:59] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:59] *Jun  3 10:16:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:50:59] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:59] 
+[2022/05/31 13:50:59] *Jun  3 10:16:03:537 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:50:59] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:59] *Jun  3 10:16:03:555 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:50:59] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:50:59] *Jun  3 10:16:03:537 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:50:59] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:59] 
+[2022/05/31 13:50:59] *Jun  3 10:16:03:555 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:50:59] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:50:59] 
+[2022/05/31 13:51:17] *Jun  3 10:16:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:51:17] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:51:17] *Jun  3 10:16:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:51:17] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:51:17] 
+[2022/05/31 13:51:17] *Jun  3 10:16:31:832 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:51:17] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:51:17] *Jun  3 10:16:32:906 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:51:17] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:51:17] *Jun  3 10:16:31:832 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:51:17] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:51:17] 
+[2022/05/31 13:51:17] *Jun  3 10:16:32:906 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:51:17] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:51:17] 
+[2022/05/31 13:51:34] *Jun  3 10:17:04:129 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:51:34] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:51:34] *Jun  3 10:17:04:130 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:51:34] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:51:34] 
+[2022/05/31 13:51:34] *Jun  3 10:17:03:687 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:51:34] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:51:34] *Jun  3 10:17:02:246 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:51:34] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:51:34] *Jun  3 10:17:03:687 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:51:34] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:51:34] 
+[2022/05/31 13:51:34] *Jun  3 10:17:02:246 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:51:34] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:51:34] 
+[2022/05/31 13:51:51] *Jun  3 10:17:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:51:51] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:51:51] *Jun  3 10:17:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:51:51] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:51:51] 
+[2022/05/31 13:51:51] *Jun  3 10:17:31:971 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:51:51] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:51:51] *Jun  3 10:17:31:971 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:51:51] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:51:51] 
+[2022/05/31 13:51:51] *Jun  3 10:17:31:623 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:51:51] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:51:51] *Jun  3 10:17:31:623 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:51:51] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:51:51] 
+[2022/05/31 13:52:09] *Jun  3 10:18:04:129 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:52:09] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:52:09] *Jun  3 10:18:04:129 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:52:09] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:52:09] 
+[2022/05/31 13:52:09] *Jun  3 10:18:03:849 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:52:09] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:52:09] *Jun  3 10:18:03:849 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:52:09] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:52:09] 
+[2022/05/31 13:52:09] *Jun  3 10:18:00:957 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:52:09] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:52:09] *Jun  3 10:18:00:957 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:52:09] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:52:09] 
+[2022/05/31 13:52:26] *Jun  3 10:18:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:52:26] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:52:26] *Jun  3 10:18:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:52:26] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:52:26] 
+[2022/05/31 13:52:26] *Jun  3 10:18:30:336 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:52:26] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:52:26] *Jun  3 10:18:32:109 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:52:26] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:52:26] *Jun  3 10:18:30:336 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:52:26] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:52:26] 
+[2022/05/31 13:52:26] *Jun  3 10:18:32:109 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:52:26] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:52:26] 
+[2022/05/31 13:52:44] *Jun  3 10:19:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:52:44] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:52:44] *Jun  3 10:19:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:52:44] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:52:44] 
+[2022/05/31 13:52:44] *Jun  3 10:19:04:007 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:52:44] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:52:44] *Jun  3 10:18:59:685 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:52:44] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:52:44] *Jun  3 10:18:59:685 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:52:44] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:52:44] 
+[2022/05/31 13:52:44] *Jun  3 10:19:04:007 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:52:44] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:52:44] 
+[2022/05/31 13:53:01] *Jun  3 10:19:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:53:01] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:01] *Jun  3 10:19:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:53:01] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:01] 
+[2022/05/31 13:53:01] *Jun  3 10:19:32:264 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:53:01] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:01] *Jun  3 10:19:33:578 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:53:01] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:01] *Jun  3 10:19:32:264 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:53:01] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:01] 
+[2022/05/31 13:53:01] *Jun  3 10:19:33:578 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:53:01] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:01] 
+[2022/05/31 13:53:18] *Jun  3 10:20:04:129 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:53:18] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:18] *Jun  3 10:20:04:130 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:53:18] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:18] 
+[2022/05/31 13:53:18] *Jun  3 10:20:02:990 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:53:18] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:18] *Jun  3 10:20:02:990 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:53:18] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:18] 
+[2022/05/31 13:53:18] *Jun  3 10:20:00:491 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:53:18] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:18] *Jun  3 10:20:00:491 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:53:18] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:18] 
+[2022/05/31 13:53:36] *Jun  3 10:20:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:53:36] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:36] *Jun  3 10:20:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:53:36] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:36] 
+[2022/05/31 13:53:36] *Jun  3 10:20:32:385 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:53:36] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:36] *Jun  3 10:20:32:385 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:53:36] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:36] 
+[2022/05/31 13:53:36] *Jun  3 10:20:32:463 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:53:36] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:36] *Jun  3 10:20:32:463 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:53:36] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:36] 
+[2022/05/31 13:53:53] *Jun  3 10:21:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:53:53] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:53] *Jun  3 10:21:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:53:53] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:53] 
+[2022/05/31 13:53:53] *Jun  3 10:21:01:793 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:53:53] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:53] *Jun  3 10:21:00:756 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:53:53] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:53:53] *Jun  3 10:21:01:793 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:53:53] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:53] 
+[2022/05/31 13:53:53] *Jun  3 10:21:00:756 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:53:53] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:53:53] 
+[2022/05/31 13:54:00] *Jun  3 10:21:15:215 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:54:00] Del Srv6 StatNode
+[2022/05/31 13:54:00] 
+[2022/05/31 13:54:00] *Jun  3 10:21:12:134 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:54:00] Del Srv6 StatNode
+[2022/05/31 13:54:00] 
+[2022/05/31 13:54:00] *Jun  3 10:21:14:421 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:54:00] Del Srv6 StatNode
+[2022/05/31 13:54:00] 
+[2022/05/31 13:54:03] *Jun  3 10:21:20:594 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:54:03] Add New Srv6 StatNode, BSID:3456::11, pstSrv6Stat:ffff8100646a7180, ulHashIndex:262
+[2022/05/31 13:54:03] 
+[2022/05/31 13:54:03] *Jun  3 10:21:19:486 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:54:03] Add New Srv6 StatNode, BSID:3456::11, pstSrv6Stat:ffff810039577d00, ulHashIndex:262
+[2022/05/31 13:54:03] 
+[2022/05/31 13:54:03] *Jun  3 10:21:17:568 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:54:03] Add New Srv6 StatNode, BSID:3456::11, pstSrv6Stat:ffff8100384bfb00, ulHashIndex:262
+[2022/05/31 13:54:03] 
+[2022/05/31 13:54:11] *Jun  3 10:21:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:54:11] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:54:11] *Jun  3 10:21:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:54:11] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:54:11] 
+[2022/05/31 13:54:11] *Jun  3 10:21:31:042 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:54:11] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:54:11] *Jun  3 10:21:32:556 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:54:11] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:54:11] *Jun  3 10:21:31:042 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:54:11] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:54:11] 
+[2022/05/31 13:54:11] *Jun  3 10:21:32:556 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:54:11] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:54:11] 
+[2022/05/31 13:54:28] *Jun  3 10:22:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:54:28] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:54:28] *Jun  3 10:22:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:54:28] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:54:28] 
+[2022/05/31 13:54:28] *Jun  3 10:22:00:866 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:54:28] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:54:28] *Jun  3 10:22:00:465 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:54:28] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:54:28] *Jun  3 10:22:00:866 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:54:28] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:54:28] 
+[2022/05/31 13:54:28] *Jun  3 10:22:00:465 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:54:28] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:54:28] 
+[2022/05/31 13:54:46] *Jun  3 10:22:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:54:46] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:54:46] *Jun  3 10:22:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:54:46] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:54:46] 
+[2022/05/31 13:54:46] *Jun  3 10:22:32:716 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:54:46] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:54:46] *Jun  3 10:22:29:786 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:54:46] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:54:46] *Jun  3 10:22:32:716 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:54:46] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:54:46] 
+[2022/05/31 13:54:46] *Jun  3 10:22:29:786 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:54:46] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:54:46] 
+[2022/05/31 13:55:03] *Jun  3 10:23:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:55:03] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:55:03] *Jun  3 10:23:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:55:03] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:55:03] 
+[2022/05/31 13:55:03] *Jun  3 10:23:01:016 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:55:03] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:55:03] *Jun  3 10:23:01:016 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:55:03] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:55:03] 
+[2022/05/31 13:55:03] *Jun  3 10:23:03:726 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:55:03] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:55:03] *Jun  3 10:23:03:726 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:55:03] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:55:03] 
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20]  60 00 00 00 04 28 2b 40 01 10 00 00 00 00 00 00
+[2022/05/31 13:55:20]  00 00 00 00 00 00 00 01 34 56 00 00 00 00 00 00
+[2022/05/31 13:55:20]  00 00 00 00 00 00 00 11 3a 06 04 02 02 00 00 00
+[2022/05/31 13:55:20]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 13:55:20]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 03
+[2022/05/31 13:55:20]  34 56 00 00 00 00 00 00 00 00 00 00 00 00 00 11
+[2022/05/31 13:55:20]  80 00 bf a3 14 76 00 00 62 95 b9 95 00 00 03 e8
+[2022/05/31 13:55:20]  08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 15 16 17
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20]  Next IPv6 extension header: Offset = 40,Protocol = 43,MdcProtocol = 0.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20] NID protocol 3
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20] Obtain SRv6 forwarding table information. NID = 2150629377, EcmpIndex = 360692561, EcmpFlag = 1 dscp = 0, dot1p = 255 outif = 0.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20]  Get Mtu outif:288 linkmtu:1500.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20]  Get Mtu MDC uiSRMtu:1500.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20]  Get Mtu uiMinMtu:1500.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20]  Get Mtu uiMinMtu:1500 uiPathMtu:0.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20]  Get Mtu FINAL uiMinMtu:1500.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20] SRv6 encapsulation: Encaps:1, XSRHType:0, sidNum:1, sidLen:1, sidoff:0.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20]  60 00 00 00 04 68 2b ff 11 01 00 00 00 00 00 00
+[2022/05/31 13:55:20]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 13:55:20]  00 00 00 00 00 00 00 01 29 02 04 00 00 00 00 00
+[2022/05/31 13:55:20]  32 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 13:55:20]  60 00 00 00 04 28 2b 3f 01 10 00 00 00 00 00 00
+[2022/05/31 13:55:20]  00 00 00 00 00 00 00 01 32 23 00 00 00 00 00 00
+[2022/05/31 13:55:20]  00 00 00 00 00 00 00 03 3a 06 04 01 02 00 00 00
+[2022/05/31 13:55:20]  01 23 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20]  packet: After encapsulation,
+[2022/05/31 13:55:20]    1101::1->3223::1 (length = 1168)
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20] SRv6 Encap: Forwarded the IPv6 encapsulated packet.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20] SRv6 Encap: Add statstics to Lfib, NID:2149580802
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20] SRv6 Encap: Add statstics to Lfib, FwOctets:1104,FwPackets:1, FwErrors:0,FwDiscards:0.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20]  Forwarded the IPv6 B6-encapsulated packet.
+[2022/05/31 13:55:20] *Jun  3 10:23:33:007 2022 DUT1 SRV6/7/packet: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20] De-encapsulated IPv6 extension header: Protocol = 43, result: 60e0001.
+[2022/05/31 13:55:20] *Jun  3 10:23:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:55:20] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:55:20] *Jun  3 10:23:34:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:55:20] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:55:20] 
+[2022/05/31 13:55:20] *Jun  3 10:23:33:033 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:55:20] *Jun  3 10:23:32:821 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:55:20] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:55:20] *Jun  3 10:23:33:033 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:55:20] Get SRv6 Bsid stat information: ui32NID = 2150629377, ui64InBytes = 1104,ui64InPackets = 1, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:55:20] 
+[2022/05/31 13:55:20] *Jun  3 10:23:32:821 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:55:20] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:55:20] 
+[2022/05/31 13:55:38] *Jun  3 10:24:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:55:38] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:55:38] *Jun  3 10:24:04:128 2022 DUT1 SRV6/7/event: -MDC=1; 
+[2022/05/31 13:55:38] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:55:38] 
+[2022/05/31 13:55:38] *Jun  3 10:24:02:427 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:55:38] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:55:38] *Jun  3 10:24:02:427 2022 DUT1 SRV6/7/event: -MDC=1-Slot=2; 
+[2022/05/31 13:55:38] Get SRv6 Bsid stat information: ui32NID = 2150629377, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:55:38] 
+[2022/05/31 13:55:38] *Jun  3 10:24:01:089 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:55:38] Get SRv6 Bsid stat information from Drv
+[2022/05/31 13:55:38] *Jun  3 10:24:01:089 2022 DUT1 SRV6/7/event: -MDC=1-Slot=3; 
+[2022/05/31 13:55:38] Get SRv6 Bsid stat information: ui32NID = 0, ui64InBytes = 0,ui64InPackets = 0, ui64InErrors = 0, ui64InDiscards = 0
+[2022/05/31 13:55:38] 
+[2022/05/31 14:27:19] %Jun  3 11:18:43:920 2022 DUT1 L3VPN/6/L3VPN_VRF_IFDOWN_CLEAR: -MDC=1; The interface bound to the VPN instance went up.(VPN instance name=v1,Interface name=GigabitE
+[2022/05/31 14:27:19] thernet2/0/1,Interface status=active,VPN instance status=up)
+[2022/05/31 14:27:21] %Jun  3 11:18:46:928 2022 DUT1 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN_CLEAR: -MDC=1; The IPv6 status of interface bound to a VPN instance went up.(VPN instance name=v1,Inter
+[2022/05/31 14:27:21] face name=GigabitEthernet2/0/1)
+[2022/05/31 14:27:22] %Jun  3 11:18:48:075 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=CONNECT,CurrState=OPENSENT,input event=TC
+[2022/05/31 14:27:22] PConnectionConfirmed,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:27:22] %Jun  3 11:18:48:076 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENSENT,CurrState=OPENCONFIRM,input even
+[2022/05/31 14:27:22] t=ReceiveOpenMessage,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:27:22] %Jun  3 11:18:48:078 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENCONFIRM,CurrState=ESTABLISHED,input e
+[2022/05/31 14:27:22] vent=ReceiveKeepAliveMsg,peer=101.0.0.2,source interface=GigabitEthernet2/0/1,VPN instance=v1,Instance=default)
+[2022/05/31 14:27:22] %Jun  3 11:18:48:078 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101.0.0.2 state has changed from OPENCONFIRM to ESTABLISHED.
+[2022/05/31 14:27:36] %Jun  3 11:19:12:750 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=CONNECT,CurrState=OPENSENT,input event=Tc
+[2022/05/31 14:27:36] p_CR_Acked,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:27:36] %Jun  3 11:19:12:754 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENSENT,CurrState=OPENCONFIRM,input even
+[2022/05/31 14:27:36] t=ReceiveOpenMessage,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:27:36] %Jun  3 11:19:12:756 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENCONFIRM,CurrState=ESTABLISHED,input e
+[2022/05/31 14:27:36] vent=ReceiveKeepAliveMsg,peer=101::2,source interface=GigabitEthernet2/0/1,VPN instance=v1,Instance=default)
+[2022/05/31 14:27:36] %Jun  3 11:19:12:756 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101::2 state has changed from OPENCONFIRM to ESTABLISHED.
+[2022/05/31 14:29:08] %Jun  3 11:21:49:939 2022 DUT1 SHELL/5/SHELL_SAVEPOINT_EXIST: -MDC=1; The running configuration at this rollback point is the same as the configuration at the previ
+[2022/05/31 14:29:08] ous rollback point.
+[2022/05/31 14:30:33] %Jun  3 11:24:16:359 2022 DUT1 L3VPN/6/L3VPN_VRF_IFDOWN: -MDC=1; The interface bound to the VPN instance went down.(VPN instance name=v1,Interface name=GigabitEther
+[2022/05/31 14:30:33] net2/0/1,Interface status=active,VPN instance status=down)
+[2022/05/31 14:30:33] %Jun  3 11:24:16:359 2022 DUT1 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN: -MDC=1; The IPv6 status of interface bound to a VPN instance went down.(VPN instance name=v1,Interface
+[2022/05/31 14:30:33]  name=GigabitEthernet2/0/1)
+[2022/05/31 14:30:33] %Jun  3 11:24:16:363 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=ESTABLISHED,CurrState=IDLE,input event=Ma
+[2022/05/31 14:30:33] nualStop,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:30:33] %Jun  3 11:24:16:363 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101.0.0.2 state has changed from ESTABLISHED to IDLE for physical interface configur
+[2022/05/31 14:30:33] ation changed.
+[2022/05/31 14:30:33] %Jun  3 11:24:16:364 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=ESTABLISHED,CurrState=IDLE,input event=Ma
+[2022/05/31 14:30:33] nualStop,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:30:33] %Jun  3 11:24:16:364 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101::2 state has changed from ESTABLISHED to IDLE for physical interface configurati
+[2022/05/31 14:30:33] on changed.
+[2022/05/31 14:30:34] %Jun  3 11:24:18:742 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=IDLE,CurrState=CONNECT,input event=Manual
+[2022/05/31 14:30:34] Start,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:30:34] %Jun  3 11:24:18:745 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=IDLE,CurrState=CONNECT,input event=Manual
+[2022/05/31 14:30:34] Start,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:31:17] %Jun  3 11:25:31:747 2022 DUT1 L3VPN/6/L3VPN_VRF_IFDOWN_CLEAR: -MDC=1; The interface bound to the VPN instance went up.(VPN instance name=v1,Interface name=GigabitE
+[2022/05/31 14:31:17] thernet2/0/1,Interface status=active,VPN instance status=up)
+[2022/05/31 14:31:18] %Jun  3 11:25:34:243 2022 DUT1 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN_CLEAR: -MDC=1; The IPv6 status of interface bound to a VPN instance went up.(VPN instance name=v1,Inter
+[2022/05/31 14:31:18] face name=GigabitEthernet2/0/1)
+[2022/05/31 14:31:21] %Jun  3 11:25:38:745 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=CONNECT,CurrState=OPENSENT,input event=Tc
+[2022/05/31 14:31:21] p_CR_Acked,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:31:21] %Jun  3 11:25:38:747 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENSENT,CurrState=OPENCONFIRM,input even
+[2022/05/31 14:31:21] t=ReceiveOpenMessage,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:31:21] %Jun  3 11:25:38:748 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENCONFIRM,CurrState=ESTABLISHED,input e
+[2022/05/31 14:31:21] vent=ReceiveKeepAliveMsg,peer=101.0.0.2,source interface=GigabitEthernet2/0/1,VPN instance=v1,Instance=default)
+[2022/05/31 14:31:21] %Jun  3 11:25:38:748 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101.0.0.2 state has changed from OPENCONFIRM to ESTABLISHED.
+[2022/05/31 14:31:26] %Jun  3 11:25:47:747 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=CONNECT,CurrState=OPENSENT,input event=Tc
+[2022/05/31 14:31:26] p_CR_Acked,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:31:26] %Jun  3 11:25:47:749 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENSENT,CurrState=OPENCONFIRM,input even
+[2022/05/31 14:31:26] t=ReceiveOpenMessage,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:31:26] %Jun  3 11:25:47:751 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENCONFIRM,CurrState=ESTABLISHED,input e
+[2022/05/31 14:31:26] vent=ReceiveKeepAliveMsg,peer=101::2,source interface=GigabitEthernet2/0/1,VPN instance=v1,Instance=default)
+[2022/05/31 14:31:26] %Jun  3 11:25:47:751 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101::2 state has changed from OPENCONFIRM to ESTABLISHED.
+[2022/05/31 14:34:50] %Jun  3 11:31:38:645 2022 DUT1 L3VPN/6/L3VPN_VRF_IFDOWN: -MDC=1; The interface bound to the VPN instance went down.(VPN instance name=v1,Interface name=GigabitEther
+[2022/05/31 14:34:50] net2/0/1,Interface status=active,VPN instance status=down)
+[2022/05/31 14:34:50] %Jun  3 11:31:38:645 2022 DUT1 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN: -MDC=1; The IPv6 status of interface bound to a VPN instance went down.(VPN instance name=v1,Interface
+[2022/05/31 14:34:50]  name=GigabitEthernet2/0/1)
+[2022/05/31 14:34:50] %Jun  3 11:31:38:647 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=ESTABLISHED,CurrState=IDLE,input event=Ma
+[2022/05/31 14:34:50] nualStop,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:34:50] %Jun  3 11:31:38:647 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101.0.0.2 state has changed from ESTABLISHED to IDLE for physical interface configur
+[2022/05/31 14:34:50] ation changed.
+[2022/05/31 14:34:50] %Jun  3 11:31:38:648 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=ESTABLISHED,CurrState=IDLE,input event=Ma
+[2022/05/31 14:34:50] nualStop,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:34:50] %Jun  3 11:31:38:648 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101::2 state has changed from ESTABLISHED to IDLE for physical interface configurati
+[2022/05/31 14:34:50] on changed.
+[2022/05/31 14:34:51] %Jun  3 11:31:40:742 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=IDLE,CurrState=CONNECT,input event=Manual
+[2022/05/31 14:34:51] Start,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:34:51] %Jun  3 11:31:40:744 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=IDLE,CurrState=CONNECT,input event=Manual
+[2022/05/31 14:34:51] Start,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:41:00] %Jun  3 11:42:16:989 2022 DUT1 L3VPN/6/L3VPN_VRF_IFDOWN_CLEAR: -MDC=1; The interface bound to the VPN instance went up.(VPN instance name=v1,Interface name=GigabitE
+[2022/05/31 14:41:00] thernet2/0/1,Interface status=active,VPN instance status=up)
+[2022/05/31 14:41:01] %Jun  3 11:42:19:299 2022 DUT1 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN_CLEAR: -MDC=1; The IPv6 status of interface bound to a VPN instance went up.(VPN instance name=v1,Inter
+[2022/05/31 14:41:01] face name=GigabitEthernet2/0/1)
+[2022/05/31 14:41:03] %Jun  3 11:42:22:749 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=CONNECT,CurrState=OPENSENT,input event=Tc
+[2022/05/31 14:41:03] p_CR_Acked,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:41:03] %Jun  3 11:42:22:752 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENSENT,CurrState=OPENCONFIRM,input even
+[2022/05/31 14:41:03] t=ReceiveOpenMessage,peer=101::2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:41:03] %Jun  3 11:42:22:753 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENCONFIRM,CurrState=ESTABLISHED,input e
+[2022/05/31 14:41:03] vent=ReceiveKeepAliveMsg,peer=101::2,source interface=GigabitEthernet2/0/1,VPN instance=v1,Instance=default)
+[2022/05/31 14:41:03] %Jun  3 11:42:22:753 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101::2 state has changed from OPENCONFIRM to ESTABLISHED.
+[2022/05/31 14:41:12] %Jun  3 11:42:37:746 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=CONNECT,CurrState=OPENSENT,input event=Tc
+[2022/05/31 14:41:12] p_CR_Acked,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:41:12] %Jun  3 11:42:37:748 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENSENT,CurrState=OPENCONFIRM,input even
+[2022/05/31 14:41:12] t=ReceiveOpenMessage,peer=101.0.0.2,source interface=,VPN instance=v1,Instance=default)
+[2022/05/31 14:41:12] %Jun  3 11:42:37:749 2022 DUT1 BGP/6/BGP_PEER_STATE_CHG: -MDC=1; Peer state changed after BGP received an event.(PrevState=OPENCONFIRM,CurrState=ESTABLISHED,input e
+[2022/05/31 14:41:12] vent=ReceiveKeepAliveMsg,peer=101.0.0.2,source interface=GigabitEthernet2/0/1,VPN instance=v1,Instance=default)
+[2022/05/31 14:41:12] %Jun  3 11:42:37:749 2022 DUT1 BGP/3/BGP_STATE_CHANGED: -MDC=1; BGP default.v1: 101.0.0.2 state has changed from OPENCONFIRM to ESTABLISHED.
+[2022/05/31 14:44:55] %Jun  3 11:49:00:962 2022 DUT1 SHELL/5/SHELL_LOGIN: -MDC=1; VTY logged in from 221.0.0.1.
+[2022/05/31 14:50:56] %Jun  3 11:59:23:143 2022 DUT1 BFD/5/BFD_CREATE_SESS: -MDC=1; The BFD session has been created successfully. Sess [/113::1, LD/RD:0/1000002, Interface:N/A, SessType
+[2022/05/31 14:50:56] :Ctrl, LinkType:SBFD SRV6 POLICY], Ver: 1, SessActive: 1, SessName: , VpnName: , Applications: SRv6PLY
+[2022/05/31 14:52:49] %Jun  3 12:02:38:173 2022 DUT1 BFD/4/BFD_CHANGE_FSM: -MDC=1; Sess[111::1/113::1, LD/RD:33793/1000002, Interface:GE2/0/4, SessType:Ctrl, LinkType:SBFD SRV6 POLICY], 
+[2022/05/31 14:52:49] Ver:1, Sta: DOWN->UP, Diag: 0 (No Diagnostic)
+[2022/05/31 14:57:26] %Jun  3 12:10:35:721 2022 DUT1 SHELL/5/SHELL_LOGOUT: -MDC=1; VTY logged out from 221.0.0.1.

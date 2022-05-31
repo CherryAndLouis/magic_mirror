@@ -112,12 +112,15 @@ class ExtractLog:
                 if filetype_l:
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
-                    logbufferitem = re.compile(".*;\s*Command\s*is\s*.*").findall(lines)
+                    # logbufferitem = re.compile(".*;\s*Command\s*is\s*.*").findall(lines)
+                    logbufferitem = re.compile("Command\s*is\s*.*(?:[^%]*)(?:\n[\s| ]*\n)").findall(lines)
                     # logbufferitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s%.*;\sCommand\sis\s.*").findall(lines)
                     logbufferlist = []
                     for logbuffer in logbufferitem:
+                        logbuffer = ''.join(logbuffer.split('\n'))
+                        logbuffer = re.sub(re.compile('\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s*'), '', logbuffer)
                         logbufferlist.append(
-                            ' '.join(re.sub(re.compile(".*;\sCommand\sis\s"), "", logbuffer).split()))
+                            ' '.join(re.sub(re.compile("Command\sis\s"), "", logbuffer).split()))
                     noruleItem = re.compile(partten_norule).findall(lines)
                     allItem = patten_allitem.findall(lines)
                     sysName_f = re.compile("^[A-Za-z0-9\-]*").findall(filename)
