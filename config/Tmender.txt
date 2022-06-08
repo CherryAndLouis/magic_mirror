@@ -1,0 +1,31 @@
+  regsub -all {'} $raw_stream_header_json {"} raw_stream_header_json  ;# "
+  
+  # 修改端口发送模式
+  set port_mode_json "\[{'op': 'replace', 'path':'/schedulingMode', 'value': 'port'}, \
+	      {'op': 'replace', 'path':'/duration/mode', 'value': 'bursts'}, \
+	      { 'op': 'replace', 'path': '/duration/count', 'value': $burst_count } \]"
+  regsub -all {'} $port_mode_json {"} port_mode_json  ;# "
+
+#=============================配置初始化区，用户根据需要可自行修改==============================#
+  # 清空tm配置
+  TM http_request -type "delete" -uri "/api/configuration"
+  
+  # 修改端口发送模式
+  TM http_request -type "patch" -uri "/api/configuration/chassis/$tm_addr/ports/$t_port1/config" -data $port_mode_json
+
+  # 创建 stream
+  set rsp_info [TM http_request -type "post" -uri "/api/configuration/streamblocks" -data $raw_stream_json]
+  set stream_id [get_json_node [lindex $rsp_info 1] "id"]
+  
+  # 修改报文头
+  TM http_request -type "patch" -uri "/api/configuration/streamblocks/$stream_id" -data $raw_stream_header_json
+
+  # 下发配置
+  TM http_request -type "post" -uri "/api/testprocess" -data "{\"action\": \"apply\"}"
+
+  # 启动流量发送
+  TM http_request -type "post" -uri "/api/testprocess/streamblocks/$stream_id" -data "{\"action\": \"test\"}"
+
+  # 启动流量发送
+  TM http_request -type "post" -uri "/api/testprocess/streamblocks/$stream_id" -data "{\"action\": \"test\"}"
+  

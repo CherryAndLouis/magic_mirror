@@ -13,18 +13,16 @@ class ExtractLog:
         self.operatemtputty = Operatemtputty()
         self.operatemtputty.del_notutf_8('./log')
 
-    def returnindex(self,result_data , index):
+    def returnindex(self, result_data, index):
         for j in range(len(result_data[:index]) - 1, -1, -1):
             pass
-
-
 
     # 处理测试仪
     def createTM(self):
         tmdata = []
-        for path, dirlist, filelist in os.walk('./logbak/'):
+        for path, dirlist, filelist in os.walk('./TMlog/'):
             for filename in filelist:
-                txtname = './logbak/' + filename
+                txtname = './TMlog/' + filename
                 filetype_tm = re.compile('094904.log').findall(filename)
                 if filetype_tm:
                     comand = open(txtname, encoding='utf-8')
@@ -33,11 +31,12 @@ class ExtractLog:
                         "\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}.\d{1,3}\sINFO.*request:\n{'method':\s'apply_config'.*").findall(lines)
                     for item in tmrequestitem:
                         # 普通流量
-                        if re.compile("\'headers'\:\s\[\{'fields\'\:").findall(item):
+                        if re.compile("\'headers':\s\[{'fields\':").findall(item):
                             headers_json = ''
                             portload_json = ''
                             frame_size_json = ''
                             payload_fill_json = ''
+                            stream_json = '[ { "op": "replace", "path": "/headers", "value": ['
                             date = re.sub(re.compile('-'), '/',
                                           re.compile('\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}.\d{1,3}').findall(item)[0])
                             headers = re.compile("\[{'fields'.*}],\s*'modifiers'\s*:\s*\[.*]}").findall(item)
@@ -46,7 +45,7 @@ class ExtractLog:
                             payload_fill = re.compile("'payload_fill':\s*{.*data':\s*'\d*'}").findall(item)
 
                             if headers:
-                                headers_json = re.sub(re.compile("'"), '"', re.sub(re.compile("\,\s'modifiers':\s*\[.*"), '', headers[0]))
+                                headers_json = re.sub(re.compile("'"), '"', re.sub(re.compile(",\s'modifiers':\s*\[.*"), '', headers[0]))
                             if portload:
                                 portload_json = re.sub(re.compile("'"), '"', re.sub(re.compile("'portLoad':\s|},"), '', portload[0])) + '}'
                             if frame_size:
@@ -54,7 +53,17 @@ class ExtractLog:
                             if payload_fill:
                                 payload_fill_json = re.sub(re.compile("'"), '"', re.sub(re.compile("'payload_fill':\s*"), '', payload_fill[0]))
 
-                            stream_json = '[ { "op": "replace", "path": "/headers", "value": [' + headers_json + ', ' + frame_size_json + ', ' + portload_json + ', ' + payload_fill_json + ' ] } ]'
+                            if headers_json != '':
+                                stream_json = stream_json + headers_json
+                            if frame_size_json != '':
+                                stream_json = stream_json + ', ' + frame_size_json
+                            if portload_json != '':
+                                stream_json = stream_json + ', ' + portload_json
+                            if payload_fill_json != '':
+                                stream_json = stream_json + ', ' + payload_fill_json
+
+                            stream_json = stream_json + ' ] } ]'
+                            # stream_json = '[ { "op": "replace", "path": "/headers", "value": [' + headers_json + ', ' + frame_size_json + ', ' + portload_json + ', ' + payload_fill_json + ' ] } ]'
                             if headers_json or portload_json or frame_size_json or payload_fill_json:
                                 tmdata.append({
                                     'sysname': 'TM',
@@ -68,7 +77,7 @@ class ExtractLog:
                         if re.compile("{'emulator': {'devices': .*").findall(item):
                             pass
 
-        comand.close()
+                    comand.close()
         return tmdata
 
     # 返回字典中value对应的key，如果不存在返回空list
@@ -89,7 +98,7 @@ class ExtractLog:
                 if filetype_l:
                     if re.compile("_.*_").findall(filename):
                         modename = re.sub(re.compile('_'), "",
-                                      re.compile("_.*_").findall(filename)[0])
+                                          re.compile("_.*_").findall(filename)[0])
                 if filetype_t:
                     topo_name = filename
         return modename, topo_name
@@ -112,13 +121,13 @@ class ExtractLog:
                 if filetype_l:
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
-                    # logbufferitem = re.compile(".*;\s*Command\s*is\s*.*").findall(lines)
-                    logbufferitem = re.compile("Command\s*is\s*.*(?:[^%]*)(?:\n[\s| ]*\n)").findall(lines)
+                    logbufferitem = re.compile("(?:(?<=Command is)(.*(?:\n{0,1}).*)(?=\n{2})?)").findall(lines)
+                    # logbufferitem = re.compile("(?<=Command is)(.*(\n{0,1}).*)(?=\n{2})?").findall(lines)
                     # logbufferitem = re.compile("\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s%.*;\sCommand\sis\s.*").findall(lines)
                     logbufferlist = []
                     for logbuffer in logbufferitem:
                         logbuffer = ''.join(logbuffer.split('\n'))
-                        logbuffer = re.sub(re.compile('\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s*'), '', logbuffer)
+                        logbuffer = re.sub(re.compile('\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s'), '', logbuffer)
                         logbufferlist.append(
                             ' '.join(re.sub(re.compile("Command\sis\s"), "", logbuffer).split()))
                     noruleItem = re.compile(partten_norule).findall(lines)
@@ -258,6 +267,9 @@ class ExtractLog:
                                 'config': printItem[0]
                             })
                     comand.close()
+        tmdata = self.createTM()
+        for data in tmdata:
+            result_data.append(data)
         result_data.sort(key=itemgetter('time'))
         print_data.sort(key=itemgetter('time'))
         # print(result_data)
@@ -358,7 +370,7 @@ class ExtractLog:
                         break
         return returnconfig_dir
 
-    #将配置数据ip对照topo转换
+    # 将配置数据ip对照topo转换
     def transip(self, result_data, ip_dir, ipv6_dir, link_dir):
         result_data_ip = []
         # ip_dir ={}
@@ -402,7 +414,7 @@ class ExtractLog:
                         intlist = portdir.values()
                         for int in intlist:
                             if re.compile(int).findall(''.join(k.get('config').split())):
-                                port_1 = self.getdictkey(portdir,int)
+                                port_1 = self.getdictkey(portdir, int)
                                 if config_t:
                                     config_t = re.sub(re.compile(int), ' $intf({dut},{port}) '.format(dut=dut_1, port=port_1[0]), ''.join(config_t.split()))
                                 else:
@@ -431,12 +443,11 @@ class ExtractLog:
         result_data_ip.sort(key=itemgetter('time'))
         return result_data_ip
 
-
     # 整理log
     def deallogbak(self):
         result_data, print_data, configreturn = self.disposelog()
         link_dir, ip_dir, ipv6_dir = self.dealtopo()
-        result_data = self.transip(result_data, ip_dir,ipv6_dir,link_dir)
+        result_data = self.transip(result_data, ip_dir, ipv6_dir, link_dir)
         config_data = []
         dutlist = []
         checkdatelist = []
@@ -450,6 +461,7 @@ class ExtractLog:
                 viewlist = k.get('viewlist')
                 date = k.get('time')
                 dut = k.get('dut')
+                viewlist_num = k.get('viewlist_num')
                 '''
                 check类型配置：check_num = 0 为command check
                 check_num = 1 为ping check
@@ -469,7 +481,7 @@ class ExtractLog:
                 debug_check = re.compile('^debug').findall(k.get('config').lstrip())
 
                 # 确定是否为check项
-                if disItem or ping_check or capture_check or dir_check or tracert_check or debug_check:
+                if disItem or ping_check or capture_check or dir_check or tracert_check or debug_check or viewlist_num==199:
                     # display 显示类信息流程处理
                     if disItem:
                         if re.compile("|\s*in").findall(k.get("config")) or re.compile("|\s*ex").findall(k.get("config")):
@@ -480,8 +492,8 @@ class ExtractLog:
                         # display不带include命令处理逻辑
                         else:
                             # 判断是不是最后一条命令
-                            if result_data[i+1] :
-                                next_data = result_data[i+1]
+                            if result_data[i + 1]:
+                                next_data = result_data[i + 1]
                                 # 判断下一条命令是不是dis 相关
                                 if re.compile("^dis").findall(next_data.get("config").lstrip()):
                                     # 下条命令是否带include或者exclude
@@ -525,6 +537,12 @@ class ExtractLog:
                         dutlist.append(dut)
                         checkdatelist.append(date)
                         checknumlist.append(5)
+                        checklist.append(k.get('config'))
+
+                    if viewlist_num == 199:
+                        dutlist.append(dut)
+                        checkdatelist.append(date)
+                        checknumlist.append(199)
                         checklist.append(k.get('config'))
                 # 非check配置逻辑
                 else:
@@ -629,14 +647,14 @@ class ExtractLog:
                     #                     if l.get('viewlist')[-1] in int_list:
                     #                         break
                     #                     else:
-                                            # if (k.get("dut")) in tempconfig_data:
-                                            #     # if tempconfig_data.has_key('DUT' + index):   #python2.7用法
-                                            #     tempconfig_data[k.get("dut")] = \
-                                            #         tempconfig_data[k.get("dut")] + '\n' + k.get('config')
-                                            #     break
-                                            # else:
-                                            #     tempconfig_data[k.get("dut")] = k.get("config")
-                                            #     break
+                    # if (k.get("dut")) in tempconfig_data:
+                    #     # if tempconfig_data.has_key('DUT' + index):   #python2.7用法
+                    #     tempconfig_data[k.get("dut")] = \
+                    #         tempconfig_data[k.get("dut")] + '\n' + k.get('config')
+                    #     break
+                    # else:
+                    #     tempconfig_data[k.get("dut")] = k.get("config")
+                    #     break
 
                     # topo不存在dut映射
                     # else:
@@ -682,13 +700,13 @@ class ExtractLog:
                 for key, value in tempconfig_data.items():
                     dutlist.append(dut)
                 config_data.append({
-                        'step': id,
-                        'dut': dutlist,
-                        'check_num': [99],
-                        'check': ['none'],
-                        'config_num': 0,
-                        'config': tempconfig_data
-                    })
+                    'step': id,
+                    'dut': dutlist,
+                    'check_num': [99],
+                    'check': ['none'],
+                    'config_num': 0,
+                    'config': tempconfig_data
+                })
                 id = id + 1
         else:
             self.operatemtputty.popwarningwin('请检查log文件夹下是否存在log')
@@ -930,16 +948,16 @@ class ExtractLog:
                         result_file_o.write(config)
             if temp_check:
                 checklen = len(temp_check)
-                if checklen == 2 :
-                    self.check_1( result_file_o, j)
-                elif checklen == 3 :
+                if checklen == 2:
+                    self.check_1(result_file_o, j)
+                elif checklen == 3:
                     self.check_1(result_file_o, j)
                 else:
                     for index, value in enumerate(temp_check):
                         if temp_check_num[index] == 0:
-                            if re.compile("include").findall(value):
-                                include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
-                                tempinclude_check = re.sub(re.compile("\s*\|\s*include\s*.*"), "",
+                            if re.compile("|\s*in").findall(value):
+                                include = re.sub(re.compile(".*\s*\|\s*in[a-z]*\s*"), "", value)
+                                tempinclude_check = re.sub(re.compile("\s*\|\s*in[a-z]*\s*.*"), "",
                                                            value)
                                 if re.compile('".*"').findall(include):
                                     check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
@@ -950,9 +968,9 @@ class ExtractLog:
                                         step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
                                         allItem_1=tempinclude_check, include=include)
                                 result_file_o.write(check)
-                            if re.compile("exclude").findall(value):
-                                exclude = re.sub(re.compile(".*\s*\|\s*exclude\s*"), "", value)
-                                tempexclude_check = re.sub(re.compile("\s*\|\s*exclude\s*.*"), "",
+                            if re.compile("|\s*ex").findall(value):
+                                exclude = re.sub(re.compile(".*\s*\|\s*ex[a-z]*\s*"), "", value)
+                                tempexclude_check = re.sub(re.compile("\s*\|\s*ex[a-z]*\s*.*"), "",
                                                            value)
                                 if re.compile('".*"').findall(exclude):
                                     check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
@@ -965,11 +983,11 @@ class ExtractLog:
                                 result_file_o.write(check)
                         elif temp_check_num[index] == 1:
                             dest_ip = re.sub('ping', '', value)
-                            pinglist =  dest_ip.split()
+                            pinglist = dest_ip.split()
                             ip = pinglist[-1]
-                            for i ,v in enumerate(pinglist):
+                            for i, v in enumerate(pinglist):
                                 if v == '-a':
-                                    ip = ip + " -source " +pinglist[i+1]
+                                    ip = ip + " -source " + pinglist[i + 1]
                             check = '\n	<CHECK> description "check {step}"\n	<CHECK> type ping\n	<CHECK> object {DUT} \n	<CHECK> expect -negative 100\n	 <CHECK> args "{dest_ip}"\n	 <CHECK> repeat 3 -interval 5 \n	      <CHECK> \n'.format(
                                 step=temp_step, DUT=temp_dut[index],
                                 dest_ip=ip)
@@ -977,7 +995,7 @@ class ExtractLog:
                         elif temp_check_num[index] == 2:
                             include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
                             check_1 = re.sub(re.compile("\s\|\sinclude\s.*"), "",
-                                                value)
+                                             value)
                             check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
                                 step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
                                 allItem_1=check_1, include=include)
@@ -1001,18 +1019,30 @@ class ExtractLog:
                                 result_file_o.write(check)
                         elif temp_check_num[index] == 4:
                             dest_tracert = re.sub(re.compile('tracert'), '', value)
-                            check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    set a [{DUT1} executeTracert -target "{allItem_1}"] \n    return $a\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK>\n'.format(
+                            check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	   ' \
+                                    ' set a [{DUT1} executeTracert -target "{allItem_1}"] \n    return $a\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> ' \
+                                    'whenfailed {{PUTSINFO "$a"}}\n    <CHECK>\n'.format(
                                 step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
                                 allItem_1=dest_tracert, include=include)
                             result_file_o.write(check)
                         elif temp_check_num[index] == 5:
                             check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return\n         undo debugging  all\n         t  d \n         t m"\n		{DUT1} Send "{value}"\n		{DUT2} ClearBuffer\n		after 10000\n		set res2 [{DUT3} GetBuffer]\n		 if {{[string first "$config" $res2]!=-1}} {{\n				return 1\n		}} else {{\n			  return 0	\n      }}\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK> \n'.format(
-                                step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index], DUT2=temp_dut[index], DUT3=temp_dut[index],value=value)
+                                step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index], DUT2=temp_dut[index], DUT3=temp_dut[index], value=value)
                             result_file_o.write(check)
+                        elif temp_check_num[index] == 199:
+                            tmheader = open('./config/Tmheader.txt', mode='r', encoding='utf-8')
+                            tmender = open('./config/Tmender.txt', mode='r', encoding='utf-8')
+                            tmheader_config = tmheader.read()
+                            tmender_config = tmender.read()
+                            result_file_o.write(tmheader_config)
+                            result_file_o.write('  set raw_stream_header_json ' + '"' + value + '"\n')
+                            result_file_o.write(tmender_config)
+                            tmheader.close()
+                            tmender.close()
                         # elif temp_check_num[index] == 99:
                         #     check = '}'
                         #     result_file_o.write(check)
-                        if index==len(temp_check)-1:
+                        if index == len(temp_check) - 1:
                             check = '}'
                             result_file_o.write(check)
         result_file_o.write(ender)
@@ -1293,10 +1323,18 @@ class ExtractLog:
                     list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
                     rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
 
-                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i }  {\n\t\tset pass [lindex $lst $i]"
+                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i }  {" \
+                                                  "\n\t\tset pass [lindex $lst $i] "
 
                     checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "ok" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "ok" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf ' \
+                                                                                                                   '"xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  ' \
+                                                                                                                   'netconf -t 3000  $xmlhello\n\t\t\t<WAIT> ' \
+                                                                                                                   '3\n\t\t\ttclear netconf\n\t\t\ttsend3  ' \
+                                                                                                                   'netconf -t 3000  ' \
+                                                                                                                   '$creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset ' \
+                                                                                                                   'res [tget ' \
+                                                                                                                   'netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "ok" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tbreak\n\t\t\t}\n\t\t} '
                     checkbody4 = '\n\t\tif {$i==2} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "Configuration already exists." $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
@@ -1449,9 +1487,9 @@ class ExtractLog:
         temp_check_num = j.get('check_num')
         for index, value in enumerate(temp_check):
             if temp_check_num[index] == 0:
-                if re.compile("include").findall(value):
-                    include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
-                    tempinclude_check = re.sub(re.compile("\s*\|\s*include\s*.*"), "",
+                if re.compile("|\s*in").findall(value):
+                    include = re.sub(re.compile(".*\s*\|\s*in[a-z]*\s*"), "", value)
+                    tempinclude_check = re.sub(re.compile("\s*\|\s*in[a-z]*\s*.*"), "",
                                                value)
                     if re.compile('".*"').findall(include):
                         check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
@@ -1462,9 +1500,9 @@ class ExtractLog:
                             step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
                             allItem_1=tempinclude_check, include=include)
                     result_file_o.write(check)
-                if re.compile("exclude").findall(value):
-                    exclude = re.sub(re.compile(".*\s*\|\s*exclude\s*"), "", value)
-                    tempexclude_check = re.sub(re.compile("\s*\|\s*exclude\s*.*"), "",
+                if re.compile("|\s*ex").findall(value):
+                    exclude = re.sub(re.compile(".*\s*\|\s*ex[a-z]*\s*"), "", value)
+                    tempexclude_check = re.sub(re.compile("\s*\|\s*ex[a-z]*\s*.*"), "",
                                                value)
                     if re.compile('".*"').findall(exclude):
                         check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
@@ -1487,8 +1525,8 @@ class ExtractLog:
                     dest_ip=ip)
                 result_file_o.write(check)
             elif temp_check_num[index] == 2:
-                include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
-                check_1 = re.sub(re.compile("\s\|\sinclude\s.*"), "",
+                include = re.sub(re.compile(".*\s*\|\s*in[a-z]*\s*"), "", value)
+                check_1 = re.sub(re.compile("\s\|\sin[a-z]*\s.*"), "",
                                  value)
                 check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
                     step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
@@ -1496,16 +1534,16 @@ class ExtractLog:
                 result_file_o.write(check)
             elif temp_check_num[index] == 3:
                 if re.compile("include").findall(value):
-                    include = re.sub(re.compile(".*\s*\|\s*include\s*"), "", value)
-                    tempinclude_check = re.sub(re.compile("\s\|\sinclude\s.*"), "",
+                    include = re.sub(re.compile(".*\s*\|\s*in[a-z]*\s*"), "", value)
+                    tempinclude_check = re.sub(re.compile("\s\|\sin[a-z]*\s.*"), "",
                                                value)
                     check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
                         step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
                         allItem_1=tempinclude_check, include=include)
                     result_file_o.write(check)
                 if re.compile("exclude").findall(value):
-                    exclude = re.sub(re.compile(".*\s*\|\s*exclude\s*"), "", value)
-                    tempexclude_check = re.sub(re.compile("\s\|\sexclude\s.*"), "",
+                    exclude = re.sub(re.compile(".*\s*\|\s*ex[a-z]*\s*"), "", value)
+                    tempexclude_check = re.sub(re.compile("\s\|\sex[a-z]*\s.*"), "",
                                                value)
                     check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -exclude "{exclude}"  -checkreturn configreturn\n }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n	      <CHECK> \n'.format(
                         step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
@@ -1521,6 +1559,16 @@ class ExtractLog:
                 check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return\n         undo debugging  all\n         t  d \n         t m"\n		{DUT1} Send "{value}"\n		{DUT2} ClearBuffer\n		after 10000\n		set res2 [{DUT3} GetBuffer]\n		 if {{[string first "$config" $res2]!=-1}} {{\n				return 1\n		}} else {{\n			  return 0	\n      }}\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK> \n'.format(
                     step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index], DUT2=temp_dut[index], DUT3=temp_dut[index], value=value)
                 result_file_o.write(check)
+            elif temp_check_num[index] == 199:
+                tmheader = open('./config/Tmheader.txt', mode='r', encoding='utf-8')
+                tmender = open('./config/Tmender.txt', mode='r', encoding='utf-8')
+                tmheader_config = tmheader.read()
+                tmender_config = tmender.read()
+                result_file_o.write(tmheader_config)
+                result_file_o.write('  set raw_stream_header_json ' + '"' + value + '"\n')
+                result_file_o.write(tmender_config)
+                tmheader.close()
+                tmender.close()
             # elif temp_check_num[index] == 99:
             #     check = '}'
             #     result_file_o.write(check)
@@ -1538,6 +1586,6 @@ class ExtractLog:
         pass
 
 
-
-
-
+# ex = ExtractLog()
+# ss = ex.createTM()
+# print(ss)

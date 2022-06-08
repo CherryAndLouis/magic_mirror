@@ -1,0 +1,27 @@
+#=============================变量配置区，用户根据需要可自行修改==============================#
+
+  # 获取测试仪的地址
+  set tm_addr [ lindex [split [TM GetChassisIP] ":"] 0]
+  
+  # 获取端口
+  set port1 [TM.PORT1 GetPortLocation]
+  regsub -all {/} $port1 {%2F} t_port1
+  
+  # 报文个数
+  set burst_count 2
+  
+  # TM端口的mac
+  set src_mac  "00:00:00:01:02:03"
+  set dst_mac  ""
+  
+  # 获取设备 port1的mac
+  set cmdReturn [RT Send "display interface $intf(RT,PORT1)"]
+  regexp -nocase {hardware address:\s*([-0-9a-f]+)} $cmdReturn total dst_mac
+  set dst_mac [::ipaddress::format_mac_address $dst_mac 6 ":"]
+  
+  # 创建流量
+  set raw_stream_json "{'location': {'chassis': '$tm_addr', 'port': '[TM.PORT1 GetPortLocation]'}}"
+  regsub -all {'} $raw_stream_json {"} raw_stream_json  ;# "
+  
+  # 修改流量header
+  

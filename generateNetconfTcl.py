@@ -230,7 +230,7 @@ class generateNetconfTcl:
                                 'time': date,
                                 'config': log
                             })
-        comand.close()
+                    comand.close()
         netconfdata.sort(key=itemgetter('time'))
         return netconfdata
 
@@ -286,16 +286,23 @@ class generateNetconfTcl:
         tempxml = ""
         # 将print_data遍历 组织成测试步骤
         for line in print_data:
-
             # 获取键值
             temp = line.get("config")
-
-            # 剔除相连重复报文
-            if tempxml == temp:
-                continue
-            tempxml = temp
+            # print(temp)
 
             if re.match('.*XML_REQUEST.*', temp) != None and re.match('.*<candidate/>.*', temp) == None:
+
+                # 提前转换成rpc报文进行重复检查，这样才能精确除重连续报文
+                rpccheck = re.findall('<rpc.*rpc>', temp)
+                # 剔除相连重复报文
+                if tempxml == rpccheck:
+                    continue
+                tempxml = rpccheck
+                # print(rpccheck)
+
+                # 定义一个过滤字段，后续可以直接引用，修改时，只需修改此处即可
+                # 20220601 新增 @._- 过滤
+                filterField = ">[0-9a-zA-Z/@._-]+<"
 
                 # 拼装running测试报文
                 if re.match('.*<get>.*', temp) != None:
@@ -311,11 +318,11 @@ class generateNetconfTcl:
                     result_file_o.write(checkstart)
 
                     # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    sublist = re.compile(filterField).findall(rpcxml)
                     # c count t1 t2 ...都是作为中间变量 l lenth
                     c = 1
                     for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t1 = re.findall(filterField, i)
                         t2 = t1[-1]
                         l = len(t2)
                         t3 = t2[1:l - 1]
@@ -362,11 +369,11 @@ class generateNetconfTcl:
                     result_file_o.write(checkstart)
 
                     # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    sublist = re.compile(filterField).findall(rpcxml)
                     # c count t1 t2 ...都是作为中间变量 l lenth
                     c = 1
                     for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t1 = re.findall(filterField, i)
                         t2 = t1[-1]
                         l = len(t2)
                         t3 = t2[1:l - 1]
@@ -415,11 +422,11 @@ class generateNetconfTcl:
                     result_file_o.write(checkstart)
 
                     # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    sublist = re.compile(filterField).findall(rpcxml)
                     # c count t1 t2 ...都是作为中间变量 l lenth
                     c = 1
                     for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t1 = re.findall(filterField, i)
                         t2 = t1[-1]
                         l = len(t2)
                         t3 = t2[1:l - 1]
@@ -468,11 +475,11 @@ class generateNetconfTcl:
                     result_file_o.write(checkstart)
 
                     # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    sublist = re.compile(filterField).findall(rpcxml)
                     # c count t1 t2 ...都是作为中间变量 l lenth
                     c = 1
                     for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t1 = re.findall(filterField, i)
                         t2 = t1[-1]
                         l = len(t2)
                         t3 = t2[1:l - 1]
@@ -521,11 +528,11 @@ class generateNetconfTcl:
                     result_file_o.write(checkstart)
 
                     # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    sublist = re.compile(filterField).findall(rpcxml)
                     # c count t1 t2 ...都是作为中间变量 l lenth
                     c = 1
                     for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t1 = re.findall(filterField, i)
                         t2 = t1[-1]
                         l = len(t2)
                         t3 = t2[1:l - 1]
@@ -572,11 +579,11 @@ class generateNetconfTcl:
                     result_file_o.write(checkstart)
 
                     # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    sublist = re.compile(filterField).findall(rpcxml)
                     # c count t1 t2 ...都是作为中间变量 l lenth
                     c = 1
                     for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t1 = re.findall(filterField, i)
                         t2 = t1[-1]
                         l = len(t2)
                         t3 = t2[1:l - 1]
@@ -623,11 +630,11 @@ class generateNetconfTcl:
                     result_file_o.write(checkstart)
 
                     # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    sublist = re.compile(filterField).findall(rpcxml)
                     # c count t1 t2 ...都是作为中间变量 l lenth
                     c = 1
                     for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t1 = re.findall(filterField, i)
                         t2 = t1[-1]
                         l = len(t2)
                         t3 = t2[1:l - 1]
@@ -674,11 +681,11 @@ class generateNetconfTcl:
                     result_file_o.write(checkstart)
 
                     # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    sublist = re.compile(filterField).findall(rpcxml)
                     # c count t1 t2 ...都是作为中间变量 l lenth
                     c = 1
                     for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t1 = re.findall(filterField, i)
                         t2 = t1[-1]
                         l = len(t2)
                         t3 = t2[1:l - 1]
@@ -725,11 +732,11 @@ class generateNetconfTcl:
                     result_file_o.write(checkstart)
 
                     # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    sublist = re.compile(filterField).findall(rpcxml)
                     # c count t1 t2 ...都是作为中间变量 l lenth
                     c = 1
                     for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t1 = re.findall(filterField, i)
                         t2 = t1[-1]
                         l = len(t2)
                         t3 = t2[1:l - 1]
@@ -776,11 +783,11 @@ class generateNetconfTcl:
                     result_file_o.write(checkstart)
 
                     # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    sublist = re.compile(filterField).findall(rpcxml)
                     # c count t1 t2 ...都是作为中间变量 l lenth
                     c = 1
                     for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t1 = re.findall(filterField, i)
                         t2 = t1[-1]
                         l = len(t2)
                         t3 = t2[1:l - 1]
@@ -813,372 +820,11 @@ class generateNetconfTcl:
                     result_file_o.write(stepend)
                     result_file_o.write("\n\n\n")
 
-            elif re.match('.*<candidate/>.*', temp) != None and re.match('.*XML_REQUEST.*', temp) != None:
-                # 拼装candidate测试报文
-                if re.match('.*<get-config>.*', temp) != None:
-                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' get-config表操作"\n<CHECK> type custom\n<CHECK> args {\n'
-                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
-                    rpcxml = "".join(rpcxmltemp)
-
-                    a = str(stepnum)
-                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
-                    stepnum += 1
-
-                    result_file_o.write(stepstartofgetconfig)
-
-                    result_file_o.write(checkstart)
-
-                    # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
-                    # c count t1 t2 ...都是作为中间变量 l lenth
-                    c = 1
-                    for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
-                        t2 = t1[-1]
-                        l = len(t2)
-                        t3 = t2[1:l - 1]
-
-                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
-                        t4 = "part_{c}".format(c=c)
-                        c = c + 1
-                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
-
-                    c = c - 1
-                    list1 = "set lst " + '"' + "默认值 " + "$part_{c}".format(c=c) + '"'
-                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
-                    checkbody0 = "\n\t#get类只校验默认值和合法值，若lst列表中出现$part_0，说明soap下发的报文没有携带过滤条件，所有列均为空下发。建议手工测试带过滤值。\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。\n\t#因无法获知默认值情况，请修改以下 默认值 为实际默认值"
-
-                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
-
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    # checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "<data></data>" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-
-                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
-
-                    result_file_o.write(str(checkbody0))
-                    result_file_o.write(str(checkbody1))
-                    result_file_o.write(str(checkbody2))
-                    result_file_o.write(str(checkbody3))
-                    # result_file_o.write(str(checkbody4))
-                    result_file_o.write(str(checkbody5))
-
-                    result_file_o.write(checkend)
-                    result_file_o.write(stepend)
-                    result_file_o.write("\n\n\n")
-
-                elif re.match('.*<get-bulk-config>.*', temp) != None:
-                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' get-bulk-config表操作"\n<CHECK> type custom\n<CHECK> args {\n'
-                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
-                    rpcxml = "".join(rpcxmltemp)
-
-                    a = str(stepnum)
-                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
-                    stepnum += 1
-
-                    result_file_o.write(stepstartofgetbulkconfig)
-
-                    result_file_o.write(checkstart)
-
-                    # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
-                    # c count t1 t2 ...都是作为中间变量 l lenth
-                    c = 1
-                    for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
-                        t2 = t1[-1]
-                        l = len(t2)
-                        t3 = t2[1:l - 1]
-
-                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
-                        t4 = "part_{c}".format(c=c)
-                        c = c + 1
-                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
-
-                    c = c - 1
-                    list1 = "set lst " + '"' + "默认值 " + "$part_{c}".format(c=c) + '"'
-                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
-                    checkbody0 = "\n\t#get类只校验默认值和合法值，若lst列表中出现$part_0，说明soap下发的报文没有携带过滤条件，所有列均为空下发。建议手工测试带过滤值。\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。\n\t#因无法获知默认值情况，请修改以下 默认值 为实际默认值"
-
-                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
-
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getbulkconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getbulkconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    # checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset getbulkconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "<data></data>" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-
-                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
-
-                    result_file_o.write(str(checkbody0))
-                    result_file_o.write(str(checkbody1))
-                    result_file_o.write(str(checkbody2))
-                    result_file_o.write(str(checkbody3))
-                    # result_file_o.write(str(checkbody4))
-                    result_file_o.write(str(checkbody5))
-
-                    result_file_o.write(checkend)
-                    result_file_o.write(stepend)
-                    result_file_o.write("\n\n\n")
-
-                elif re.match('.*operation="merge".*', temp) != None:
-                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' merge表操作"\n<CHECK> type custom\n<CHECK> args {\n'
-                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
-                    rpcxml = "".join(rpcxmltemp)
-
-                    a = str(stepnum)
-                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
-                    stepnum += 1
-
-                    result_file_o.write(stepstartofmerge)
-
-                    result_file_o.write(checkstart)
-
-                    # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
-                    # c count t1 t2 ...都是作为中间变量 l lenth
-                    c = 1
-                    for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
-                        t2 = t1[-1]
-                        l = len(t2)
-                        t3 = t2[1:l - 1]
-
-                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
-                        t4 = "part_{c}".format(c=c)
-                        c = c + 1
-                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
-
-                    c = c - 1
-                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
-                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
-                    checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
-                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
-
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset mergegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $mergegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset mergegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $mergegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset mergegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $mergegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-
-                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
-
-                    result_file_o.write(str(checkbody0))
-                    result_file_o.write(str(checkbody1))
-                    result_file_o.write(str(checkbody2))
-                    result_file_o.write(str(checkbody3))
-                    result_file_o.write(str(checkbody4))
-                    result_file_o.write(str(checkbody5))
-
-                    result_file_o.write(checkend)
-                    result_file_o.write(stepend)
-                    result_file_o.write("\n\n\n")
-
-                elif re.match('.*operation="create".*', temp) != None:
-                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' create表操作"\n<CHECK> type custom\n<CHECK> args {\n'
-                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
-                    rpcxml = "".join(rpcxmltemp)
-
-                    a = str(stepnum)
-                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
-                    stepnum += 1
-
-                    result_file_o.write(stepstartofcreate)
-
-                    result_file_o.write(checkstart)
-
-                    # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
-                    # c count t1 t2 ...都是作为中间变量 l lenth
-                    c = 1
-                    for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
-                        t2 = t1[-1]
-                        l = len(t2)
-                        t3 = t2[1:l - 1]
-
-                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
-                        t4 = "part_{c}".format(c=c)
-                        c = c + 1
-                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
-
-                    c = c - 1
-                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
-                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
-                    checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
-                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
-
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration already exists. \n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok/Configuration already exists.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok/Configuration already exists.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-
-                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
-
-                    result_file_o.write(str(checkbody0))
-                    result_file_o.write(str(checkbody1))
-                    result_file_o.write(str(checkbody2))
-                    result_file_o.write(str(checkbody3))
-                    result_file_o.write(str(checkbody4))
-                    result_file_o.write(str(checkbody5))
-
-                    result_file_o.write(checkend)
-                    result_file_o.write(stepend)
-                    result_file_o.write("\n\n\n")
-
-                elif re.match('.*operation="replace".*', temp) != None:
-                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' replace表操作"\n<CHECK> type custom\n<CHECK> args {\n'
-                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
-                    rpcxml = "".join(rpcxmltemp)
-
-                    a = str(stepnum)
-                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
-                    stepnum += 1
-
-                    result_file_o.write(stepstartofreplace)
-
-                    result_file_o.write(checkstart)
-
-                    # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
-                    # c count t1 t2 ...都是作为中间变量 l lenth
-                    c = 1
-                    for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
-                        t2 = t1[-1]
-                        l = len(t2)
-                        t3 = t2[1:l - 1]
-
-                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
-                        t4 = "part_{c}".format(c=c)
-                        c = c + 1
-                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
-
-                    c = c - 1
-                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
-                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
-                    checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
-                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
-
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset replacegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $replacegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset replacegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $replacegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset replacegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $replacegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-
-                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
-
-                    result_file_o.write(str(checkbody0))
-                    result_file_o.write(str(checkbody1))
-                    result_file_o.write(str(checkbody2))
-                    result_file_o.write(str(checkbody3))
-                    result_file_o.write(str(checkbody4))
-                    result_file_o.write(str(checkbody5))
-
-                    result_file_o.write(checkend)
-                    result_file_o.write(stepend)
-                    result_file_o.write("\n\n\n")
-
-                elif re.match('.*operation="delete".*', temp) != None:
-                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' delete表操作"\n<CHECK> type custom\n<CHECK> args {\n'
-                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
-                    rpcxml = "".join(rpcxmltemp)
-
-                    a = str(stepnum)
-                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
-                    stepnum += 1
-
-                    result_file_o.write(stepstartofdelete)
-
-                    result_file_o.write(checkstart)
-
-                    # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
-                    # c count t1 t2 ...都是作为中间变量 l lenth
-                    c = 1
-                    for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
-                        t2 = t1[-1]
-                        l = len(t2)
-                        t3 = t2[1:l - 1]
-
-                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
-                        t4 = "part_{c}".format(c=c)
-                        c = c + 1
-                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
-
-                    c = c - 1
-                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
-                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
-                    checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
-                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
-
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset deletegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $deletegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset deletegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $deletegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset deletegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $deletegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-
-                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
-
-                    result_file_o.write(str(checkbody0))
-                    result_file_o.write(str(checkbody1))
-                    result_file_o.write(str(checkbody2))
-                    result_file_o.write(str(checkbody3))
-                    result_file_o.write(str(checkbody4))
-                    result_file_o.write(str(checkbody5))
-
-                    result_file_o.write(checkend)
-                    result_file_o.write(stepend)
-                    result_file_o.write("\n\n\n")
-
-                elif re.match('.*operation="remove".*', temp) != None:
-                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' remove表操作"\n<CHECK> type custom\n<CHECK> args {\n'
-                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
-                    rpcxml = "".join(rpcxmltemp)
-
-                    a = str(stepnum)
-                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
-                    stepnum += 1
-
-                    result_file_o.write(stepstartofremove)
-
-                    result_file_o.write(checkstart)
-
-                    # 目前针对数字　字符　范围内的列值
-                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
-                    # c count t1 t2 ...都是作为中间变量 l lenth
-                    c = 1
-                    for i in sublist:
-                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
-                        t2 = t1[-1]
-                        l = len(t2)
-                        t3 = t2[1:l - 1]
-
-                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
-                        t4 = "part_{c}".format(c=c)
-                        c = c + 1
-                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
-
-                    c = c - 1
-                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
-                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
-                    checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
-                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
-
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-
-                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
-
-                    result_file_o.write(str(checkbody0))
-                    result_file_o.write(str(checkbody1))
-                    result_file_o.write(str(checkbody2))
-                    result_file_o.write(str(checkbody3))
-                    result_file_o.write(str(checkbody4))
-                    result_file_o.write(str(checkbody5))
-
-                    result_file_o.write(checkend)
-                    result_file_o.write(stepend)
-                    result_file_o.write("\n\n\n")
-
         # 拼接脚本尾
         result_file_o.write(ender)
         result_file_o.close()
 
-    # 生成tcl
+# 生成tcl
     # def creattcl(self):
     #     getnetconflog = self.getnetconflog()
     #     # result_data, print_data, configreturn = self.disposelog()

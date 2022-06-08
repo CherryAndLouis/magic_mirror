@@ -169,7 +169,12 @@ class Gui_Mirror():
         operator = Operatemtputty()
         operator.openmtputty()
         if self.TMdata:
-            operator.protestmasterconfig()
+            for tm in self.TMdata:
+                tmname = tm[3] + ':' + tm[4]
+                operator.connetdevice(tm)
+                time.sleep(3)
+                operator.protestmasterconfig(tmname)
+                time.sleep(3)
         for device in self.selectdata:
             devicename = device[3] + ':' + device[4]
             operator.connetdevice(device)
@@ -190,7 +195,12 @@ class Gui_Mirror():
         operator = Operatemtputty()
         operator.openmtputty()
         if self.TMdata:
-            operator.protestmasterconfig()
+            for tm in self.TMdata:
+                tmname = tm[3] + ':' + tm[4]
+                operator.connetdevice(tm)
+                time.sleep(3)
+                operator.protestmasterconfig(tmname)
+                time.sleep(3)
         for device in self.selectdata:
             devicename = device[3] + ':' + device[4]
             operator.connetdevice(device)
@@ -553,18 +563,23 @@ class Gui_Mirror():
 
     def endtest(self):
         operator = Operatemtputty()
-        resultename = './result/' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
+        resultename = self.tclpath + '\\' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
         for device in self.selectdata:
             devicename = device[3] + ':' + device[4]
             operator.stoprecording(self.init_window_name,devicename)
+        if self.TMdata:
+            for tm in self.TMdata:
+                tmname = tm[3] + ':' + tm[4]
+                operator.endtestmasterconfig(tmname)
+                time.sleep(3)
         operator.del_files('./log')
         operator.copyfile(self.logpath, './log', self.filelist)
         self.filelist = []
         if self.tempconfig == 1:
-            extractlog = ExtractLog('./log/',resultename)
+            extractlog = ExtractLog('./log/', resultename)
             extractlog.creattcl()
         elif self.tempconfig == 2:
-            generate = generateNetconfTcl('./log/',resultename)
+            generate = generateNetconfTcl('./log/', resultename)
             generate.creattcl()
 
         self.open_file(resultename)
@@ -584,14 +599,14 @@ class Gui_Mirror():
 
     def createcomtcl(self):
         self.pop_select_wind.destroy()
-        resultename = './result/' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
+        resultename = self.tclpath + '\\' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
         create = ExtractLog('./log/',resultename)
         create.creattcl()
         self.open_file(resultename)
 
     def createnetconftcl(self):
         self.pop_select_wind.destroy()
-        resultename = './result/' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
+        resultename = self.tclpath + '\\' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
         generate = generateNetconfTcl('./log/', resultename)
         generate.creattcl()
         self.open_file(resultename)
