@@ -466,6 +466,38 @@ class Gui_Mirror():
             self.popwind2.destroy()
             # print(self.selectdata)
 
+        def deletedata():
+            del_data = lv.get_row_values_by_allselectdata()
+            for data in del_data:
+                with open('TM_info.pkl', 'rb+') as usr_file:
+                    with open('TM_info_bak.pkl', 'wb+') as usr_file_bak:
+                        while True:
+                            try:
+                                usr_info_data = pickle.load(usr_file)
+                                # print(usr_info_data)
+                                if usr_info_data.get('name') == data[1]:
+                                    continue
+                                else:
+                                    pickle.dump(usr_info_data, usr_file_bak)
+                            except EOFError:
+                                break
+                    usr_file.close()
+                    usr_file_bak.close()
+
+                with open('TM_info.pkl', 'wb+') as usr_file:
+                    with open('TM_info_bak.pkl', 'rb+') as usr_file_bak:
+                        while True:
+                            try:
+                                usr_info_data_bak = pickle.load(usr_file_bak)
+                                pickle.dump(usr_info_data_bak, usr_file)
+                            except EOFError:
+                                break
+                        usr_file.close()
+                        usr_file_bak.close()
+            tkinter.messagebox.showinfo(title='Hi', message='删除成功！')
+            self.popwind2.destroy()
+            self.popwind_Tm()
+
         # 定义弹窗
         self.popwind2 = tkinter.Toplevel(self.init_window_name)
         # self.popwind2 = tk.Tk()
@@ -517,8 +549,9 @@ class Gui_Mirror():
         portentry.place(x=550, y=450)
         passworldentry = tkinter.Entry(self.popwind2, highlightbackground='white', textvariable=passworldval)
         passworldentry.place(x=550, y=500)
-        tkinter.Button(self.popwind2, text='连接', width=10, command=connect).place(x=400, y=550, anchor='nw')
-        tkinter.Button(self.popwind2, text='保存', width=10, command=onSumbitClick).place(x=500, y=550, anchor='nw')
+        tkinter.Button(self.popwind2, text='连接', width=10, command=connect).place(x=300, y=550, anchor='nw')
+        tkinter.Button(self.popwind2, text='保存', width=10, command=onSumbitClick).place(x=400, y=550, anchor='nw')
+        tkinter.Button(self.popwind2, text='删除', width=10, command=deletedata).place(x=500, y=550, anchor='nw')
         tkinter.Button(self.popwind2, text='取消', width=10, command=self.popwind2.destroy).place(x=600, y=550, anchor='nw')
         reflshdata()
 
@@ -568,6 +601,7 @@ class Gui_Mirror():
             devicename = device[3] + ':' + device[4]
             operator.stoprecording(self.init_window_name,devicename)
         if self.TMdata:
+            operator.del_files('./TMlog')
             for tm in self.TMdata:
                 tmname = tm[3] + ':' + tm[4]
                 operator.endtestmasterconfig(tmname)

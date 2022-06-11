@@ -3,6 +3,7 @@ import re
 import os.path
 from operator import itemgetter
 from operatemtputty import Operatemtputty
+from publicmeth import PublicMeth
 
 
 class ExtractLog:
@@ -12,6 +13,7 @@ class ExtractLog:
         self.result_file = result_file
         self.operatemtputty = Operatemtputty()
         self.operatemtputty.del_notutf_8('./log')
+        self.publicmeth = PublicMeth()
 
     def returnindex(self, result_data, index):
         for j in range(len(result_data[:index]) - 1, -1, -1):
@@ -23,7 +25,7 @@ class ExtractLog:
         for path, dirlist, filelist in os.walk('./TMlog/'):
             for filename in filelist:
                 txtname = './TMlog/' + filename
-                filetype_tm = re.compile('094904.log').findall(filename)
+                filetype_tm = re.compile('.log').findall(filename)
                 if filetype_tm:
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
@@ -39,13 +41,20 @@ class ExtractLog:
                             stream_json = '[ { "op": "replace", "path": "/headers", "value": ['
                             date = re.sub(re.compile('-'), '/',
                                           re.compile('\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}.\d{1,3}').findall(item)[0])
-                            headers = re.compile("\[{'fields'.*}],\s*'modifiers'\s*:\s*\[.*]}").findall(item)
+                            headers = re.compile("{'fields'.*}],\s*'modifiers'\s*:\s*\[.*]}").findall(item)
                             portload = re.compile("'portLoad':\s*.*'},").findall(item)
                             frame_size = re.compile("'size':\s\[{'percent':.*'}],").findall(item)
                             payload_fill = re.compile("'payload_fill':\s*{.*data':\s*'\d*'}").findall(item)
 
                             if headers:
-                                headers_json = re.sub(re.compile("'"), '"', re.sub(re.compile(",\s'modifiers':\s*\[.*"), '', headers[0]))
+                                headers_json = re.sub(re.compile("'"), '"', re.sub(re.compile("],\s'modifiers':\s*\[.*"), '', headers[0]))
+                                maclist =  re.compile('[a-z0-9]{2}:[a-z0-9]{2}:[a-z0-9]{2}:[a-z0-9]{2}:[a-z0-9]{2}:[a-z0-9]{2}').findall(headers_json)
+                                if maclist:
+                                    for index, mac in enumerate(maclist):
+                                        if index == 0:
+                                            headers_json = re.sub(re.compile(mac), '$dst_mac', headers_json)
+                                        if index == 1:
+                                            headers_json = re.sub(re.compile(mac), '$src_mac', headers_json)
                             if portload:
                                 portload_json = re.sub(re.compile("'"), '"', re.sub(re.compile("'portLoad':\s|},"), '', portload[0])) + '}'
                             if frame_size:
@@ -63,6 +72,9 @@ class ExtractLog:
                                 stream_json = stream_json + ', ' + payload_fill_json
 
                             stream_json = stream_json + ' ] } ]'
+                            stream_json = re.sub(re.compile('\['), '\\\\[', stream_json)
+                            stream_json = re.sub(re.compile('\]'), '\\\\]', stream_json)
+                            stream_json = re.sub(re.compile('\"'), "\'", stream_json)
                             # stream_json = '[ { "op": "replace", "path": "/headers", "value": [' + headers_json + ', ' + frame_size_json + ', ' + portload_json + ', ' + payload_fill_json + ' ] } ]'
                             if headers_json or portload_json or frame_size_json or payload_fill_json:
                                 tmdata.append({
@@ -1577,7 +1589,101 @@ class ExtractLog:
                 result_file_o.write(check)
 
     def check_2(self, result_file_o, j):
-        pass
+        temp_step = j.get('step')
+        temp_dut = j.get('dut')
+        temp_check = j.get('check')
+        temp_check_num = j.get('check_num')
+        temp_check = self.publicmeth.rmdup(temp_check)
+        for index, value in enumerate(temp_check):
+            if temp_check_num[index] == 0:
+                if re.compile("|\s*in").findall(value):
+                    include = re.sub(re.compile(".*\s*\|\s*in[a-z]*\s*"), "", value)
+                    tempinclude_check = re.sub(re.compile("\s*\|\s*in[a-z]*\s*.*"), "",
+                                               value)
+                    if re.compile('".*"').findall(include):
+                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                            allItem_1=tempinclude_check, include=include)
+                    else:
+                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                            allItem_1=tempinclude_check, include=include)
+                    result_file_o.write(check)
+                if re.compile("|\s*ex").findall(value):
+                    exclude = re.sub(re.compile(".*\s*\|\s*ex[a-z]*\s*"), "", value)
+                    tempexclude_check = re.sub(re.compile("\s*\|\s*ex[a-z]*\s*.*"), "",
+                                               value)
+                    if re.compile('".*"').findall(exclude):
+                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include {include}  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                            allItem_1=tempexclude_check, include=exclude)
+                    else:
+                        check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                            step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                            allItem_1=tempexclude_check, include=exclude)
+                    result_file_o.write(check)
+            elif temp_check_num[index] == 1:
+                dest_ip = re.sub('ping', '', value)
+                pinglist = dest_ip.split()
+                ip = pinglist[-1]
+                for i, v in enumerate(pinglist):
+                    if v == '-a':
+                        ip = ip + " -source " + pinglist[i + 1]
+                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type ping\n	<CHECK> object {DUT} \n	<CHECK> expect -negative 100\n	 <CHECK> args "{dest_ip}"\n	 <CHECK> repeat 3 -interval 5 \n	      <CHECK> \n'.format(
+                    step=temp_step, DUT=temp_dut[index],
+                    dest_ip=ip)
+                result_file_o.write(check)
+            elif temp_check_num[index] == 2:
+                include = re.sub(re.compile(".*\s*\|\s*in[a-z]*\s*"), "", value)
+                check_1 = re.sub(re.compile("\s\|\sin[a-z]*\s.*"), "",
+                                 value)
+                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                    allItem_1=check_1, include=include)
+                result_file_o.write(check)
+            elif temp_check_num[index] == 3:
+                if re.compile("include").findall(value):
+                    include = re.sub(re.compile(".*\s*\|\s*in[a-z]*\s*"), "", value)
+                    tempinclude_check = re.sub(re.compile("\s\|\sin[a-z]*\s.*"), "",
+                                               value)
+                    check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -include "{include}"  -checkreturn configreturn\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n    <CHECK> \n'.format(
+                        step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                        allItem_1=tempinclude_check, include=include)
+                    result_file_o.write(check)
+                if re.compile("exclude").findall(value):
+                    exclude = re.sub(re.compile(".*\s*\|\s*ex[a-z]*\s*"), "", value)
+                    tempexclude_check = re.sub(re.compile("\s\|\sex[a-z]*\s.*"), "",
+                                               value)
+                    check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    {DUT1} CheckConfig -command "{allItem_1}" -exclude "{exclude}"  -checkreturn configreturn\n }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$configreturn"}}\n	      <CHECK> \n'.format(
+                        step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                        allItem_1=tempexclude_check, exclude=exclude)
+                    result_file_o.write(check)
+            elif temp_check_num[index] == 4:
+                dest_tracert = re.sub(re.compile('tracert'), '', value)
+                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return"\n	    set a [{DUT1} executeTracert -target "{allItem_1}"] \n    return $a\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK>\n'.format(
+                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
+                    allItem_1=dest_tracert, include=include)
+                result_file_o.write(check)
+            elif temp_check_num[index] == 5:
+                check = '\n	<CHECK> description "check {step}"\n	<CHECK> type custom\n	<CHECK> args  {{  \n	    {DUT} Config "return\n         undo debugging  all\n         t  d \n         t m"\n		{DUT1} Send "{value}"\n		{DUT2} ClearBuffer\n		after 10000\n		set res2 [{DUT3} GetBuffer]\n		 if {{[string first "$config" $res2]!=-1}} {{\n				return 1\n		}} else {{\n			  return 0	\n      }}\n    }}\n	<CHECK> repeat 1 -interval 5 \n    <CHECK> whenfailed {{PUTSINFO "$a"}}\n    <CHECK> \n'.format(
+                    step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index], DUT2=temp_dut[index], DUT3=temp_dut[index], value=value)
+                result_file_o.write(check)
+            elif temp_check_num[index] == 199:
+                tmheader = open('./config/Tmheader.txt', mode='r', encoding='utf-8')
+                tmender = open('./config/Tmender.txt', mode='r', encoding='utf-8')
+                tmheader_config = tmheader.read()
+                tmender_config = tmender.read()
+                result_file_o.write(tmheader_config)
+                result_file_o.write('  set raw_stream_header_json ' + '"' + value + '"\n')
+                result_file_o.write(tmender_config)
+                tmheader.close()
+                tmender.close()
+            # elif temp_check_num[index] == 99:
+            #     check = '}'
+            #     result_file_o.write(check)
+            if index == len(temp_check) - 1:
+                check = '}'
+                result_file_o.write(check)
 
     def check_3(self, result_file_o, j):
         pass
