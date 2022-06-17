@@ -30,7 +30,7 @@ class ExtractLog:
                     comand = open(txtname, encoding='utf-8')
                     lines = comand.read()
                     tmrequestitem = re.compile(
-                        "\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}.\d{1,3}\sINFO.*request:\n{'method':\s'apply_config'.*").findall(lines)
+                        "\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}.\d{1,3}\sINFO.*request:\n{.*'method':\s'apply_config'.*").findall(lines)
                     for item in tmrequestitem:
                         # 普通流量
                         if re.compile("\'headers':\s\[{'fields\':").findall(item):
@@ -496,7 +496,11 @@ class ExtractLog:
                 if disItem or ping_check or capture_check or dir_check or tracert_check or debug_check or viewlist_num==199:
                     # display 显示类信息流程处理
                     if disItem:
-                        if re.compile("|\s*in").findall(k.get("config")) or re.compile("|\s*ex").findall(k.get("config")):
+                        if re.compile("\|\s*in").findall(k.get("config")) or re.compile("\|\s*ex").findall(k.get("config")):
+                            test_in = re.compile("\|\s*in").findall(k.get("config"))
+                            test_ex = re.compile("\|\s*ex").findall(k.get("config"))
+                            print(test_in)
+                            print(test_ex)
                             dutlist.append(dut)
                             checkdatelist.append(date)
                             checknumlist.append(0)
@@ -504,12 +508,12 @@ class ExtractLog:
                         # display不带include命令处理逻辑
                         else:
                             # 判断是不是最后一条命令
-                            if result_data[i + 1]:
+                            if len(result_data) != (i + 1):
                                 next_data = result_data[i + 1]
                                 # 判断下一条命令是不是dis 相关
                                 if re.compile("^dis").findall(next_data.get("config").lstrip()):
                                     # 下条命令是否带include或者exclude
-                                    if re.compile("|\s*in").findall(next_data.get("config")) or re.compile("|\s*ex").findall(next_data.get("config")):
+                                    if re.compile("\|\s*in").findall(next_data.get("config")) or re.compile("\|\s*ex").findall(next_data.get("config")):
                                         dutlist.append(dut)
                                         checkdatelist.append(date)
                                         checknumlist.append(99)
@@ -967,7 +971,7 @@ class ExtractLog:
                 else:
                     for index, value in enumerate(temp_check):
                         if temp_check_num[index] == 0:
-                            if re.compile("|\s*in").findall(value):
+                            if re.compile("\|\s*in").findall(value):
                                 include = re.sub(re.compile(".*\s*\|\s*in[a-z]*\s*"), "", value)
                                 tempinclude_check = re.sub(re.compile("\s*\|\s*in[a-z]*\s*.*"), "",
                                                            value)
@@ -980,7 +984,7 @@ class ExtractLog:
                                         step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
                                         allItem_1=tempinclude_check, include=include)
                                 result_file_o.write(check)
-                            if re.compile("|\s*ex").findall(value):
+                            if re.compile("\|\s*ex").findall(value):
                                 exclude = re.sub(re.compile(".*\s*\|\s*ex[a-z]*\s*"), "", value)
                                 tempexclude_check = re.sub(re.compile("\s*\|\s*ex[a-z]*\s*.*"), "",
                                                            value)
@@ -1499,7 +1503,7 @@ class ExtractLog:
         temp_check_num = j.get('check_num')
         for index, value in enumerate(temp_check):
             if temp_check_num[index] == 0:
-                if re.compile("|\s*in").findall(value):
+                if re.compile("\|\s*in").findall(value):
                     include = re.sub(re.compile(".*\s*\|\s*in[a-z]*\s*"), "", value)
                     tempinclude_check = re.sub(re.compile("\s*\|\s*in[a-z]*\s*.*"), "",
                                                value)
@@ -1512,7 +1516,7 @@ class ExtractLog:
                             step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
                             allItem_1=tempinclude_check, include=include)
                     result_file_o.write(check)
-                if re.compile("|\s*ex").findall(value):
+                if re.compile("\|\s*ex").findall(value):
                     exclude = re.sub(re.compile(".*\s*\|\s*ex[a-z]*\s*"), "", value)
                     tempexclude_check = re.sub(re.compile("\s*\|\s*ex[a-z]*\s*.*"), "",
                                                value)
@@ -1596,7 +1600,7 @@ class ExtractLog:
         temp_check = self.publicmeth.rmdup(temp_check)
         for index, value in enumerate(temp_check):
             if temp_check_num[index] == 0:
-                if re.compile("|\s*in").findall(value):
+                if re.compile("\|\s*in").findall(value):
                     include = re.sub(re.compile(".*\s*\|\s*in[a-z]*\s*"), "", value)
                     tempinclude_check = re.sub(re.compile("\s*\|\s*in[a-z]*\s*.*"), "",
                                                value)
@@ -1609,7 +1613,7 @@ class ExtractLog:
                             step=temp_step, DUT=temp_dut[index], DUT1=temp_dut[index],
                             allItem_1=tempinclude_check, include=include)
                     result_file_o.write(check)
-                if re.compile("|\s*ex").findall(value):
+                if re.compile("\|\s*ex").findall(value):
                     exclude = re.sub(re.compile(".*\s*\|\s*ex[a-z]*\s*"), "", value)
                     tempexclude_check = re.sub(re.compile("\s*\|\s*ex[a-z]*\s*.*"), "",
                                                value)

@@ -115,9 +115,10 @@ class Operatemtputty():
         subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", tmname)
         if subhadle4:
             # 登录
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('h'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('3'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('c'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
             # win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
@@ -234,9 +235,10 @@ class Operatemtputty():
             subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", tmname.split(':')[0])
             subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", tmname.split(':')[0] + " - PuTTY")
             # 登录
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('h'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('3'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('c'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
             # win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
@@ -351,7 +353,7 @@ class Operatemtputty():
 
         ipaddre = tmname.split(':')[0]
         path = re.sub(re.compile("\\\\"), '/', os.path.abspath("."))
-        test = "pscp -pw 123456 h3c@" + ipaddre + ":/opt/TestMaster/logs/frr_emulator.2022*.log " + path + "/" + "TMlog/"
+        test = "pscp -pw 123456 root@" + ipaddre + ":/opt/TestMaster/logs/frr_emulator.2022*.log " + path + "/" + "TMlog/"
         os.system(test)
         # print(test)
         #
