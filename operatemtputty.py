@@ -19,17 +19,21 @@ class Operatemtputty():
     # def __init__(self):
 
 
-    def openmtputty(self,path='./mtputty/'):
+    def openmtputty(self, path='./mtputty/'):
         app = application.Application(backend="win32").start("./mtputty/mtputty.exe")
         time.sleep(3)
 
-    def doClick(self,cx, cy, hwnd):
+    def open3cd(self, path='./3CDaemon/'):
+        app = application.Application(backend="win32").start("./3CDaemon/3CDaemon.EXE")
+        time.sleep(3)
+
+    def doClick(self, cx, cy, hwnd):
         # hwnd为需要点击的窗口控件句柄，cx、cy为点击位置在该窗口的相对坐标
         long_position = win32api.MAKELONG(cx, cy)  # 模拟鼠标指针 传送到指定坐标
         win32api.SendMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, long_position)  # 模拟鼠标按下
         win32api.SendMessage(hwnd, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, long_position)  # 模拟鼠标弹起
 
-    def get_child_windows(self,parent):
+    def get_child_windows(self, parent):
         '''
         获得parent的所有子窗口句柄
          返回子窗口句柄列表
@@ -58,15 +62,22 @@ class Operatemtputty():
         win32api.SendMessage(okbutton, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, 0)  # 模拟鼠标按下
         win32api.SendMessage(okbutton, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, 0)
 
-    def clickbutton(self,handle):
+    def clickbutton(self, handle):
         win32api.SendMessage(handle, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, 0)  # 模拟鼠标按下
         win32api.SendMessage(handle, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, 0)
 
-    def inputtext(self,handle,text):
+    def inputtext(self, handle, text):
         win32api.SendMessage(handle, win32con.WM_SETTEXT, 0, text)
         # for char in text:
         #     win32gui.PostMessage(handle, win32con.WM_CHAR, ord(char), 0)
         #     time.sleep(1)
+
+    def posttext(self, handle, text):
+        # win32api.SendMessage(handle, win32con.WM_SETTEXT, 0, text)
+        for char in text:
+            win32gui.PostMessage(handle, win32con.WM_CHAR, ord(char), 0)
+        win32gui.PostMessage(handle, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+        win32gui.PostMessage(handle, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
 
     def connetdevice(self, device):
         self.openconnectto()
@@ -460,7 +471,7 @@ class Operatemtputty():
         #     win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
         #     win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
 
-    def saveconfig(self,devicename):
+    def saveconfig(self, devicename):
         # 遍历不同句柄时从这里使用for循环进行遍历 for dutx in list:
 
         handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
@@ -542,6 +553,72 @@ class Operatemtputty():
         if subhadle4:
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('v'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('0'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('6'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('3'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('c'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('-'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('g'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('h'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('0'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            # win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_CONTROL, 'Z')
+            # win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_CONTROL, 'Z')  # 发送回车
+            # win32gui.PostMessage(subhadle4, win32con.IS_TEXT_UNICODE_ASCII16, '\x1a', 0)
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
@@ -593,6 +670,72 @@ class Operatemtputty():
             subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename.split(':')[0] + " - PuTTY")
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('v'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('0'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('6'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('3'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('c'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('-'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('g'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('h'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('0'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            # win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_CONTROL, 'Z')
+            # win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_CONTROL, 'Z')  # 发送回车
+            # win32gui.PostMessage(subhadle4, win32con.IS_TEXT_UNICODE_ASCII16, '\x1a', 0)
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
@@ -634,6 +777,132 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('#'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('#'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('#'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+    def pre3cdconfig(self, devicename, dutname, hostip):
+        handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+        subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
+        subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename)
+        subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename)
+        subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename)
+        if subhadle4:
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('a'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            self.posttext(subhadle4, dutname)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('-'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('c'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('g'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('h'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            self.posttext(subhadle4, hostip)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+        else:
+            handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+            subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
+            subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename.split(':')[0])
+            subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename.split(':')[0])
+            subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename.split(':')[0] + " - PuTTY")
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('a'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            self.posttext(subhadle4, dutname)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('-'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('c'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('g'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('h'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+            self.posttext(subhadle4, hostip)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
 
@@ -969,10 +1238,25 @@ class Operatemtputty():
                 t = time.perf_counter() - start
                 print("\r任务进度:{:>3.0f}% [{}->{}]消耗时间:{:.2f}s".format(c, a, b, t), end="")
                 time.sleep(0.03)
+        if config == 3:
+            for i in range(scale + 1):
+
+                if i == 50:
+                    self.saveconfig(devicename)
+                    self.precomconfig(devicename)
+
+                pb["value"] = i
+                top.update()
+                a = '*' * i
+                b = '.' * (scale - i)
+                c = (i / scale) * 100
+                t = time.perf_counter() - start
+                print("\r任务进度:{:>3.0f}% [{}->{}]消耗时间:{:.2f}s".format(c, a, b, t), end="")
+                time.sleep(0.03)
         print("\n" + "执行结束".center(scale + 28, '_'))
         top1.destroy()
 
-    def endconfig(self, devicename):
+    def endconfig(self, devicename, temconfig):
         # 遍历不同句柄时从这里使用for循环进行遍历 for dutx in list:
 
         handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
@@ -984,21 +1268,22 @@ class Operatemtputty():
             # 收集设备初始配置
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('d'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('g'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('b'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+            if temconfig == 1:
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('d'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('g'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('b'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_SPACE, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_SPACE, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_SPACE, 0)
@@ -1009,6 +1294,14 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_SPACE, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('d'), 0)
@@ -1052,21 +1345,22 @@ class Operatemtputty():
             # 收集设备初始配置
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('d'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('g'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('b'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+            if temconfig == 1:
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('d'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('g'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('b'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+                win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_SPACE, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_SPACE, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_SPACE, 0)
@@ -1077,6 +1371,14 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_SPACE, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('t'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('u'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('n'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('d'), 0)
@@ -1112,7 +1414,7 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
 
-    def stoprecording(self, top, devicename):
+    def stoprecording(self, top, devicename, temconfig):
         scale = 100
         top1 = tkinter.Toplevel()
         top1.title("停止准备进度展示")
@@ -1127,7 +1429,7 @@ class Operatemtputty():
         start = time.perf_counter()
         for i in range(scale + 1):
             if i == 50:
-                self.endconfig(devicename)
+                self.endconfig(devicename, temconfig)
 
             pb["value"] = i
             top.update()
@@ -1140,7 +1442,7 @@ class Operatemtputty():
         print("\n" + "执行结束".center(scale + 28, '_'))
         top1.destroy()
 
-    def copyfile(self,sourcepath,despath,filenamelist):
+    def copyfile(self, sourcepath, despath, filenamelist):
         # self.removefile(despath)
         for file in filenamelist:
             full_file_name = os.path.join(sourcepath,file)
@@ -1153,7 +1455,7 @@ class Operatemtputty():
             except IOError:
                 self.popwarningwin('请检查文件夹读写权限')
 
-    def removefile(self,path):
+    def removefile(self, path):
         shutil.rmtree(path)
         os.mkdir(path)
 
@@ -1224,7 +1526,7 @@ class Operatemtputty():
         subhadle1 = win32gui.FindWindowEx(handle, 0, "SysTreeView32", "")
         self.doClick(45,138,subhadle1)
 
-    def setlogging(self,logpath):
+    def setlogging(self, logpath):
         # self.extraputtyset()
         time.sleep(3)
         self.clicklogging()
@@ -1285,12 +1587,12 @@ class Operatemtputty():
         self.inputtext(windowtitlehandle, title)
         self.clickbutton(applyhandle)
 
-    def popwarningwin(self,warningtext):
+    def popwarningwin(self, warningtext):
         root = tkinter.Tk()
         root.withdraw()
         tkinter.messagebox.showinfo(title='Warning', message=warningtext)
 
-    def remove_lines(self,logname):
+    def remove_lines(self, logname):
         f = open('./log/{logname}'.format(logname=logname), 'rb')
         f_w = open('./log/log_bak.log', 'w')
         while True:
@@ -1318,7 +1620,7 @@ class Operatemtputty():
                 pathname = os.path.splitext(os.path.join(root, name))
                 self.remove_lines(name)
 
-    def del_files(self,dir, topdown=True):
+    def del_files(self, dir, topdown=True):
         for root, dirs, files in os.walk(dir, topdown):
             for name in files:
                 pathname = os.path.splitext(os.path.join(root, name))
@@ -1341,10 +1643,111 @@ class Operatemtputty():
         self.inputtext(lengthhandle, '500')
         self.inputtext(rowhandle, '47')
 
+    def decidemtputty(self):
+        handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+        if handle:
+            return 1
+        else:
+            return 0
+
+    def decide3cd(self):
+        handle = win32gui.FindWindow(None, "3CDaemon")
+        if handle:
+            return 1
+        else:
+            return 0
+
+    def decidedevice(self, devicename):
+        handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+        subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
+        subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename)
+        subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename)
+        subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename)
+        if subhadle4:
+            return 1
+        else:
+            handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+            subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
+            subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename.split(':')[0])
+            subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename.split(':')[0])
+            subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename.split(':')[0] + " - PuTTY")
+            if subhadle4:
+                return 1
+            else:
+                return 0
+
+    def operate3cd(self, path):
+        handle = win32gui.FindWindow(None, "3CDaemon")
+        if handle:
+            menu = win32gui.GetMenu(handle)  # get menu from handle
+            menu1 = win32gui.GetSubMenu(menu, 1)  # get server menu
+            cmd_ID1 = win32gui.GetMenuItemID(menu1, 4)  # get add server bottom
+            win32gui.PostMessage(handle, win32con.WM_COMMAND, cmd_ID1, 0)  # bottom
+            menu2 = win32gui.GetSubMenu(menu, 0)  # get server menu
+            cmd_ID2 = win32gui.GetMenuItemID(menu2, 0)  # get add server bottom
+            win32gui.PostMessage(handle, win32con.WM_COMMAND, cmd_ID2, 0)  # bottom
+            time.sleep(1)
+
+            handleconfig = win32gui.FindWindow(None, "3CDaemon Configuration")
+            # clasname = win32gui.GetClassName(handleconfig)
+            # print(clasname)
+            handleconfigsubhadle1 = win32gui.FindWindowEx(handleconfig, 0, None, "Syslog Configuration")
+            time.sleep(1)
+            confimbutton = win32gui.FindWindowEx(handleconfig, 0, "Button", "确定")
+            handleconfigsubhadle1list = self.get_child_windows(handleconfigsubhadle1)
+            pathedit = handleconfigsubhadle1list[1]
+            self.inputtext(pathedit, path)
+            logselect = handleconfigsubhadle1list[7]
+            win32api.PostMessage(logselect, win32con.CB_SETCURSEL, 1, 0)
+            time.sleep(1)
+            # self.clickbutton(confimbutton)
+            win32gui.PostMessage(confimbutton, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, 0)
+            win32gui.PostMessage(confimbutton, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, 0)
+            time.sleep(1)
+
+            popwindowhandle = win32gui.FindWindow('#32770', "3CDaemon")
+            popwindowhandlelist = self.get_child_windows(popwindowhandle)
+            if popwindowhandlelist:
+                confim = popwindowhandlelist[0]
+                time.sleep(1)
+                self.clickbutton(confim)
+            menu3 = win32gui.GetSubMenu(menu, 0)  # get server menu
+            cmd_ID3 = win32gui.GetMenuItemID(menu3, 1)  # get add server bottom
+            win32gui.PostMessage(handle, win32con.WM_COMMAND, cmd_ID3, 0)  # bottom
+            time.sleep(1)
+            win32gui.PostMessage(handle, win32con.WM_COMMAND, cmd_ID3, 0)  # bottom
+        else:
+            self.popwarningwin("请检查3cd软件是否已经打开")
+
+        # def get_menu_item_txt(menu, idx):
+        #     import win32gui_struct
+        #     mii, extra = win32gui_struct.EmptyMENUITEMINFO()  # 新建一个win32gui的空的结构体mii
+        #     win32gui.GetMenuItemInfo(menu, idx, True, mii)  # 将子菜单内容获取到mii
+        #     ftype, fstate, wid, hsubmenu, hbmpchecked, hbmpunchecked, dwitemdata, text, hbmpitem = win32gui_struct.UnpackMENUITEMINFO(mii)  # 解包mii
+        #     return text
+        # #
+        # print(get_menu_item_txt(menu2, 0))
+
+    def mkdir(self, path):
+
+        folder = os.path.exists(path)
+        if not folder:  # 判断是否存在文件夹如果不存在则创建为文件夹
+            os.makedirs(path)  # makedirs 创建文件时如果路径不存在会创建这个路径
+        else:
+            pass
+
+    def transfile(self, ip, username='root', password='123456'):
+        path = re.sub(re.compile("\\\\"), '/', os.path.abspath("."))
+        test = "pscp -pw 123456 root@" + ip + ":/opt/TestMaster/logs/frr_emulator.2022*.log " + path + "/" + "TMlog/"
+        os.system(test)
 
 # f = open('./log/isis.topo', 'rb')
 # f.close()
 # ss=Operatemtputty()
+# ss.operate3cd()
+# popwindowhandle = win32gui.FindWindow('#32770', "3CDaemon")
+# popwindowhandlelist = ss.get_child_windows(popwindowhandle)
+# confim = popwindowhandlelist[1]
 # ss.del_files("./log")
 
 

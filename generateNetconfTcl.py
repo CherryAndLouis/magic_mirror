@@ -225,7 +225,7 @@ class generateNetconfTcl:
                                 log)[
                                 0])
                             log = ''.join(log.split('\n'))
-                            log = re.sub(re.compile('\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s*'), '', log)
+                            log = re.sub(re.compile('\[\d{4}(?:-|/|.)\d{1,2}(?:-|/|.)\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}]\s{1}'), '', log)
                             netconfdata.append({
                                 'time': date,
                                 'config': log
@@ -245,7 +245,7 @@ class generateNetconfTcl:
 
         xmlhellorpc = '"<hello xmlns=\\"urn:ietf:params:xml:ns:netconf:base:1.0\\"><capabilities><capability>urn:ietf:params:netconf:base:1.0</capability></capabilities></hello>\]\]>\]\]>"'
         xmlcloserpc = '"<rpc message-id=\\"100\\" xmlns=\\"urn:ietf:params:xml:ns:netconf:base:1.0\\"><close-session/></rpc>\]\]>\]\]>"'
-        preconfig = '\tset xmlhello ' + xmlhellorpc + '\n\tset xmlclose ' + xmlcloserpc + '\n\tDUT1 Config "telnet server enable \n\tnetconf ssh server enable\n\tline vty 0 63\n\tauthentication-mode none\n\tuser-role network-admin\n\tidle-timeout 0 0\n\tquit\n\tpassword-recovery enable\n\tundo password-control composition enable\n\tpassword-control length 4\n\tundo password-control complexity user-name check\n\tlocal-user admin class manage\n\tpassword simple admin\n\tservice-type ssh telnet http https\n\tauthorization-attribute user-role network-admin\n\tauthorization-attribute user-role network-operator\n\tquit\n\tquit"\n\tOpenTerm -name netconf -type telnet -addr $addr(DUT1,PORT1) -port 23\n\tafter 3000\n\n\n\t##########部分对象须提前命令行配置的请在此处下发############\n\tDUT1 Config ""\n\n'
+        preconfig = '\tset xmlhello ' + xmlhellorpc + '\n\tset xmlclose ' + xmlcloserpc + '\n\tDUT1 Config "telnet server enable \n\tnetconf ssh server enable\n\tline vty 0 63\n\tauthentication-mode none\n\tuser-role network-admin\n\tidle-timeout 0 0\n\tquit\n\tpassword-recovery enable\n\tundo password-control composition enable\n\tpassword-control length 4\n\tundo password-control complexity user-name check\n\tlocal-user test class manage\n\tpassword simple test\n\tservice-type ssh telnet http https\n\tauthorization-attribute user-role network-admin\n\tauthorization-attribute user-role network-operator\n\tquit\n\tquit"\n\tOpenTerm -name netconf -type telnet -addr $addr(DUT1,PORT1) -port 23\n\tafter 3000\n\n\n\t##########部分对象须提前命令行配置的请在此处下发############\n\tDUT1 Config ""\n\n'
         ender = '\n<TESTCASE_END>'
 
         stepstartofget = '<STEP> "验证netconf get功能" {\n'
@@ -258,6 +258,7 @@ class generateNetconfTcl:
         stepstartofdelete = '<STEP> "验证netconf delete功能" {\n'
         stepstartofreplace = '<STEP> "验证netconf replace功能" {\n'
         stepstartofaction = '<STEP> "验证netconf action功能" {\n'
+        stepstartofcommit = '<STEP> "验证netconf commit功能" {\n'
         stepstartofcandidate = '<STEP> "验证netconf candidate功能" {\n'
 
         checkend = "\n}\n<CHECK>\n"
@@ -339,8 +340,8 @@ class generateNetconfTcl:
 
                     checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
 
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
                     # checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset getrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "<data></data>" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
@@ -391,8 +392,8 @@ class generateNetconfTcl:
 
                     checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
 
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getbulkrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getbulkrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getbulkrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getbulkrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
                     # checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset getbulkrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "<data></data>" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
@@ -444,8 +445,8 @@ class generateNetconfTcl:
 
                     checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
 
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
                     # checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "<data></data>" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
@@ -497,8 +498,8 @@ class generateNetconfTcl:
 
                     checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
 
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getbulkconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getbulkconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getbulkconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getbulkconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
                     # checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset getbulkconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "<data></data>" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
@@ -548,9 +549,9 @@ class generateNetconfTcl:
                     checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
                     checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
 
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset mergegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $mergegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset mergegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $mergegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset mergegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $mergegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset mergegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $mergegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset mergegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $mergegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset mergegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $mergegrpc\n\t\t\t<WAIT> 5\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
 
@@ -599,9 +600,9 @@ class generateNetconfTcl:
                     checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
                     checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
 
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration already exists.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration already exists.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration already exists.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration already exists.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration already exists.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset creategrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $creategrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration already exists.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
 
@@ -650,9 +651,9 @@ class generateNetconfTcl:
                     checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
                     checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
 
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset replacegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $replacegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset replacegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $replacegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset replacegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $replacegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset replacegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $replacegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset replacegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $replacegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset replacegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $replacegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
 
@@ -701,9 +702,9 @@ class generateNetconfTcl:
                     checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
                     checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
 
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset deletegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $deletegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset deletegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $deletegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset deletegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $deletegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset deletegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $deletegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i步，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset deletegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $deletegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset deletegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $deletegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
 
@@ -752,9 +753,9 @@ class generateNetconfTcl:
                     checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
                     checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
 
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
 
@@ -803,9 +804,393 @@ class generateNetconfTcl:
                     checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
                     checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
 
-                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
-                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset removegrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $removegrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\ttsend3  netconf -t 1000 $xmlclose\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+
+                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
+
+                    result_file_o.write(str(checkbody0))
+                    result_file_o.write(str(checkbody1))
+                    result_file_o.write(str(checkbody2))
+                    result_file_o.write(str(checkbody3))
+                    result_file_o.write(str(checkbody4))
+                    result_file_o.write(str(checkbody5))
+
+                    result_file_o.write(checkend)
+                    result_file_o.write(stepend)
+                    result_file_o.write("\n\n\n")
+
+                elif re.match('.*<commit.*', temp) != None:
+                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' commit操作"\n<CHECK> type custom\n<CHECK> args {\n'
+                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
+                    rpcxml = "".join(rpcxmltemp)
+
+                    a = str(stepnum)
+                    result_file_o.write("#STEP" + a + "\n")
+                    stepnum += 1
+
+                    result_file_o.write(stepstartofcommit)
+
+                    result_file_o.write(checkstart)
+
+                    checkbody = '\n\t\tset xmlstr ' + '"commit xmlns=\"urn:ietf:params:xml:ns:netconf:base:1.0\"/>"' + '\n\t\tset oo [$this GetTerminalObject]\n\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "ok" $res] != -1} {\n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else {\n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "commit失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+
+                    result_file_o.write(str(checkbody))
+
+                    result_file_o.write(checkend)
+                    result_file_o.write(stepend)
+                    result_file_o.write("\n\n\n")
+
+            elif re.match('.*XML_REQUEST.*', temp) != None and re.match('.*<candidate/>.*', temp) != None:
+                # 拼装candidate测试报文
+                if re.match('.*<get-config.*>', temp) != None:
+                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' get-config表操作"\n<CHECK> type custom\n<CHECK> args {\n'
+                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
+                    rpcxml = "".join(rpcxmltemp)
+
+                    a = str(stepnum)
+                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
+                    stepnum += 1
+
+                    result_file_o.write(stepstartofgetconfig)
+
+                    result_file_o.write(checkstart)
+
+                    # 目前针对数字　字符　范围内的列值
+                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    # c count t1 t2 ...都是作为中间变量 l lenth
+                    c = 1
+                    for i in sublist:
+                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t2 = t1[-1]
+                        l = len(t2)
+                        t3 = t2[1:l - 1]
+
+                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
+                        t4 = "part_{c}".format(c=c)
+                        c = c + 1
+                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
+
+                    c = c - 1
+                    list1 = "set lst " + '"' + "默认值 " + "$part_{c}".format(c=c) + '"'
+                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
+                    checkbody0 = "\n\t#get类只校验默认值和合法值，若lst列表中出现$part_0，说明soap下发的报文没有携带过滤条件，所有列均为空下发。建议手工测试带过滤值。\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。\n\t#因无法获知默认值情况，请修改以下 默认值 为实际默认值"
+
+                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
+
+                    # checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    # checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    # checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset getconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "<data></data>" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    # @liuxinyu修改2022/6/22，修改成调用ssh方式下发candidate
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
+
+                    result_file_o.write(str(checkbody0))
+                    result_file_o.write(str(checkbody1))
+                    result_file_o.write(str(checkbody2))
+                    result_file_o.write(str(checkbody3))
+                    # result_file_o.write(str(checkbody4))
+                    result_file_o.write(str(checkbody5))
+
+                    result_file_o.write(checkend)
+                    result_file_o.write(stepend)
+                    result_file_o.write("\n\n\n")
+
+                elif re.match('.*<get-bulk-config.*>', temp) != None:
+                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' get-bulk-config表操作"\n<CHECK> type custom\n<CHECK> args {\n'
+                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
+                    rpcxml = "".join(rpcxmltemp)
+
+                    a = str(stepnum)
+                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
+                    stepnum += 1
+
+                    result_file_o.write(stepstartofgetbulkconfig)
+
+                    result_file_o.write(checkstart)
+
+                    # 目前针对数字　字符　范围内的列值
+                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    # c count t1 t2 ...都是作为中间变量 l lenth
+                    c = 1
+                    for i in sublist:
+                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t2 = t1[-1]
+                        l = len(t2)
+                        t3 = t2[1:l - 1]
+
+                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
+                        t4 = "part_{c}".format(c=c)
+                        c = c + 1
+                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
+
+                    c = c - 1
+                    list1 = "set lst " + '"' + "默认值 " + "$part_{c}".format(c=c) + '"'
+                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
+                    checkbody0 = "\n\t#get类只校验默认值和合法值，若lst列表中出现$part_0，说明soap下发的报文没有携带过滤条件，所有列均为空下发。建议手工测试带过滤值。\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。\n\t#因无法获知默认值情况，请修改以下 默认值 为实际默认值"
+
+                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
+
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 <data></data>\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    # checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset getbulkconfigrpc ' + '"' + rpcxml + "\]\]>\]\]>" + '"' + '\n\t\t\ttsend3  netconf "xml"\n\t\t\t<WAIT> 3\n\t\t\ttsend3  netconf -t 3000  $xmlhello\n\t\t\t<WAIT> 3\n\t\t\ttclear netconf\n\t\t\ttsend3  netconf -t 3000  $getbulkconfigrpc\n\t\t\t<WAIT> 3\n\t\t\tset res [tget netconf]\n\n\t\t\t#请根据实际情况调整检查内容\n\t\t\tif {[string first "<data></data>" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+
+                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
+
+                    result_file_o.write(str(checkbody0))
+                    result_file_o.write(str(checkbody1))
+                    result_file_o.write(str(checkbody2))
+                    result_file_o.write(str(checkbody3))
+                    # result_file_o.write(str(checkbody4))
+                    result_file_o.write(str(checkbody5))
+
+                    result_file_o.write(checkend)
+                    result_file_o.write(stepend)
+                    result_file_o.write("\n\n\n")
+
+                elif re.match('.*operation="merge".*', temp) != None:
+                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' merge表操作"\n<CHECK> type custom\n<CHECK> args {\n'
+                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
+                    rpcxml = "".join(rpcxmltemp)
+
+                    a = str(stepnum)
+                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
+                    stepnum += 1
+
+                    result_file_o.write(stepstartofmerge)
+
+                    result_file_o.write(checkstart)
+
+                    # 目前针对数字　字符　范围内的列值
+                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    # c count t1 t2 ...都是作为中间变量 l lenth
+                    c = 1
+                    for i in sublist:
+                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t2 = t1[-1]
+                        l = len(t2)
+                        t3 = t2[1:l - 1]
+
+                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
+                        t4 = "part_{c}".format(c=c)
+                        c = c + 1
+                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
+
+                    c = c - 1
+                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
+                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
+                    checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
+                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
+
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+
+                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
+
+                    result_file_o.write(str(checkbody0))
+                    result_file_o.write(str(checkbody1))
+                    result_file_o.write(str(checkbody2))
+                    result_file_o.write(str(checkbody3))
+                    result_file_o.write(str(checkbody4))
+                    result_file_o.write(str(checkbody5))
+
+                    result_file_o.write(checkend)
+                    result_file_o.write(stepend)
+                    result_file_o.write("\n\n\n")
+
+                elif re.match('.*operation="create".*', temp) != None:
+                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' create表操作"\n<CHECK> type custom\n<CHECK> args {\n'
+                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
+                    rpcxml = "".join(rpcxmltemp)
+
+                    a = str(stepnum)
+                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
+                    stepnum += 1
+
+                    result_file_o.write(stepstartofcreate)
+
+                    result_file_o.write(checkstart)
+
+                    # 目前针对数字　字符　范围内的列值
+                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    # c count t1 t2 ...都是作为中间变量 l lenth
+                    c = 1
+                    for i in sublist:
+                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t2 = t1[-1]
+                        l = len(t2)
+                        t3 = t2[1:l - 1]
+
+                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
+                        t4 = "part_{c}".format(c=c)
+                        c = c + 1
+                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
+
+                    c = c - 1
+                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
+                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
+                    checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
+                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
+
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t#请将xxx替换为需要检查的内容，例如 ok/Configuration already exists. \n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok/Configuration already exists.\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok/Configuration already exists.\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+
+                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
+
+                    result_file_o.write(str(checkbody0))
+                    result_file_o.write(str(checkbody1))
+                    result_file_o.write(str(checkbody2))
+                    result_file_o.write(str(checkbody3))
+                    result_file_o.write(str(checkbody4))
+                    result_file_o.write(str(checkbody5))
+
+                    result_file_o.write(checkend)
+                    result_file_o.write(stepend)
+                    result_file_o.write("\n\n\n")
+
+                elif re.match('.*operation="replace".*', temp) != None:
+                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' replace表操作"\n<CHECK> type custom\n<CHECK> args {\n'
+                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
+                    rpcxml = "".join(rpcxmltemp)
+
+                    a = str(stepnum)
+                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
+                    stepnum += 1
+
+                    result_file_o.write(stepstartofreplace)
+
+                    result_file_o.write(checkstart)
+
+                    # 目前针对数字　字符　范围内的列值
+                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    # c count t1 t2 ...都是作为中间变量 l lenth
+                    c = 1
+                    for i in sublist:
+                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t2 = t1[-1]
+                        l = len(t2)
+                        t3 = t2[1:l - 1]
+
+                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
+                        t4 = "part_{c}".format(c=c)
+                        c = c + 1
+                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
+
+                    c = c - 1
+                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
+                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
+                    checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
+                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
+
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+
+                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
+
+                    result_file_o.write(str(checkbody0))
+                    result_file_o.write(str(checkbody1))
+                    result_file_o.write(str(checkbody2))
+                    result_file_o.write(str(checkbody3))
+                    result_file_o.write(str(checkbody4))
+                    result_file_o.write(str(checkbody5))
+
+                    result_file_o.write(checkend)
+                    result_file_o.write(stepend)
+                    result_file_o.write("\n\n\n")
+
+                elif re.match('.*operation="delete".*', temp) != None:
+                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' delete表操作"\n<CHECK> type custom\n<CHECK> args {\n'
+                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
+                    rpcxml = "".join(rpcxmltemp)
+
+                    a = str(stepnum)
+                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
+                    stepnum += 1
+
+                    result_file_o.write(stepstartofdelete)
+
+                    result_file_o.write(checkstart)
+
+                    # 目前针对数字　字符　范围内的列值
+                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    # c count t1 t2 ...都是作为中间变量 l lenth
+                    c = 1
+                    for i in sublist:
+                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t2 = t1[-1]
+                        l = len(t2)
+                        t3 = t2[1:l - 1]
+
+                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
+                        t4 = "part_{c}".format(c=c)
+                        c = c + 1
+                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
+
+                    c = c - 1
+                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
+                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
+                    checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
+                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
+
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok/Configuration does not exist.\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+
+                    checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
+
+                    result_file_o.write(str(checkbody0))
+                    result_file_o.write(str(checkbody1))
+                    result_file_o.write(str(checkbody2))
+                    result_file_o.write(str(checkbody3))
+                    result_file_o.write(str(checkbody4))
+                    result_file_o.write(str(checkbody5))
+
+                    result_file_o.write(checkend)
+                    result_file_o.write(stepend)
+                    result_file_o.write("\n\n\n")
+
+                elif re.match('.*operation="remove".*', temp) != None:
+                    checkstart = '<CHECK> description "' + modename + '/' + tablename + ' remove表操作"\n<CHECK> type custom\n<CHECK> args {\n'
+                    rpcxmltemp = re.findall('<rpc.*rpc>', temp)
+                    rpcxml = "".join(rpcxmltemp)
+
+                    a = str(stepnum)
+                    result_file_o.write("#candidate测试" + "\n" + "#STEP" + a + "\n")
+                    stepnum += 1
+
+                    result_file_o.write(stepstartofremove)
+
+                    result_file_o.write(checkstart)
+
+                    # 目前针对数字　字符　范围内的列值
+                    sublist = re.compile('>[0-9a-zA-Z/]+<').findall(rpcxml)
+                    # c count t1 t2 ...都是作为中间变量 l lenth
+                    c = 1
+                    for i in sublist:
+                        t1 = re.findall(">[0-9a-zA-Z/]+<", i)
+                        t2 = t1[-1]
+                        l = len(t2)
+                        t3 = t2[1:l - 1]
+
+                        rpcxml = re.sub(re.compile(i), ">$part_{c}<".format(c=c), rpcxml, 1)
+                        t4 = "part_{c}".format(c=c)
+                        c = c + 1
+                        result_file_o.write("\tset " + t4 + " " + t3 + "\n")
+
+                    c = c - 1
+                    list1 = "set lst " + '"' + "合法值 " + "$part_{c}".format(c=c) + " 非法值" + '"'
+                    rpcxml = rpcxml.replace("$part_{c}".format(c=c), "$pass").replace('"', '\\"')
+                    checkbody0 = "\n\t#$part_1 $part_2 $part_3等 为下发报文中的过滤值，现将其提取并放入对应变量中，缺省校验最后一个列值，可以自行调整。"
+                    checkbody1 = "\n\t" + list1 + "\n\tset i 0\n\tset lenth [expr [llength $lst]-1]\n\n\tfor { set i $i } { $i <= $lenth } { incr i } {\n\t\tset pass [lindex $lst $i]"
+
+                    checkbody2 = '\n\t\tif {$i==0} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody3 = '\n\t\tif {$i==1} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
+                    checkbody4 = '\n\t\tif {$i==$lenth} {\n\t\t\tset xmlstr ' + '"' + rpcxml + '"' + '\n\t\t\tset oo [$this GetTerminalObject]\n\t\t\tset ip_port [CDevice::$oo GetChannel ]\n\t\t\tset g_ConsleAddr [lindex [split $ip_port :] 0]\n\t\t\tset path "[GetVtpRunPathName]/../../Common/tools/tcl/lib/TclAtfLib/ProductLib/CmwV7Features/Netconf"\n\t\t\tregsub {<\?xml[^<]*>} $xmlstr "" xmlstr\n\t\t\tif {[regexp {<rpc([^<]*)>} $xmlstr total match]} {\n\t\t\t\tregsub {<rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tregsub {</rpc[^<]*>} $xmlstr "" xmlstr\n\t\t\t\tset xmlstr [string trim $xmlstr]\n\t\t\t\tregsub { message-id\s*=\s*[^ ]+} $match "" match\n\t\t\t\tregexp {<([^<]+)>} $xmlstr t_total t_match\n\t\t\t\tforeach ele $match {\n\t\t\t\t\tif {[string first "$ele" $t_match]} {\n\t\t\t\t\t\tappend t_match " $ele"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tregsub {<([^<]+)>} $xmlstr "<$t_match>" xmlstr\n\t\t\t}\n\t\t\tregsub {<} $xmlstr {} xmlstr\n\t\t\tset xmlrtn [exec $path/netconf_ssh_send_rpc.exe $g_ConsleAddr "830" "test" "test" $xmlstr "5000"]\n\n\t\t\t##请将xxx替换为需要检查的内容，例如 ok\n\t\t\tif {[string first "xxx" $res] != -1} { \n\t\t\t\t<WAIT> 3\n\t\t\t\tcontinue\n\t\t\t} else { \n\t\t\t\t<WAIT> 3\n\t\t\t\tputs "第$i 步检查失败，错误信息如下: $res"\n\t\t\t\tbreak\n\t\t\t}\n\t\t}'
 
                     checkbody5 = '\n\t}\n\texpr $i == [expr $lenth+1]'
 

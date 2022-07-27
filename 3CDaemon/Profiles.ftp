@@ -1,0 +1,154 @@
+[anonymous]
+Password = NoPassword
+CanLogin = 1
+CanUpload = 0
+CanDownload = 1
+CanOverwrite = 0
+CanDelete = 0
+CanRename = 0
+CanRmdir = 0
+CanMkDir = 0
+UserDir = C:\Users\l15364\AppData\Local\Temp\
+[kun]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 1
+CanDownload = 1
+CanOverwrite = 1
+CanDelete = 1
+CanRename = 1
+CanRmdir = 1
+CanMkDir = 1
+UserDir = D:\ftp\
+[111111]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 1
+CanDownload = 1
+CanOverwrite = 1
+CanDelete = 1
+CanRename = 1
+CanRmdir = 1
+CanMkDir = 1
+UserDir = D:\ftp\
+[lkun]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 0
+CanDownload = 1
+CanOverwrite = 0
+CanDelete = 0
+CanRename = 0
+CanRmdir = 0
+CanMkDir = 0
+UserDir = C:\Users\l15364\AppData\Local\Temp\
+[123456]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 1
+CanDownload = 1
+CanOverwrite = 1
+CanDelete = 1
+CanRename = 1
+CanRmdir = 1
+CanMkDir = 1
+UserDir = C:\Users\l15364\Desktop\update\
+[222222]
+Password = E3CEB5881A0A1FDAAD01296D7554868D
+CanLogin = 1
+CanUpload = 1
+CanDownload = 1
+CanOverwrite = 1
+CanDelete = 1
+CanRename = 1
+CanRmdir = 1
+CanMkDir = 1
+UserDir = C:\Users\l15364\Desktop\update\
+[333333]
+Password = 6456C7FAC445F3C1C3E7F4405159D80E
+CanLogin = 1
+CanUpload = 1
+CanDownload = 1
+CanOverwrite = 1
+CanDelete = 1
+CanRename = 1
+CanRmdir = 1
+CanMkDir = 1
+UserDir = D:\ftp\
+[lxy]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 1
+CanDownload = 1
+CanOverwrite = 1
+CanDelete = 1
+CanRename = 1
+CanRmdir = 1
+CanMkDir = 1
+UserDir = D:\ftp\项目版本\
+[lxy2]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 0
+CanDownload = 1
+CanOverwrite = 0
+CanDelete = 0
+CanRename = 0
+CanRmdir = 0
+CanMkDir = 0
+UserDir = D:\ftp\二轮验收版本\
+[lxy3]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 0
+CanDownload = 1
+CanOverwrite = 0
+CanDelete = 0
+CanRename = 0
+CanRmdir = 0
+CanMkDir = 0
+UserDir = D:\ftp\三轮验收版本\
+[lxy1]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 1
+CanDownload = 1
+CanOverwrite = 1
+CanDelete = 1
+CanRename = 1
+CanRmdir = 1
+CanMkDir = 1
+UserDir = D:\ftp\一轮验收版本\
+[lxy4]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 1
+CanDownload = 1
+CanOverwrite = 1
+CanDelete = 1
+CanRename = 0
+CanRmdir = 0
+CanMkDir = 0
+UserDir = D:\ftp\临时版本\
+[lxy5]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 0
+CanDownload = 1
+CanOverwrite = 0
+CanDelete = 0
+CanRename = 0
+CanRmdir = 0
+CanMkDir = 0
+UserDir = D:\ftp\patch\
+[11]
+Password = E10ADC3949BA59ABBE56E057F20F883E
+CanLogin = 1
+CanUpload = 1
+CanDownload = 1
+CanOverwrite = 1
+CanDelete = 1
+CanRename = 1
+CanRmdir = 1
+CanMkDir = 1
+UserDir = D:\ftp\

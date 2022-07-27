@@ -23,9 +23,9 @@ class Gui_Mirror():
         self.tclpath = ''
         self.tempconfig = ''
         self.TMdata = []
+        self.hostdata = []
         self.operatemtputty = Operatemtputty()
         self.filelist = []
-
 
     def set_init_window(self):
         self.init_window_name.title("魔镜脚本开发系统")
@@ -34,6 +34,8 @@ class Gui_Mirror():
         self.init_window_name["bg"] = "Beige"
         # self.init_window_name.attributes("-alpha", 0.95)
         # 工具logo
+        self.file_path = os.path.abspath(os.path.dirname(__file__))
+        imgPath = os.path.join(self.file_path, 'logo.png')
         self.image_file = tk.PhotoImage(file='logo.png')  # 创建图片对象
         self.imgLabel = Label(self.init_window_name, image=self.image_file)  # 把图片整合到标签类中
         self.imgLabel.place(x=70,y=30,anchor='nw',)
@@ -45,11 +47,11 @@ class Gui_Mirror():
 
 
         # 按钮
-        self.button1 = Button(self.init_window_name, text="连接设备", background="lightblue", foreground='black', width=10,command=self.popwind_device)
+        self.button1 = Button(self.init_window_name, text="连接设备", background="lightblue", foreground='black', width=10, command=self.popwind_device)
         self.button1.place(x=100,y=100,anchor='nw',)
-        self.button2 = Button(self.init_window_name, text='连接测试仪', background="lightblue", foreground='black', width=10,command=self.popwind_Tm)
+        self.button2 = Button(self.init_window_name, text='连接测试仪', background="lightblue", foreground='black', width=10, command=self.popwind_Tm)
         self.button2.place(x=100, y=180, anchor='nw')
-        self.button3 = Button(self.init_window_name, text='HOST连接', background="lightblue", foreground='black', width=10)
+        self.button3 = Button(self.init_window_name, text='HOST连接', background="lightblue", foreground='black', width=10, command=self.popwind_host)
         self.button3.place(x=100, y=260, anchor='nw')
         self.button4 = Button(self.init_window_name, text=' 开始录制 ', background="lightblue", foreground='black', width=10, command=self.startest)
         self.button4.place(x=100, y=340, anchor='nw')
@@ -167,17 +169,27 @@ class Gui_Mirror():
         self.tempconfig = 1
         self.pop_end_wind.destroy()
         operator = Operatemtputty()
-        operator.openmtputty()
+        if operator.decidemtputty() == 1:
+            pass
+        else:
+            operator.openmtputty()
         if self.TMdata:
             for tm in self.TMdata:
                 tmname = tm[3] + ':' + tm[4]
-                operator.connetdevice(tm)
+                if operator.decidedevice(tmname) == 1:
+                    pass
+                else:
+                    operator.connetdevice(tm)
                 time.sleep(3)
                 operator.protestmasterconfig(tmname)
                 time.sleep(3)
         for device in self.selectdata:
             devicename = device[3] + ':' + device[4]
-            operator.connetdevice(device)
+            dutname = device[1]
+            if operator.decidedevice(devicename) == 1:
+                pass
+            else:
+                operator.connetdevice(device)
             time.sleep(3)
             operator.extraputtyset(devicename)
             logname = device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log'
@@ -193,17 +205,26 @@ class Gui_Mirror():
         self.tempconfig = 2
         self.pop_end_wind.destroy()
         operator = Operatemtputty()
-        operator.openmtputty()
+        if operator.decidemtputty() == 1:
+            pass
+        else:
+            operator.openmtputty()
         if self.TMdata:
             for tm in self.TMdata:
                 tmname = tm[3] + ':' + tm[4]
-                operator.connetdevice(tm)
+                if operator.decidedevice(tmname) == 1:
+                    pass
+                else:
+                    operator.connetdevice(tm)
                 time.sleep(3)
                 operator.protestmasterconfig(tmname)
                 time.sleep(3)
         for device in self.selectdata:
             devicename = device[3] + ':' + device[4]
-            operator.connetdevice(device)
+            if operator.decidedevice(devicename) == 1:
+                pass
+            else:
+                operator.connetdevice(device)
             time.sleep(3)
             operator.extraputtyset(devicename)
             logname = device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log'
@@ -216,6 +237,55 @@ class Gui_Mirror():
 
         tkinter.messagebox.showinfo(title='Hi', message='设置成功，请开始测试！')
 
+    def newmod(self):
+        self.tempconfig = 3
+        self.pop_end_wind.destroy()
+        operator = Operatemtputty()
+        if operator.decidemtputty() == 1:
+            pass
+        else:
+            operator.openmtputty()
+        if operator.decide3cd() == 1:
+            pass
+        else:
+            operator.open3cd()
+        path = self.logpath + '\\3cdlog\\' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + "\\"
+        self.path3cd = path
+        operator.mkdir(path)
+        operator.operate3cd(path)
+        if self.TMdata:
+            for tm in self.TMdata:
+                tmname = tm[3] + ':' + tm[4]
+                if operator.decidedevice(tmname) == 1:
+                    pass
+                else:
+                    operator.connetdevice(tm)
+                time.sleep(3)
+                operator.protestmasterconfig(tmname)
+                time.sleep(3)
+        for device in self.selectdata:
+            devicename = device[3] + ':' + device[4]
+            dutname = device[1]
+            if operator.decidedevice(devicename) == 1:
+                pass
+            else:
+                operator.connetdevice(device)
+            time.sleep(3)
+            operator.extraputtyset(devicename)
+            logname = device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log'
+            self.filelist.append(logname)
+            operator.setlogging(self.logpath + '\\' + logname)
+            # operator.extraputtyset(devicename)
+            # operator.setputtylog()
+            # operator.setwindowtitle(devicename)
+            if self.hostdata:
+                hostip = self.hostdata[0][3]
+                operator.pre3cdconfig(devicename, dutname, hostip)
+            else:
+                tkinter.messagebox.showinfo(title='Hi', message='请注意没有选择info-center host服务器！！！')
+            operator.startrecording(self.init_window_name,devicename,self.tempconfig)
+        tkinter.messagebox.showinfo(title='Hi', message='设置成功，请开始测试！')
+
     def select_popwind(self):
         self.pop_end_wind = tkinter.Toplevel(self.init_window_name)
         self.pop_end_wind.title("选择脚本类型")
@@ -226,6 +296,9 @@ class Gui_Mirror():
         funbutton.pack(side=tk.LEFT, expand=1)
 
         netbutton = tk.Button(self.pop_end_wind, text="netconf脚本", background="lightblue", foreground='black', width=10,command=self.netconftcl)
+        netbutton.pack(side=tk.LEFT, expand=1)
+
+        netbutton = tk.Button(self.pop_end_wind, text="NEW功能脚本", background="lightblue", foreground='black', width=10, command=self.newmod)
         netbutton.pack(side=tk.LEFT, expand=1)
 
     def popwind_device(self):
@@ -555,6 +628,169 @@ class Gui_Mirror():
         tkinter.Button(self.popwind2, text='取消', width=10, command=self.popwind2.destroy).place(x=600, y=550, anchor='nw')
         reflshdata()
 
+    def popwind_host(self):
+
+        def onSumbitClick():
+            name = str(nameval.get())
+            ip = str(ipval.get())
+            port = str(portval.get())
+            username = str(usernameval.get())
+            passworld = str(passworldval.get())
+            type = str(typeeddl.get())
+            connetinfo = {
+                'name': name,
+                'ip': ip,
+                'port': port,
+                'username': username,
+                'passworld': passworld,
+                'type': type,
+            }
+            # print(type)
+            with open('host_info.pkl', 'rb+') as usr_file:
+                with open('host_info_bak.pkl', 'wb+') as usr_file_bak:
+                    pickle.dump(connetinfo, usr_file_bak)
+                    while True:
+                        try:
+                            usr_info_data = pickle.load(usr_file)
+                            # print(usr_info_data)
+                            if usr_info_data.get('name') == name:
+                                continue
+                            else:
+                                pickle.dump(usr_info_data, usr_file_bak)
+                        except EOFError:
+                            break
+                usr_file.close()
+                usr_file_bak.close()
+
+            with open('host_info.pkl', 'wb+') as usr_file:
+                with open('host_info_bak.pkl', 'rb+') as usr_file_bak:
+                    while True:
+                        try:
+                            usr_info_data_bak = pickle.load(usr_file_bak)
+                            pickle.dump(usr_info_data_bak, usr_file)
+                        except EOFError:
+                            break
+                    usr_file.close()
+                    usr_file_bak.close()
+            tkinter.messagebox.showinfo(title='Hi', message='保存成功！')
+            self.popwind3.destroy()
+            self.popwind_host()
+            # reflshdata()
+
+        def addata():
+            with open('host_info.pkl', 'rb+') as usr_file:
+                userdata = []
+                while True:
+                    try:
+                        usr_info_data = pickle.load(usr_file)
+                        userdata.append(usr_info_data)
+                    except EOFError:
+                        break
+            usr_file.close()
+            return userdata
+
+        # 添加数据
+        def reflshdata():
+            userdata = addata()
+            if userdata:
+                for user in userdata:
+                    row = [user.get('name'), user.get('type'), user.get('ip'), user.get('port')]
+                    lv.add_row(False, row)
+
+        def connect():
+            self.hostdata = lv.get_row_values_by_allselectdata()
+            self.popwind3.destroy()
+            # print(self.selectdata)
+
+        def deletedata():
+            del_data = lv.get_row_values_by_allselectdata()
+            for data in del_data:
+                with open('host_info.pkl', 'rb+') as usr_file:
+                    with open('host_info_bak.pkl', 'wb+') as usr_file_bak:
+                        while True:
+                            try:
+                                usr_info_data = pickle.load(usr_file)
+                                # print(usr_info_data)
+                                if usr_info_data.get('name') == data[1]:
+                                    continue
+                                else:
+                                    pickle.dump(usr_info_data, usr_file_bak)
+                            except EOFError:
+                                break
+                    usr_file.close()
+                    usr_file_bak.close()
+
+                with open('host_info.pkl', 'wb+') as usr_file:
+                    with open('host_info_bak.pkl', 'rb+') as usr_file_bak:
+                        while True:
+                            try:
+                                usr_info_data_bak = pickle.load(usr_file_bak)
+                                pickle.dump(usr_info_data_bak, usr_file)
+                            except EOFError:
+                                break
+                        usr_file.close()
+                        usr_file_bak.close()
+            tkinter.messagebox.showinfo(title='Hi', message='删除成功！')
+            self.popwind3.destroy()
+            self.popwind_host()
+
+        # 定义弹窗
+        self.popwind3 = tkinter.Toplevel(self.init_window_name)
+        # self.popwind3 = tk.Tk()
+        self.popwind3.title("设备连接信息")
+        self.popwind3.geometry('750x600+386+163')
+        self.popwind3["bg"] = "Ivory"
+
+        lv = ListView(self.popwind3, x=100, y=25, height=344, width=550)
+        # lv = ListView(self.popwind3, x=100, y=50, width=800, height=500)
+        lv.add_column('名称', 120)
+        lv.add_column('类型', 120)
+        lv.add_column('地址', 120)
+        lv.add_column('端口', 120)
+        lv.set_rows_height_fontsize(30, 10)
+        lv.set_head_font('微软雅黑', 10)
+        lv.create_listview()
+
+        tkinter.Label(self.popwind3, text='名称:').place(x=50, y=400, anchor='nw')
+        tkinter.Label(self.popwind3, text='类型:').place(x=500, y=400, anchor='nw')
+        tkinter.Label(self.popwind3, text='地址:').place(x=50, y=450, anchor='nw')
+        tkinter.Label(self.popwind3, text='端口:').place(x=500, y=450, anchor='nw')
+        tkinter.Label(self.popwind3, text='用户:').place(x=50, y=500, anchor='nw')
+        tkinter.Label(self.popwind3, text='密码:').place(x=500, y=500, anchor='nw')
+
+        # 将输入的注册名赋值给变量
+        nameval = tkinter.StringVar()
+        nameval.set('host')
+        ipval = tkinter.StringVar()
+        portval = tkinter.StringVar()
+        portval.set('23')
+        usernameval = tkinter.StringVar()
+        passworldval = tkinter.StringVar()
+
+        nameentry = tkinter.Entry(self.popwind3, highlightbackground='white', textvariable=nameval)
+        nameentry.place(x=100, y=400)
+        ipentry = tkinter.Entry(self.popwind3, highlightbackground='white', textvariable=ipval)
+        ipentry.place(x=100, y=450)
+        usernameentry = tkinter.Entry(self.popwind3, highlightbackground='white', textvariable=usernameval)
+        usernameentry.place(x=100, y=500)
+        typeeddl = tkinter.ttk.Combobox(self.popwind3, state='readonly', width=17)
+        # typeeddl = tkinter.ttk.Combobox(self.popwind3, textvariable=typeval, state='readonly', width=17)
+        typeeddl['value'] = ("telnet", "ssh")
+        typeeddl.current(1)
+        typeeddl.pack(side=tkinter.RIGHT, padx=1, pady=1)
+        typeeddl.place(x=550, y=400)
+        # typeentry = tkinter.Entry(self.popwind3, highlightbackground='white', textvariable=typeval)
+        # typeentry.place(x=550, y=300)
+        portentry = tkinter.Entry(self.popwind3, highlightbackground='white', textvariable=portval)
+        portentry.place(x=550, y=450)
+        passworldentry = tkinter.Entry(self.popwind3, highlightbackground='white', textvariable=passworldval)
+        passworldentry.place(x=550, y=500)
+        tkinter.Button(self.popwind3, text='连接', width=10, command=connect).place(x=300, y=550, anchor='nw')
+        tkinter.Button(self.popwind3, text='保存', width=10, command=onSumbitClick).place(x=400, y=550, anchor='nw')
+        tkinter.Button(self.popwind3, text='删除', width=10, command=deletedata).place(x=500, y=550, anchor='nw')
+        tkinter.Button(self.popwind3, text='取消', width=10, command=self.popwind3.destroy).place(x=600, y=550, anchor='nw')
+        reflshdata()
+
     def showpath(self):
         if not os.path.exists('./log'):
             os.mkdir('./log')
@@ -593,13 +829,12 @@ class Gui_Mirror():
     def startest(self):
         self.select_popwind()
 
-
     def endtest(self):
         operator = Operatemtputty()
-        resultename = self.tclpath + '\\' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
+        resultename = self.tclpath + '\\' + 'Mirror_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
         for device in self.selectdata:
             devicename = device[3] + ':' + device[4]
-            operator.stoprecording(self.init_window_name,devicename)
+            operator.stoprecording(self.init_window_name,devicename,self.tempconfig)
         if self.TMdata:
             operator.del_files('./TMlog')
             for tm in self.TMdata:
@@ -615,6 +850,9 @@ class Gui_Mirror():
         elif self.tempconfig == 2:
             generate = generateNetconfTcl('./log/', resultename)
             generate.creattcl()
+        elif self.tempconfig == 3:
+            extractlog = ExtractLog('./log/', resultename)
+            extractlog.creattcl3cd(self.path3cd)
 
         self.open_file(resultename)
         tkinter.messagebox.showinfo(title='Hi', message='脚本生成成功，请查看！')
@@ -633,14 +871,14 @@ class Gui_Mirror():
 
     def createcomtcl(self):
         self.pop_select_wind.destroy()
-        resultename = self.tclpath + '\\' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
+        resultename = self.tclpath + '\\' + 'Mirror_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
         create = ExtractLog('./log/',resultename)
         create.creattcl()
         self.open_file(resultename)
 
     def createnetconftcl(self):
         self.pop_select_wind.destroy()
-        resultename = self.tclpath + '\\' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
+        resultename = self.tclpath + '\\' + 'Mirror_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
         generate = generateNetconfTcl('./log/', resultename)
         generate.creattcl()
         self.open_file(resultename)
@@ -650,9 +888,7 @@ class Gui_Mirror():
 if __name__ == '__main__':
     init_window = tk.Tk()  # 实例化出一个父窗口
     mirror_gui = Gui_Mirror(init_window)
-
     mirror_gui.set_init_window()
-
     init_window.mainloop()
 
 
