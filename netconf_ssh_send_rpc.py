@@ -67,6 +67,7 @@ def ss(host, port, user, password):
 def ssh_send_rpc(host, port=830, username='admin', password='admin', rpc_xml=None, timeout=20000):
     try:
         session = NetconfSSHSession(host, port, username, password)
+        print(session)
         return_xml = session.send_rpc(rpc=rpc_xml.strip(), timeout=int(timeout))
         #session.close()
         return return_xml[-1]
@@ -79,8 +80,14 @@ def ssh_send_rpc(host, port=830, username='admin', password='admin', rpc_xml=Non
 #
 # reply_xml = ssh_send_rpc(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5] , sys.argv[6])
 reply_xml = ssh_send_rpc(host='172.16.23.231',username='test', password='test', rpc_xml='''<commit xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"/>''')
-print(reply_xml)
+# print(reply_xml)
 # print(reply_xml.replace('<?xml version="1.0" encoding="UTF-8"?>',''))
 #
+
+# test = '''sss
+#     ssss
+#         sssss
+#             sssss'''
+# print(test)
 
 

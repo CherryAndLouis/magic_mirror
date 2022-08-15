@@ -117,5 +117,10 @@ class PublicMeth():
         print(result_data)
         return result_data
 
+
+
+
+
 # ss = PublicMeth()
+# ss.getcfgcommand('D:\魔镜脚本开发系统\Git\magic_mirror\configfile')
 # ss.getconfig("C:/Users/l18630/AppData/Local/Temp/")

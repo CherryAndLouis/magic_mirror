@@ -1,0 +1,297 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2022.08.05 16:09:50 =~=~=~=~=~=~=~=~=~=~=~=
+
+[2022/08/05 16:09:54] [H3C-luser-manage-test]
+[2022/08/05 16:09:54] [H3C-luser-manage-test]return
+[2022/08/05 16:09:54] <H3C>
+[2022/08/05 16:09:54] <H3C>cd flash:/
+[2022/08/05 16:09:54] <H3C>
+[2022/08/05 16:09:54] <H3C>save DUT2_mirror.cfg
+[2022/08/05 16:09:54] The current configuration will be saved to flash:/DUT2_mirror.cfg. Continue? [Y/N]:
+[2022/08/05 16:09:54] Before pressing ENTER you must choose 'YES' or 'NO'[Y/N]:y
+[2022/08/05 16:09:57] flash:/DUT2_mirror.cfg exists, overwrite? [Y/N]:
+[2022/08/05 16:09:57] Before pressing ENTER you must choose 'YES' or 'NO'[Y/N]:y
+[2022/08/05 16:10:00] Now saving current configuration to the device.
+[2022/08/05 16:10:00] Saving configuration flash:/DUT2_mirror.cfg.Please wait...
+[2022/08/05 16:10:00] Configuration is saved to device successfully.
+[2022/08/05 16:10:00] <H3C>
+[2022/08/05 16:10:00] <H3C>system-view
+[2022/08/05 16:10:03] System View: return to User View with Ctrl+Z.
+[2022/08/05 16:10:03] [H3C]
+[2022/08/05 16:10:03] [H3C]ftp server  enable
+[2022/08/05 16:10:03] FTP is insecure because it transmits data in plaintext form.
+[2022/08/05 16:10:03] [H3C]
+[2022/08/05 16:10:03] [H3C]local-user test
+[2022/08/05 16:10:03] [H3C-luser-manage-test]
+[2022/08/05 16:10:03] [H3C-luser-manage-test]password simple admin123456789
+[2022/08/05 16:10:03] [H3C-luser-manage-test]
+[2022/08/05 16:10:03] [H3C-luser-manage-test]authorization-attribute user-role network-admin
+[2022/08/05 16:10:03] [H3C-luser-manage-test]
+[2022/08/05 16:10:03] [H3C-luser-manage-test]service-type ftp
+[2022/08/05 16:10:03] [H3C-luser-manage-test]
+[2022/08/05 16:10:03] [H3C-luser-manage-test]service-type http https pad ssh terminal telnet
+[2022/08/05 16:10:03] [H3C-luser-manage-test]
+[2022/08/05 16:10:03] [H3C-luser-manage-test]
+[2022/08/05 16:10:03] [H3C-luser-manage-test]
+[2022/08/05 16:10:03] [H3C-luser-manage-test]return
+[2022/08/05 16:10:03] <H3C>
+[2022/08/05 16:10:03] <H3C>system
+[2022/08/05 16:10:03] System View: return to User View with Ctrl+Z.
+[2022/08/05 16:10:03] [H3C]
+[2022/08/05 16:10:03] [H3C]alias check_info_help display this | include
+[2022/08/05 16:10:03] [H3C]
+[2022/08/05 16:10:03] [H3C]alias check_info_trap display this | include
+[2022/08/05 16:10:03] [H3C]
+[2022/08/05 16:10:03] [H3C]alias check_info_syslog display this | include
+[2022/08/05 16:10:03] [H3C]
+[2022/08/05 16:10:03] [H3C]alias check_info_view display this | include
+[2022/08/05 16:10:03] [H3C]
+[2022/08/05 16:10:03] [H3C]line vty 0 63
+[2022/08/05 16:10:03] [H3C-line-vty0-63]
+[2022/08/05 16:10:03] [H3C-line-vty0-63]screen-length 0
+[2022/08/05 16:10:03] [H3C-line-vty0-63]
+[2022/08/05 16:10:03] [H3C-line-vty0-63]return
+[2022/08/05 16:10:03] <H3C>
+[2022/08/05 16:10:03] <H3C>reset logbuffer
+[2022/08/05 16:10:03] <H3C>
+[2022/08/05 16:10:03] <H3C>
+[2022/08/05 16:10:03] <H3C>
+[2022/08/05 16:10:03] <H3C>
+[2022/08/05 16:10:03] <H3C>
+[2022/08/05 16:10:03] <H3C>####start####
+[2022/08/05 16:10:03] <H3C>
+[2022/08/05 16:10:03] <H3C>sys 
+[2022/08/05 16:11:05] System View: return to User View with Ctrl+Z.
+[2022/08/05 16:11:05] [H3C]dithi [1D[J[1D[J[1D[J[1D[J[1D[J[1D[J
+[2022/08/05 16:11:08] [H3C]
+[2022/08/05 16:11:09] [H3C]
+[2022/08/05 16:11:09] [H3C]
+[2022/08/05 16:11:09] [H3C]dis
+[2022/08/05 16:11:15] [H3C]display inte
+[2022/08/05 16:11:16] [H3C]display interfacer g
+[2022/08/05 16:11:17] [H3C]display interfacer g[1D[J[1D[J
+[2022/08/05 16:11:19] [H3C]display interfacer
+[2022/08/05 16:11:19] [H3C]display interfacer ?
+[2022/08/05 16:11:20]              ^
+[2022/08/05 16:11:20]  % Unrecognized command found at '^' position.
+[2022/08/05 16:11:20] [H3C]display interfacer [1D[J[1D[J[1D[J
+[2022/08/05 16:11:22] [H3C]display interface
+[2022/08/05 16:11:23] [H3C]display interface-backup
+[2022/08/05 16:11:23] [H3C]display interface ?
+[2022/08/05 16:11:24]   >                    Redirect it to a file
+[2022/08/05 16:11:24]   >>                   Redirect it to a file in append mode
+[2022/08/05 16:11:24]   ATM                  ATM interface
+[2022/08/05 16:11:24]   FiftyGigE            FiftyGigE interface
+[2022/08/05 16:11:24]   GigabitEthernet      GigabitEthernet interface
+[2022/08/05 16:11:24]   HundredGigE          HundredGigE interface
+[2022/08/05 16:11:24]   InLoopBack           InLoopBack interface
+[2022/08/05 16:11:24]   M-GigabitEthernet    MGE interface
+[2022/08/05 16:11:24]   NULL                 NULL interface
+[2022/08/05 16:11:24]   Pos                  Pos interface
+[2022/08/05 16:11:24]   Register-Tunnel      Register Tunnel interface
+[2022/08/05 16:11:24]   Serial               Serial interface
+[2022/08/05 16:11:24]   Ten-GigabitEthernet  Ten-GigabitEthernet interface
+[2022/08/05 16:11:24]   Vsi-interface        Vsi interface
+[2022/08/05 16:11:24]   brief                Brief information of status and configuration for 
+[2022/08/05 16:11:24]                        interface(s)
+[2022/08/05 16:11:24]   link-info            Display interface information
+[2022/08/05 16:11:24]   main                 Display information for only main interface
+[2022/08/05 16:11:24]   range                Display range information
+[2022/08/05 16:11:24]   |                    Matching output
+[2022/08/05 16:11:24]   <cr>                 
+[2022/08/05 16:11:24] 
+[2022/08/05 16:11:24] [H3C]display interface g
+[2022/08/05 16:11:26] [H3C]display interface GigabitEthernet ?
+[2022/08/05 16:11:27]   <2-3>  GigabitEthernet interface number
+[2022/08/05 16:11:27]   >      Redirect it to a file
+[2022/08/05 16:11:27]   >>     Redirect it to a file in append mode
+[2022/08/05 16:11:27]   brief  Brief information of status and configuration for interface(s)
+[2022/08/05 16:11:27]   main   Display information for only main interface
+[2022/08/05 16:11:27]   |      Matching output
+[2022/08/05 16:11:27]   <cr>   
+[2022/08/05 16:11:27] 
+[2022/08/05 16:11:27] [H3C]display interface GigabitEthernet 2/0/1?
+[2022/08/05 16:11:31]   <1-4>  GigabitEthernet interface number
+[2022/08/05 16:11:31] 
+[2022/08/05 16:11:31] [H3C]display interface GigabitEthernet 2/0/1 ?
+[2022/08/05 16:11:32]   >      Redirect it to a file
+[2022/08/05 16:11:32]   >>     Redirect it to a file in append mode
+[2022/08/05 16:11:32]   brief  Brief information of status and configuration for interface(s)
+[2022/08/05 16:11:32]   |      Matching output
+[2022/08/05 16:11:32]   <cr>   
+[2022/08/05 16:11:32] 
+[2022/08/05 16:11:32] [H3C]display interface GigabitEthernet 2/0/1 | in
+[2022/08/05 16:11:34] [H3C]display interface GigabitEthernet 2/0/1 | include "UP"
+[2022/08/05 16:11:37] [H3C]display interface GigabitEthernet 2/0/1 | include "UP"
+[2022/08/05 16:11:39] [H3C]
+[2022/08/05 16:11:39] [H3C]
+[2022/08/05 16:11:40] [H3C]ping 192.168.56.1
+[2022/08/05 16:11:47] Ping 192.168.56.1 (192.168.56.1): 56 data bytes, press CTRL+C to break
+[2022/08/05 16:11:47] 56 bytes from 192.168.56.1: icmp_seq=0 ttl=128 time=1.000 ms
+[2022/08/05 16:11:47] 56 bytes from 192.168.56.1: icmp_seq=1 ttl=128 time=0.000 ms
+[2022/08/05 16:11:47] 56 bytes from 192.168.56.1: icmp_seq=2 ttl=128 time=0.000 ms
+[2022/08/05 16:11:48] 56 bytes from 192.168.56.1: icmp_seq=3 ttl=128 time=0.000 ms
+[2022/08/05 16:11:48] 56 bytes from 192.168.56.1: icmp_seq=4 ttl=128 time=0.000 ms
+[2022/08/05 16:11:48] 
+[2022/08/05 16:11:48] --- Ping statistics for 192.168.56.1 ---
+[2022/08/05 16:11:48] 5 packet(s) transmitted, 5 packet(s) received, 0.0% packet loss
+[2022/08/05 16:11:48] round-trip min/avg/max/std-dev = 0.000/0.200/1.000/0.400 ms
+[2022/08/05 16:11:48] [H3C]
+[2022/08/05 16:11:49] [H3C]
+[2022/08/05 16:11:49] [H3C]qu 
+[2022/08/05 16:12:21] <H3C>debu
+[2022/08/05 16:12:23] <H3C>debugging ip 
+[2022/08/05 16:12:26] <H3C>debugging ipv6 pac
+[2022/08/05 16:12:28] <H3C>debugging ipv6 packet 
+[2022/08/05 16:12:29] IP6Stack is not configured.
+[2022/08/05 16:12:29] <H3C>
+[2022/08/05 16:12:29] <H3C>
+[2022/08/05 16:12:30] <H3C>
+[2022/08/05 16:12:30] <H3C>
+[2022/08/05 16:12:30] <H3C>d[1D[J
+[2022/08/05 16:12:36] <H3C>
+[2022/08/05 16:12:36] <H3C>dis
+[2022/08/05 16:12:37] <H3C>display  thi | in
+[2022/08/05 16:12:38] <H3C>display  thi | include "trap"[1D[J:interface G[1D[JGigabitEthernet 2/0/1[1D[1D[1D[1D[1D[55D[Jdisplay  thi | include "trap:interface GigabitEthernet2/0/1[5D[1C[1C[1C[1C[1C down"
+[2022/08/05 16:13:14] <H3C>display  thi | include "trap:interface GigabitEthernet2/0/1 down"
+[2022/08/05 16:13:15] <H3C>dis thi | in
+[2022/08/05 16:14:46] <H3C>dis thi | include "syslog:interface GigabitEthernet2/0/1 down"
+[2022/08/05 16:14:59] <H3C>
+[2022/08/05 16:15:01] <H3C>
+[2022/08/05 16:15:01] <H3C>
+[2022/08/05 16:15:01] <H3C>dis thi | in
+[2022/08/05 16:15:05] <H3C>dis thi | include "ip^XXXX"
+[2022/08/05 16:15:34] <H3C>dis thi | in
+[2022/08/05 16:15:41] <H3C>dis thi | include "view:XXX"
+[2022/08/05 16:15:50] <H3C>
+[2022/08/05 16:16:07] <H3C>
+[2022/08/05 16:16:07] <H3C>dis logbuffer
+[2022/08/05 16:16:07] Log buffer: Enabled
+[2022/08/05 16:16:07] Max buffer size: 1024
+[2022/08/05 16:16:07] Actual buffer size: 512
+[2022/08/05 16:16:07] Dropped messages: 0
+[2022/08/05 16:16:07] Overwritten messages: 0
+[2022/08/05 16:16:07] Current messages: 57
+[2022/08/05 16:16:07] %Aug  5 12:15:19:632 2022 H3C FTP/6/LOGOUT: User test@192.168.56.1 logout.
+[2022/08/05 16:16:07] %Aug  5 12:15:19:640 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is return
+[2022/08/05 16:16:07] %Aug  5 12:15:19:640 2022 H3C CFGMAN/5/CFGMAN_EXIT_FROM_CONFIGURE: -Line=vty0-IPAddr=192.168.56.1-User=**; Exit from the system view or a feature view to the user vie
+[2022/08/05 16:16:07] w.
+[2022/08/05 16:16:07] %Aug  5 12:15:19:642 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is system
+[2022/08/05 16:16:07] %Aug  5 12:15:19:647 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is alias check_info_help display this | include
+[2022/08/05 16:16:07] %Aug  5 12:15:19:650 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is alias check_info_trap display this | include
+[2022/08/05 16:16:07] %Aug  5 12:15:19:657 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is alias check_info_syslog display this | include
+[2022/08/05 16:16:07] %Aug  5 12:15:19:663 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is alias check_info_view display this | include
+[2022/08/05 16:16:07] %Aug  5 12:15:19:668 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is line vty 0 63
+[2022/08/05 16:16:07] %Aug  5 12:15:19:671 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is screen-length 0
+[2022/08/05 16:16:07] %Aug  5 12:15:19:677 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is return
+[2022/08/05 16:16:07] %Aug  5 12:15:19:678 2022 H3C CFGMAN/5/CFGMAN_EXIT_FROM_CONFIGURE: -Line=vty0-IPAddr=192.168.56.1-User=**; Exit from the system view or a feature view to the user vie
+[2022/08/05 16:16:07] w.
+[2022/08/05 16:16:07] %Aug  5 12:15:19:681 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is reset logbuffer
+[2022/08/05 16:16:07] %Aug  5 12:16:16:865 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is sys
+[2022/08/05 16:16:07] %Aug  5 12:16:49:191 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is display interface GigabitEthernet 2/0/1 | include "UP"
+[2022/08/05 16:16:07] %Aug  5 12:16:50:579 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is display interface GigabitEthernet 2/0/1 | include "UP"
+[2022/08/05 16:16:07] %Aug  5 12:16:58:633 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is ping 192.168.56.1
+[2022/08/05 16:16:07] %Aug  5 12:16:59:455 2022 H3C PING/6/PING_STATISTICS: Ping statistics for 192.168.56.1: 5 packet(s) transmitted, 5 packet(s) received, 0.0% packet loss, round-trip mi
+[2022/08/05 16:16:07] n/avg/max/std-dev = 0.000/0.200/1.000/0.400 ms.
+[2022/08/05 16:16:07] %Aug  5 12:17:10:716 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.319)=319;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.319)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.319)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.319)=return.
+[2022/08/05 16:16:07] %Aug  5 12:17:10:725 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.320)=320;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.320)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.320)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.320)=cd flash:/.
+[2022/08/05 16:16:07] %Aug  5 12:17:10:734 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.321)=321;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.321)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.321)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.321)=save DUT2_mirror.
+[2022/08/05 16:16:07] cfg.
+[2022/08/05 16:16:07] %Aug  5 12:17:16:713 2022 H3C SNMP/6/SNMP_NOTIFY: Notification hh3cCfgManEventlog(1.3.6.1.4.1.25506.2.4.2.1) with hh3cCfgLogSrcCmd(1.3.6.1.4.1.25506.2.4.1.1.7.1.3.25)
+[2022/08/05 16:16:07] =1;hh3cCfgLogSrcData(1.3.6.1.4.1.25506.2.4.1.1.7.1.4.25)=2;hh3cCfgLogDesData(1.3.6.1.4.1.25506.2.4.1.1.7.1.5.25)=5.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:711 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.322)=322;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.322)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.322)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.322)=system-view.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:714 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.323)=323;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.323)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.323)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.323)=ftp server enable
+[2022/08/05 16:16:07] .
+[2022/08/05 16:16:07] %Aug  5 12:17:19:718 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.324)=324;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.324)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.324)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.324)=local-user test.[2022/08/05 16:16:07] 
+[2022/08/05 16:16:07] %Aug  5 12:17:19:723 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.325)=325;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.325)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.325)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.325)=password simple *
+[2022/08/05 16:16:07] *****.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:727 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userTrap(1.3.6.1.4.1.49763.1.2.2) with userIndex(1.3.6.1.4.1.49763.1.1.2.1.1.23)=23;userName(1.3.6.1.4.
+[2022/08/05 16:16:07] 1.49763.1.1.2.1.2.23)=**;userType(1.3.6.1.4.1.49763.1.1.2.1.3.23)=4;userStatus(1.3.6.1.4.1.49763.1.1.2.1.4.23)=3;userModified(1.3.6.1.4.1.49763.1.1.2.1.5.23)=test's 
+[2022/08/05 16:16:07] password was modified.;userIP(1.3.6.1.4.1.49763.1.1.2.1.6.23)=192.168.56.1.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:732 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.326)=326;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.326)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.326)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.326)=authorization-att
+[2022/08/05 16:16:07] ribute user-role network-admin.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:737 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.327)=327;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.327)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.327)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.327)=service-type ftp.
+[2022/08/05 16:16:07] 
+[2022/08/05 16:16:07] %Aug  5 12:17:19:742 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.328)=328;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.328)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.328)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.328)=service-type http
+[2022/08/05 16:16:07]  https pad ssh terminal telnet.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:746 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.329)=329;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.329)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.329)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.329)=return.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:750 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.330)=330;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.330)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.330)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.330)=system.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:755 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.331)=331;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.331)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.331)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.331)=alias check_info_
+[2022/08/05 16:16:07] help display this | include.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:759 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.332)=332;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.332)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.332)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.332)=alias check_info_
+[2022/08/05 16:16:07] trap display this | include.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:764 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.333)=333;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.333)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.333)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.333)=alias check_info_
+[2022/08/05 16:16:07] syslog display this | include.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:768 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.334)=334;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.334)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.334)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.334)=alias check_info_
+[2022/08/05 16:16:07] view display this | include.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:772 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.335)=335;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.335)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.335)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.335)=line vty 0 63.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:776 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.336)=336;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.336)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.336)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.336)=screen-length 0.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:781 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.337)=337;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.337)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.337)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.337)=return.
+[2022/08/05 16:16:07] %Aug  5 12:17:19:785 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.338)=338;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.338)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.338)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.338)=reset logbuffer.
+[2022/08/05 16:16:07] %Aug  5 12:17:32:791 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is qu
+[2022/08/05 16:16:07] %Aug  5 12:17:32:791 2022 H3C CFGMAN/5/CFGMAN_EXIT_FROM_CONFIGURE: -Line=vty0-IPAddr=192.168.56.1-User=**; Exit from the system view or a feature view to the user vie
+[2022/08/05 16:16:07] w.
+[2022/08/05 16:16:07] %Aug  5 12:17:40:222 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is debugging ipv6 packet[2022/08/05 16:16:07] 
+[2022/08/05 16:16:07] %Aug  5 12:18:17:714 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.339)=339;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.339)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.339)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.339)=sys.
+[2022/08/05 16:16:07] %Aug  5 12:18:25:114 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is display  thi | include "trap:interface GigabitEthernet2/0/1 down"
+[2022/08/05 16:16:07] %Aug  5 12:18:26:061 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is display  thi | include "trap:interface GigabitEthernet2/0/1 down"
+[2022/08/05 16:16:07] %Aug  5 12:18:49:711 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.340)=340;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.340)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.340)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.340)=display interface
+[2022/08/05 16:16:07]  GigabitEthernet 2/0/1 | include "UP".
+[2022/08/05 16:16:07] %Aug  5 12:18:50:711 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.341)=341;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.341)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.341)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.341)=display interface
+[2022/08/05 16:16:07]  GigabitEthernet 2/0/1 | include "UP".
+[2022/08/05 16:16:07] %Aug  5 12:18:58:712 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.342)=342;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.342)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.342)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.342)=ping 192.168.56.1
+[2022/08/05 16:16:07] .
+[2022/08/05 16:16:07] %Aug  5 12:19:33:717 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.343)=343;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.343)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.343)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.343)=qu.
+[2022/08/05 16:16:07] %Aug  5 12:19:40:711 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.344)=344;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.344)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.344)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.344)=debugging ipv6 pa
+[2022/08/05 16:16:07] cket.
+[2022/08/05 16:16:07] %Aug  5 12:20:10:139 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is dis thi | include "syslog:interface GigabitEthernet2/0/1 down"[2022/08/05 16:16:07] 
+[2022/08/05 16:16:07] %Aug  5 12:20:25:712 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.345)=345;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.345)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.345)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.345)=display  thi | in
+[2022/08/05 16:16:07] clude "trap:interface GigabitEthernet2/0/1 down".
+[2022/08/05 16:16:07] %Aug  5 12:20:26:711 2022 H3C SNMP/6/SNMP_NOTIFY: Notification userOperTrap(1.3.6.1.4.1.49763.1.2.3) with userOperIndex(1.3.6.1.4.1.49763.1.1.3.1.1.346)=346;userOperN
+[2022/08/05 16:16:07] ame(1.3.6.1.4.1.49763.1.1.3.1.2.346)=vty0;userOperIP(1.3.6.1.4.1.49763.1.1.3.1.3.346)=192.168.56.1;userOperCommand(1.3.6.1.4.1.49763.1.1.3.1.4.346)=display  thi | in
+[2022/08/05 16:16:07] clude "trap:interface GigabitEthernet2/0/1 down".
+[2022/08/05 16:16:07] %Aug  5 12:20:44:101 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is dis thi | include "ip^XXXX"
+[2022/08/05 16:16:07] %Aug  5 12:20:56:047 2022 H3C CFGMAN/5/CFGMAN_CFGCHANGED: -EventIndex=26-CommandSource=snmp-ConfigSource=startup-ConfigDestination=running; Configuration changed.
+[2022/08/05 16:16:07] %Aug  5 12:21:00:602 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is dis thi | include "view:XXX"
+[2022/08/05 16:16:07] <H3C>
+[2022/08/05 16:16:07] <H3C>        
+[2022/08/05 16:16:07] <H3C>
+[2022/08/05 16:16:07] <H3C>return
+[2022/08/05 16:16:07]      ^
+[2022/08/05 16:16:07]  % Unrecognized command found at '^' position.
+[2022/08/05 16:16:07] <H3C>
+[2022/08/05 16:16:07] <H3C>undo t m
+[2022/08/05 16:16:07] The current terminal is disabled to display logs.
+[2022/08/05 16:16:07] <H3C>
+[2022/08/05 16:16:07] <H3C>undo t d
+[2022/08/05 16:16:07] The current terminal is disabled to display debugging logs.
+[2022/08/05 16:16:07] <H3C>
+[2022/08/05 16:16:07] <H3C>####end####
+[2022/08/05 16:16:07] <H3C>
+[2022/08/05 16:16:07] <H3C>

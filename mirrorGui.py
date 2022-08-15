@@ -198,7 +198,8 @@ class Gui_Mirror():
             # operator.extraputtyset(devicename)
             # operator.setputtylog()
             # operator.setwindowtitle(devicename)
-            operator.startrecording(self.init_window_name,devicename,self.tempconfig)
+            operator.startrecording(self.init_window_name, devicename, self.tempconfig, dutname)
+
         tkinter.messagebox.showinfo(title='Hi', message='设置成功，请开始测试！')
 
     def netconftcl(self):
@@ -221,6 +222,7 @@ class Gui_Mirror():
                 time.sleep(3)
         for device in self.selectdata:
             devicename = device[3] + ':' + device[4]
+            dutname = device[1]
             if operator.decidedevice(devicename) == 1:
                 pass
             else:
@@ -233,7 +235,7 @@ class Gui_Mirror():
             # operator.extraputtyset(devicename)
             # operator.setputtylog()
             # operator.setwindowtitle(devicename)
-            operator.startrecording(self.init_window_name,devicename,self.tempconfig)
+            operator.startrecording(self.init_window_name,devicename,self.tempconfig, dutname)
 
         tkinter.messagebox.showinfo(title='Hi', message='设置成功，请开始测试！')
 
@@ -283,7 +285,7 @@ class Gui_Mirror():
                 operator.pre3cdconfig(devicename, dutname, hostip)
             else:
                 tkinter.messagebox.showinfo(title='Hi', message='请注意没有选择info-center host服务器！！！')
-            operator.startrecording(self.init_window_name,devicename,self.tempconfig)
+            operator.startrecording(self.init_window_name,devicename,self.tempconfig, dutname)
         tkinter.messagebox.showinfo(title='Hi', message='设置成功，请开始测试！')
 
     def select_popwind(self):
@@ -846,12 +848,16 @@ class Gui_Mirror():
         self.filelist = []
         if self.tempconfig == 1:
             extractlog = ExtractLog('./log/', resultename)
+            extractlog.getcfgcommand('./configfile/')
             extractlog.creattcl()
         elif self.tempconfig == 2:
+            extractlog = ExtractLog('./log/', resultename)
+            extractlog.getcfgcommand('./configfile/')
             generate = generateNetconfTcl('./log/', resultename)
             generate.creattcl()
         elif self.tempconfig == 3:
             extractlog = ExtractLog('./log/', resultename)
+            extractlog.getcfgcommand('./configfile/')
             extractlog.creattcl3cd(self.path3cd)
 
         self.open_file(resultename)

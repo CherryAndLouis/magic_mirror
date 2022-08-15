@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import re
 import sys
+from myftp import MyFtp
+
 # set coinit_flags (there will be a warning message printed in console by pywinauto, you may ignore that)
 sys.coinit_flags = 2  # COINIT_APARTMENTTHREADED
 from pywinauto import application
@@ -15,9 +17,9 @@ import win32con
 import os
 import shutil
 
+
 class Operatemtputty():
     # def __init__(self):
-
 
     def openmtputty(self, path='./mtputty/'):
         app = application.Application(backend="win32").start("./mtputty/mtputty.exe")
@@ -52,9 +54,9 @@ class Operatemtputty():
         win32gui.PostMessage(handle, win32con.WM_COMMAND, cmd_ID, 0)  # bottom
 
     # def connetdevice(self):
-        # handle_mtputty = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
-        # TToolBar = win32gui.FindWindowEx(handle_mtputty, 0, "TToolBar", "")
-        # self.doClick(15,15,TToolBar)
+    # handle_mtputty = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+    # TToolBar = win32gui.FindWindowEx(handle_mtputty, 0, "TToolBar", "")
+    # self.doClick(15,15,TToolBar)
 
     def clickok(self):
         TfrmPuttyProps = win32gui.FindWindow("TfrmPuttyProps", "Properties")
@@ -98,7 +100,7 @@ class Operatemtputty():
         type = device[2]
         port = device[4]
         ip = device[3]
-        self.inputtext(serverip,ip)
+        self.inputtext(serverip, ip)
         # for i in ip:
         #     win32gui.PostMessage(serverip, win32con.WM_CHAR, ord(i), 0)
         #     time.sleep(1)
@@ -471,8 +473,11 @@ class Operatemtputty():
         #     win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
         #     win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
 
-    def saveconfig(self, devicename):
+    def saveconfig(self, devicename, dutname):
         # 遍历不同句柄时从这里使用for循环进行遍历 for dutx in list:
+
+        ip = devicename.split(':')[0]
+        ftp = MyFtp()
 
         handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
         subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
@@ -483,23 +488,9 @@ class Operatemtputty():
             # 收集设备初始配置
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('a'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('v'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('.'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('c'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('g'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+            self.posttext(subhadle4, 'return')
+            self.posttext(subhadle4, 'cd flash:/')
+            self.posttext(subhadle4,f'save {dutname}_mirror.cfg')
             time.sleep(3)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
@@ -509,6 +500,17 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
             time.sleep(3)
+
+            self.posttext(subhadle4,'system-view')
+            self.posttext(subhadle4, 'ftp server  enable')
+            self.posttext(subhadle4, 'local-user test')
+            self.posttext(subhadle4, 'password simple admin123456789')
+            self.posttext(subhadle4, 'authorization-attribute user-role network-admin')
+            self.posttext(subhadle4, 'service-type ftp')
+            self.posttext(subhadle4, 'service-type http https pad ssh terminal telnet')
+
+
+
         else:
             handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
             subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
@@ -517,23 +519,11 @@ class Operatemtputty():
             subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename.split(':')[0] + " - PuTTY")
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('a'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('v'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord(' '), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('o'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('.'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('c'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('f'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('g'), 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
-            win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+            self.posttext(subhadle4, 'return')
+            self.posttext(subhadle4, 'cd flash:/')
+            self.posttext(subhadle4,f'save {dutname}_mirror.cfg')
+
+
             time.sleep(3)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
@@ -543,6 +533,17 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
             time.sleep(3)
+
+            self.posttext(subhadle4, 'system-view')
+            self.posttext(subhadle4, 'ftp server  enable')
+            self.posttext(subhadle4, 'local-user test')
+            self.posttext(subhadle4, 'password simple admin123456789')
+            self.posttext(subhadle4, 'authorization-attribute user-role network-admin')
+            self.posttext(subhadle4, 'service-type ftp')
+            self.posttext(subhadle4, 'service-type http https pad ssh terminal telnet')
+
+        # path = os.path.dirname(__file__)
+        ftp.transfile(ip, username='test', password='admin123456789', path='./configfile/', filename=f'{dutname}_mirror.cfg')
 
     def precomconfig(self, devicename):
         handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
@@ -563,6 +564,8 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
 
+            self.posttext(subhadle4, 'cd flash:/')
+
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
@@ -571,6 +574,12 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            # 别名配置区
+            self.posttext(subhadle4, 'alias check_info_help display this | include')
+            self.posttext(subhadle4, 'alias check_info_trap display this | include')
+            self.posttext(subhadle4, 'alias check_info_syslog display this | include')
+            self.posttext(subhadle4, 'alias check_info_view display this | include')
 
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
@@ -688,6 +697,12 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('m'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+
+            # 别名配置区
+            self.posttext(subhadle4, 'alias check_info_help display this | include')
+            self.posttext(subhadle4, 'alias check_info_trap display this | include')
+            self.posttext(subhadle4, 'alias check_info_syslog display this | include')
+            self.posttext(subhadle4, 'alias check_info_view display this | include')
 
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('l'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('i'), 0)
@@ -915,6 +930,7 @@ class Operatemtputty():
         if subhadle4:
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+            self.posttext(subhadle4, 'return')
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
@@ -973,6 +989,7 @@ class Operatemtputty():
             subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename.split(':')[0] + " - PuTTY")
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+            self.posttext(subhadle4, 'return')
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('r'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('e'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('s'), 0)
@@ -1193,7 +1210,7 @@ class Operatemtputty():
         win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
         win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
 
-    def startrecording(self, top, devicename, config):
+    def startrecording(self, top, devicename, config, dutname):
 
         scale = 100
         # 得传个参数过来，判断一下是netconf脚本还是功能脚本，需要使用不同的预配置函数
@@ -1212,7 +1229,7 @@ class Operatemtputty():
             for i in range(scale + 1):
 
                 if i == 50:
-                    self.saveconfig(devicename)
+                    self.saveconfig(devicename, dutname)
                     self.precomconfig(devicename)
 
                 pb["value"] = i
@@ -1227,7 +1244,7 @@ class Operatemtputty():
             for i in range(scale + 1):
 
                 if i == 50:
-                    self.saveconfig(devicename)
+                    self.saveconfig(devicename, dutname)
                     self.prenetcofconfig(devicename)
 
                 pb["value"] = i
@@ -1242,7 +1259,7 @@ class Operatemtputty():
             for i in range(scale + 1):
 
                 if i == 50:
-                    self.saveconfig(devicename)
+                    self.saveconfig(devicename, dutname)
                     self.precomconfig(devicename)
 
                 pb["value"] = i
@@ -1445,10 +1462,10 @@ class Operatemtputty():
     def copyfile(self, sourcepath, despath, filenamelist):
         # self.removefile(despath)
         for file in filenamelist:
-            full_file_name = os.path.join(sourcepath,file)
+            full_file_name = os.path.join(sourcepath, file)
             try:
                 if os.path.isfile(full_file_name):
-                    shutil.copy(full_file_name,despath)
+                    shutil.copy(full_file_name, despath)
             except OSError:
                 self.popwarningwin('log保存路径不能为当前路径log文件夹')
                 # print('路径一致')
@@ -1519,12 +1536,12 @@ class Operatemtputty():
     def clicklogging(self):
         handle = win32gui.FindWindow("PuTTYConfigBox", "PuTTY Reconfiguration (Save mode : File)")
         subhadle1 = win32gui.FindWindowEx(handle, 0, "SysTreeView32", "")
-        self.doClick(65,26,subhadle1)
+        self.doClick(65, 26, subhadle1)
 
     def clickwindow(self):
         handle = win32gui.FindWindow("PuTTYConfigBox", "PuTTY Reconfiguration (Save mode : File)")
         subhadle1 = win32gui.FindWindowEx(handle, 0, "SysTreeView32", "")
-        self.doClick(45,138,subhadle1)
+        self.doClick(45, 138, subhadle1)
 
     def setlogging(self, logpath):
         # self.extraputtyset()
@@ -1576,7 +1593,7 @@ class Operatemtputty():
         self.extraputtyset()
         handle = win32gui.FindWindow("PuTTYConfigBox", "PuTTY Reconfiguration (Save mode : File)")
         subhadle1 = win32gui.FindWindowEx(handle, 0, "SysTreeView32", "")
-        self.doClick(78,170,subhadle1)
+        self.doClick(78, 170, subhadle1)
 
     def setwindowtitle(self, title):
         self.clickbehaviour()
@@ -1651,7 +1668,7 @@ class Operatemtputty():
             return 0
 
     def decide3cd(self):
-        handle = win32gui.FindWindow(None, "3CDaemon")
+        handle = win32gui.FindWindow('Afx:400000:b:10005:6:64ae219d', "3CDaemon")
         if handle:
             return 1
         else:
@@ -1736,10 +1753,13 @@ class Operatemtputty():
         else:
             pass
 
-    def transfile(self, ip, username='root', password='123456'):
+    def transfile(self, ip, username='test', password='lxy123456789', filename='mirror.cfg'):
         path = re.sub(re.compile("\\\\"), '/', os.path.abspath("."))
-        test = "pscp -pw 123456 root@" + ip + ":/opt/TestMaster/logs/frr_emulator.2022*.log " + path + "/" + "TMlog/"
-        os.system(test)
+        # test = 'pscp -pw {password} {username}@{ip}:{filename} {path}/configfile/'.format(
+        #     password=password, username=username, ip=ip, path=path, filename=filename
+        # )
+        # test = "pscp -pw 123456 root@" + ip + ":/opt/TestMaster/logs/frr_emulator.2022*.log " + path + "/" + "TMlog/"
+        os.system(f'cd {path}/configfile/;ftp {ip} ;{username};{password};get {filename}')
 
 # f = open('./log/isis.topo', 'rb')
 # f.close()
@@ -1749,10 +1769,12 @@ class Operatemtputty():
 # popwindowhandlelist = ss.get_child_windows(popwindowhandle)
 # confim = popwindowhandlelist[1]
 # ss.del_files("./log")
-
+# ss.transfile('192.168.56.88')
 
 #
 # path = re.sub(re.compile("\\\\"), '/', os.path.abspath("."))
 # test = "pscp -pw 123456 h3c@" + "10.99.72.86" + ":/opt/TestMaster/logs/frr_emulator.20220524-142537.log " + path + "/" + "TMlog/"
 # print(test)
 # os.system("pscp -pw 123456 h3c@10.99.72.86:/opt/TestMaster/logs/frr_emulator.20220524-142537.log D:/test/")
+# os.system('cd D:/魔镜脚本开发系统/Git/magic_mirror/configfile&&ftp 192.168.56.88&&test&&admin123456789&&get DUT2_mrror.cfg')
+# os.system('cd D:/魔镜脚本开发系统/Git/magic_mirror/configfile;mkdir aaa.txt')
