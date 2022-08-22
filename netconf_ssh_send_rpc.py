@@ -69,8 +69,11 @@ def ssh_send_rpc(host, port=830, username='admin', password='admin', rpc_xml=Non
         session = NetconfSSHSession(host, port, username, password)
         print(session)
         return_xml = session.send_rpc(rpc=rpc_xml.strip(), timeout=int(timeout))
+        return_xml_2 = session.send_rpc(rpc='<commit xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"/>', timeout=int(timeout))
         #session.close()
-        return return_xml[-1]
+        ret = return_xml[-1] + return_xml_2
+        return ret
+
     except netconf.error.NetconfError as net_err:
         return str(net_err)
     except netconf.error.SessionError as ses_err:

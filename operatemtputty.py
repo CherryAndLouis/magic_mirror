@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import re
 import sys
+
 from myftp import MyFtp
 
 # set coinit_flags (there will be a warning message printed in console by pywinauto, you may ignore that)
@@ -18,7 +18,7 @@ import os
 import shutil
 
 
-class Operatemtputty():
+class Operatemtputty:
     # def __init__(self):
 
     def openmtputty(self, path='./mtputty/'):
@@ -490,7 +490,7 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
             self.posttext(subhadle4, 'return')
             self.posttext(subhadle4, 'cd flash:/')
-            self.posttext(subhadle4,f'save {dutname}_mirror.cfg')
+            self.posttext(subhadle4, f'save {dutname}_mirror.cfg')
             time.sleep(3)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
             win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
@@ -501,7 +501,7 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
             time.sleep(3)
 
-            self.posttext(subhadle4,'system-view')
+            self.posttext(subhadle4, 'system-view')
             self.posttext(subhadle4, 'ftp server  enable')
             self.posttext(subhadle4, 'local-user test')
             self.posttext(subhadle4, 'password simple admin123456789')
@@ -521,8 +521,7 @@ class Operatemtputty():
             win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
             self.posttext(subhadle4, 'return')
             self.posttext(subhadle4, 'cd flash:/')
-            self.posttext(subhadle4,f'save {dutname}_mirror.cfg')
-
+            self.posttext(subhadle4, f'save {dutname}_mirror.cfg')
 
             time.sleep(3)
             win32gui.PostMessage(subhadle4, win32con.WM_CHAR, ord('y'), 0)
@@ -1637,11 +1636,12 @@ class Operatemtputty():
                 pathname = os.path.splitext(os.path.join(root, name))
                 self.remove_lines(name)
 
-    def del_files(self, dir, topdown=True):
-        for root, dirs, files in os.walk(dir, topdown):
+    def del_files(self, filepath, topdown=True):
+        test = os.path.abspath(os.path.dirname(__file__))
+        for root, dirs, files in os.walk(filepath, topdown):
             for name in files:
                 pathname = os.path.splitext(os.path.join(root, name))
-                if (pathname[1] == ".log"):
+                if pathname[1] == ".log":
                     os.remove(os.path.join(root, name))
                     # print(os.path.join(root, name))
                     # dir = os.getcwd()
@@ -1761,14 +1761,15 @@ class Operatemtputty():
         # test = "pscp -pw 123456 root@" + ip + ":/opt/TestMaster/logs/frr_emulator.2022*.log " + path + "/" + "TMlog/"
         os.system(f'cd {path}/configfile/;ftp {ip} ;{username};{password};get {filename}')
 
-# f = open('./log/isis.topo', 'rb')
-# f.close()
 # ss=Operatemtputty()
+# ss.del_files("./log")
+
+
 # ss.operate3cd()
 # popwindowhandle = win32gui.FindWindow('#32770', "3CDaemon")
 # popwindowhandlelist = ss.get_child_windows(popwindowhandle)
 # confim = popwindowhandlelist[1]
-# ss.del_files("./log")
+
 # ss.transfile('192.168.56.88')
 
 #

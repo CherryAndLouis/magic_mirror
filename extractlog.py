@@ -2472,18 +2472,9 @@ class ExtractLog:
                                     continue
                                 else:
                                     new_file_str = new_file_str + str(command)
-                            file_tcl = open('./configfile/tclconfig/' + dut + '_mirror.tcl', mode='w+')
+                            file_tcl = open(filepath +'tclconfig\\' + dut + '_mirror.tcl', mode='w+')
                             file_tcl.write(f'{dut} Config " \n{new_file_str}\n"')
                             file_tcl.close()
         else:
             pass
 
-# ex = ExtractLog()
-# ex.getcfgcommand('D:\魔镜脚本开发系统\Git\magic_mirror\configfile\\')
-# ss = ex.createTM()
-# ss = 'interface Route-Aggregation1'
-# s1 = re.match('interface',ss)
-# s2 = re.match('Route-Aggregation',ss)
-# ss = 'sdfasd'
-# print(s1)
-# print(s2)

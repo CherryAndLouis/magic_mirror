@@ -26,6 +26,8 @@ class Gui_Mirror():
         self.hostdata = []
         self.operatemtputty = Operatemtputty()
         self.filelist = []
+        self.log_path = os.path.abspath(os.path.dirname(__file__)) + '\\log\\'
+        self.configfile_path = os.path.abspath(os.path.dirname(__file__)) + '\\configfile\\'
 
     def set_init_window(self):
         self.init_window_name.title("魔镜脚本开发系统")
@@ -35,7 +37,7 @@ class Gui_Mirror():
         # self.init_window_name.attributes("-alpha", 0.95)
         # 工具logo
         self.file_path = os.path.abspath(os.path.dirname(__file__))
-        imgPath = os.path.join(self.file_path, 'logo.png')
+        # imgPath = os.path.join(self.file_path, 'logo.png')
         self.image_file = tk.PhotoImage(file='logo.png')  # 创建图片对象
         self.imgLabel = Label(self.init_window_name, image=self.image_file)  # 把图片整合到标签类中
         self.imgLabel.place(x=70,y=30,anchor='nw',)
@@ -843,21 +845,24 @@ class Gui_Mirror():
                 tmname = tm[3] + ':' + tm[4]
                 operator.endtestmasterconfig(tmname)
                 time.sleep(3)
+        # operator.del_files(self.log_path)
         operator.del_files('./log')
+        # operator.del_files("D:\魔镜脚本开发系统\Git\magic_mirror\log")
+        # operator.copyfile(self.logpath, self.log_path, self.filelist)
         operator.copyfile(self.logpath, './log', self.filelist)
         self.filelist = []
         if self.tempconfig == 1:
             extractlog = ExtractLog('./log/', resultename)
-            extractlog.getcfgcommand('./configfile/')
+            extractlog.getcfgcommand('./tclconfig')
             extractlog.creattcl()
         elif self.tempconfig == 2:
             extractlog = ExtractLog('./log/', resultename)
-            extractlog.getcfgcommand('./configfile/')
+            extractlog.getcfgcommand('./tclconfig')
             generate = generateNetconfTcl('./log/', resultename)
             generate.creattcl()
         elif self.tempconfig == 3:
             extractlog = ExtractLog('./log/', resultename)
-            extractlog.getcfgcommand('./configfile/')
+            extractlog.getcfgcommand('./tclconfig')
             extractlog.creattcl3cd(self.path3cd)
 
         self.open_file(resultename)

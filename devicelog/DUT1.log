@@ -1,44 +1,1044 @@
-=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2022.05.07 10:24:37 =~=~=~=~=~=~=~=~=~=~=~=
-
-[2022/05/07 10:24:39] <H3C>
-[2022/05/07 10:24:39] <H3C>save mirror.cfg
-[2022/05/07 10:24:39] The current configuration will be saved to flash:/mirror.cfg. Continue? [Y/N]:
-[2022/05/07 10:24:39] Before pressing ENTER you must choose 'YES' or 'NO'[Y/N]:y
-[2022/05/07 10:24:42] flash:/mirror.cfg exists, overwrite? [Y/N]:
-[2022/05/07 10:24:42] Before pressing ENTER you must choose 'YES' or 'NO'[Y/N]:y
-[2022/05/07 10:24:45] Now saving current configuration to the device.
-[2022/05/07 10:24:45] Saving configuration flash:/mirror.cfg.Please wait...
-[2022/05/07 10:24:45] Configuration is saved to device successfully.
-[2022/05/07 10:24:45] <H3C>
-[2022/05/07 10:24:45] <H3C>
-[2022/05/07 10:24:48] <H3C>
-[2022/05/07 10:24:48] <H3C>reset logbuffer
-[2022/05/07 10:24:48] <H3C>
-[2022/05/07 10:24:48] <H3C>
-[2022/05/07 10:24:48] <H3C>
-[2022/05/07 10:24:48] <H3C>
-[2022/05/07 10:24:48] <H3C>
-[2022/05/07 10:24:48] <H3C>####start####
-[2022/05/07 10:24:48] <H3C>
-[2022/05/07 10:24:48] <H3C>
-[2022/05/07 10:25:14] <H3C>
-[2022/05/07 10:25:14] <H3C>dis logbuffer
-[2022/05/07 10:25:14] Log buffer: Enabled
-[2022/05/07 10:25:14] Max buffer size: 1024
-[2022/05/07 10:25:14] Actual buffer size: 512
-[2022/05/07 10:25:14] Dropped messages: 0
-[2022/05/07 10:25:14] Overwritten messages: 0
-[2022/05/07 10:25:14] Current messages: 1
-[2022/05/07 10:25:14] %May  7 14:51:22:637 2022 H3C SHELL/6/SHELL_CMD: -Line=vty0-IPAddr=192.168.56.1-User=**; Command is reset logbuffer
-[2022/05/07 10:25:14] <H3C>
-[2022/05/07 10:25:14] <H3C>        
-[2022/05/07 10:25:14] <H3C>
-[2022/05/07 10:25:14] <H3C>undo t m
-[2022/05/07 10:25:14] The current terminal is disabled to display logs.
-[2022/05/07 10:25:14] <H3C>
-[2022/05/07 10:25:14] <H3C>undo t d
-[2022/05/07 10:25:14] The current terminal is disabled to display debugging logs.
-[2022/05/07 10:25:14] <H3C>
-[2022/05/07 10:25:14] <H3C>####end####
-[2022/05/07 10:25:14] <H3C>
-[2022/05/07 10:25:14] <H3C>
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2022.08.19 17:00:09 =~=~=~=~=~=~=~=~=~=~=~=
+
+[19/08/22 - 17:00:11:189] ~[pe3]
+[19/08/22 - 17:00:11:326] ~[pe3]
+[19/08/22 - 17:00:11:474] ~[pe3]
+[19/08/22 - 17:00:11:756] ~[pe3]
+[19/08/22 - 17:00:11:882] ~[pe3]
+[19/08/22 - 17:00:12:018] ~[pe3]sys 
+[19/08/22 - 17:00:13:432] ~[pe3]system 
+[19/08/22 - 17:00:13:863]              ^
+[19/08/22 - 17:00:13:863]  % Incomplete command found at '^' position.
+[19/08/22 - 17:00:13:864] ~[pe3]
+[19/08/22 - 17:00:14:469] ~[pe3]
+[19/08/22 - 17:00:14:619] ~[pe3]
+[19/08/22 - 17:00:14:763] ~[pe3]?
+[19/08/22 - 17:00:15:867] System view commands:
+[19/08/22 - 17:00:15:922]   aaa                          AAA configuration
+[19/08/22 - 17:00:15:928]   abort                        Return to user view without any confirmation 
+[19/08/22 - 17:00:15:929]                                required
+[19/08/22 - 17:00:15:930]   access-list                  Alias for 'acl'
+[19/08/22 - 17:00:15:930]   access-user                  Access user information
+[19/08/22 - 17:00:15:931]   acl                          Specify ACL configuration information
+[19/08/22 - 17:00:15:932]   aft                          Address Family Translation module
+[19/08/22 - 17:00:15:932]   alias                        Configure an alias for a command
+[19/08/22 - 17:00:15:933]   ancp                         Access Node Control Protocol module
+[19/08/22 - 17:00:15:934]   archive                      Archiving parameters
+[19/08/22 - 17:00:15:934]   arp                          Address Resolution Protocol (ARP) module
+[19/08/22 - 17:00:15:935]   as-notation                  Specify AS notation configuration information
+[19/08/22 - 17:00:15:936]   attack-defense               Configure the attack defense function
+[19/08/22 - 17:00:15:937]   bandwidth-based-sharing      Specify the bandwidth-based load-sharing mode
+[19/08/22 - 17:00:15:937]   bfd                          Bidirectional Forwarding Detection module
+[19/08/22 - 17:00:15:938]   bgp                          Border Gateway Protocol (BGP) module
+[19/08/22 - 17:00:15:939]   bier                         Configure Bit Index Explicit Replication module
+[19/08/22 - 17:00:15:939]   bmp                          BGP Monitoring Protocol module
+[19/08/22 - 17:00:15:949]   bootrom-update               Bootrom update
+[19/08/22 - 17:00:15:949]   bras                         Broadband Remote Access Server
+[19/08/22 - 17:00:15:950]   card-mode                    Card mode configuration
+[19/08/22 - 17:00:15:950]   cfd                          Connectivity Fault Detection (CFD) module
+[19/08/22 - 17:00:15:950]   cgn-l3-service               L3-Service function configuration
+[19/08/22 - 17:00:15:950] ---- More ----               [19/08/22 - 17:00:16:828]   clock                        Specify the system clock
+[19/08/22 - 17:00:16:828]   commit                       Commit target configuration to running 
+[19/08/22 - 17:00:16:829]                                configuration
+[19/08/22 - 17:00:16:830]   configuration                Configuration file operation parameters
+[19/08/22 - 17:00:16:833]   connection-limit             Connection limit module
+[19/08/22 - 17:00:16:833]   control-plane                Control plane
+[19/08/22 - 17:00:16:833]   controller                   Specify controller configuration view
+[19/08/22 - 17:00:16:833]   copyright-info               Copyright information configuration
+[19/08/22 - 17:00:16:834]   cp-rate-limit                Limiting the rate of protocol packets on an 
+[19/08/22 - 17:00:16:835]                                interface sent to the CPU
+[19/08/22 - 17:00:16:836]   customlog                    Custom log module
+[19/08/22 - 17:00:16:836]   cwmp                         CPE WAN Management Protocol (CWMP) module
+[19/08/22 - 17:00:16:837]   dcn                          Enable Data Communication Network function
+[19/08/22 - 17:00:16:838]   ddns                         Dynamic Domain Name System (DDNS) module
+[19/08/22 - 17:00:16:839]   delete                       Delete function
+[19/08/22 - 17:00:16:839]   dhcp                         DHCP module
+[19/08/22 - 17:00:16:840]   diagnostic-logfile           Diagnostic log file configuration
+[19/08/22 - 17:00:16:841]   display                      Display current system information
+[19/08/22 - 17:00:16:842]   dldp                         DLDP module
+[19/08/22 - 17:00:16:842]   dns                          Domain Name System (DNS) module
+[19/08/22 - 17:00:16:843]   domain                       ISP domain configuration
+[19/08/22 - 17:00:16:844]   dot1x                        802.1X module
+[19/08/22 - 17:00:16:844]   eigrp                        Enhanced Interior Gateway Routing Protocol module
+[19/08/22 - 17:00:16:845] ---- More ----               [19/08/22 - 17:00:17:163]   end                          Alias for 'return'
+[19/08/22 - 17:00:17:164]   erase                        Alias for 'delete'
+[19/08/22 - 17:00:17:165]   evpn                         Ethernet Virtual Private Network module
+[19/08/22 - 17:00:17:166]   exit                         Alias for 'quit'
+[19/08/22 - 17:00:17:169]   explicit-path                Configure an explicit path
+[19/08/22 - 17:00:17:171]   fabric                       Specify internal interfaces configuration 
+[19/08/22 - 17:00:17:172]                                information
+[19/08/22 - 17:00:17:173]   failover                     Stateful failover module
+[19/08/22 - 17:00:17:173]   fan-speed                    Set fan speed
+[19/08/22 - 17:00:17:174]   fib                          FIB module
+[19/08/22 - 17:00:17:175]   file                         File system configuration
+[19/08/22 - 17:00:17:176]   flexe                        FlexE service
+[19/08/22 - 17:00:17:177]   flow                         Set the flow standard mode
+[19/08/22 - 17:00:17:177]   flow-interval                Set the interface statistics interval 
+[19/08/22 - 17:00:17:179]   flow-monitor                 Flow monitor module
+[19/08/22 - 17:00:17:179]   flow-route                   Configure a flow specification rule
+[19/08/22 - 17:00:17:180]   flow-statistics              Flow statistics information
+[19/08/22 - 17:00:17:181]   flowspec                     Flowspec module configuration
+[19/08/22 - 17:00:17:182]   follow                       Follow a process
+[19/08/22 - 17:00:17:182]   forward                      Forward
+[19/08/22 - 17:00:17:183]   forward-path-detection       Forward-path-detection
+[19/08/22 - 17:00:17:184]   ftp                          FTP configuration information
+[19/08/22 - 17:00:17:186]   gir                          Graceful Insertion and Removal module
+[19/08/22 - 17:00:17:186] ---- More ----               [19/08/22 - 17:00:17:403]   gratuitous-arp               Gratuitous ARP
+[19/08/22 - 17:00:17:404]   gratuitous-arp-learning      Specify Gratuitous ARP learning function
+[19/08/22 - 17:00:17:404]   gratuitous-arp-sending       Specify sending gratuitous-arp packet when 
+[19/08/22 - 17:00:17:405]                                receiving different sub-network ARP packet 
+[19/08/22 - 17:00:17:406]                                function
+[19/08/22 - 17:00:17:408]   grpc                         Google Remote Procedure Call information
+[19/08/22 - 17:00:17:408]   hardware                     Hardware information
+[19/08/22 - 17:00:17:409]   hardware-failure-detection   Configure hardware failure detection
+[19/08/22 - 17:00:17:410]   hardware-failure-protection  Configure hardware failure protection
+[19/08/22 - 17:00:17:411]   header                       Specify the login banner
+[19/08/22 - 17:00:17:411]   hostname                     Alias for 'sysname'
+[19/08/22 - 17:00:17:412]   hotkey                       Specify a hotkey for a command
+[19/08/22 - 17:00:17:413]   http                         Hypertext Transfer Protocol (HTTP) module
+[19/08/22 - 17:00:17:414]   http-redirect                HTTP redirect feature
+[19/08/22 - 17:00:17:414]   hwtacacs                     HW Terminal Access Controller Access Control 
+[19/08/22 - 17:00:17:415]                                System (HWTACACS) module
+[19/08/22 - 17:00:17:416]   ifindex-constant             Specify the SNMP interface indexes to be constant
+[19/08/22 - 17:00:17:416]   ifit                         In-situ Flow Information Telemetry
+[19/08/22 - 17:00:17:417]   ifmonitor                    Monitor interface traffic
+[19/08/22 - 17:00:17:418]   igmp                         Internet Group Management Protocol module
+[19/08/22 - 17:00:17:419]   igmp-snooping                Internet Group Management Protocol snooping 
+[19/08/22 - 17:00:17:420]                                module
+[19/08/22 - 17:00:17:421]   ike                          Internet Key Exchange module
+[19/08/22 - 17:00:17:422] ---- More ----               [19/08/22 - 17:00:17:605]   ikev2                        Internet Key Exchange version 2 (IKEv2) module
+[19/08/22 - 17:00:17:605]   info-center                  Information center module
+[19/08/22 - 17:00:17:606]   inqa                         Intelligent Network Quality Analysis
+[19/08/22 - 17:00:17:608]   interface                    Interface configuration
+[19/08/22 - 17:00:17:608]   ip                           Specify IP configuration
+[19/08/22 - 17:00:17:609]   ipsec                        IP Security module
+[19/08/22 - 17:00:17:610]   ipv6                         Specify IPv6 configuration
+[19/08/22 - 17:00:17:611]   isis                         IS-IS module
+[19/08/22 - 17:00:17:612]   isolate                      Isolate operation
+[19/08/22 - 17:00:17:612]   issu                         In-Service Software Upgrade module
+[19/08/22 - 17:00:17:613]   keychain                     Configure a keychain
+[19/08/22 - 17:00:17:614]   l2tp                         Layer 2 Tunneling Protocol module
+[19/08/22 - 17:00:17:615]   l2vpn                        Layer 2 Virtual Private Network (L2VPN) module
+[19/08/22 - 17:00:17:615]   l2vpn-l3vpn                  MPLS L2vpn to L3vpn
+[19/08/22 - 17:00:17:616]   lacp                         Configure LACP protocol
+[19/08/22 - 17:00:17:617]   ldap                         Specify LDAP configuration information
+[19/08/22 - 17:00:17:618]   line                         Configure the line
+[19/08/22 - 17:00:17:619]   link-aggregation             Specify link aggregation group configuration 
+[19/08/22 - 17:00:17:619]                                information
+[19/08/22 - 17:00:17:620]   link-flap                    Specify link flapping
+[19/08/22 - 17:00:17:621]   lipc                         LIPC module
+[19/08/22 - 17:00:17:622]   list                         Display a list of files and subdirectories in RAM
+[19/08/22 - 17:00:17:623]   lldp                         Link Layer Discovery Protocol (802.1ab)
+[19/08/22 - 17:00:17:623] ---- More ----               [19/08/22 - 17:00:17:803]   local-bill                   Local caching for AAA bills
+[19/08/22 - 17:00:17:803]   local-server                 Local server feature
+[19/08/22 - 17:00:17:804]   local-user                   Configure a local user
+[19/08/22 - 17:00:17:805]   lock                         Lock the current line
+[19/08/22 - 17:00:17:806]   logfile                      Log file configuration
+[19/08/22 - 17:00:17:807]   logging                      Alias for 'info-center'
+[19/08/22 - 17:00:17:807]   loopback-detection           Loop detection module
+[19/08/22 - 17:00:17:808]   loopback-test                Configure loopback test settings
+[19/08/22 - 17:00:17:809]   mac-address                  Configure MAC address
+[19/08/22 - 17:00:17:810]   maintenance-probe            Maintenance-probe module
+[19/08/22 - 17:00:17:811]   mdns                         Multicast domain name service
+[19/08/22 - 17:00:17:812]   memory-threshold             Set memory thresholds
+[19/08/22 - 17:00:17:813]   mirroring-group              Specify a mirroring group
+[19/08/22 - 17:00:17:815]   mld                          Multicast Listener Discovery Protocol module
+[19/08/22 - 17:00:17:815]   mld-snooping                 Multicast Listener Discovery snooping module
+[19/08/22 - 17:00:17:815]   monitor                      System monitor
+[19/08/22 - 17:00:17:816]   monitor-link                 Monitor Link module
+[19/08/22 - 17:00:17:816]   mpls                         Multiprotocol Label Switching (MPLS) module
+[19/08/22 - 17:00:17:817]   msdp                         Multicast Source Discovery Protocol (MSDP) module
+[19/08/22 - 17:00:17:819]   multicast                    Multicast module
+[19/08/22 - 17:00:17:819]   multicast-service-prefix     Multicast service prefix configuration
+[19/08/22 - 17:00:17:820]   multicast-vlan               Multicast VLAN module
+[19/08/22 - 17:00:17:821]   multicast-vpn                Multicast-vpn (MVPN) module
+[19/08/22 - 17:00:17:822] ---- More ----               [19/08/22 - 17:00:18:043]   mvrp                         Multiple VLAN registration protocol
+[19/08/22 - 17:00:18:044]   nat                          Network Address Translation (NAT) module
+[19/08/22 - 17:00:18:045]   netconf                      Network Configuration Protocol (NETCONF) 
+[19/08/22 - 17:00:18:045]                                configuration
+[19/08/22 - 17:00:18:046]   network-clock                Network clock monitoring module
+[19/08/22 - 17:00:18:047]   network-slice                Enable network slicing
+[19/08/22 - 17:00:18:047]   no                           Alias for 'undo'
+[19/08/22 - 17:00:18:050]   nqa                          NQA module
+[19/08/22 - 17:00:18:050]   ntp-service                  Network Time Protocol (NTP) module
+[19/08/22 - 17:00:18:050]   oam                          OAM module
+[19/08/22 - 17:00:18:051]   oap                          Open Application Platform (OAP) module
+[19/08/22 - 17:00:18:051]   object-group                 Configure an object group
+[19/08/22 - 17:00:18:052]   openflow                     OpenFlow module
+[19/08/22 - 17:00:18:053]   ospf                         Open Shortest Path First (OSPF) module
+[19/08/22 - 17:00:18:053]   ospfv3                       Open Shortest Path First version 3 (OSPFv3) 
+[19/08/22 - 17:00:18:054]                                module
+[19/08/22 - 17:00:18:055]   packet-filter                Packet filter settings
+[19/08/22 - 17:00:18:055]   password-control             Password control feature
+[19/08/22 - 17:00:18:056]   password-recovery            Password recovery function
+[19/08/22 - 17:00:18:057]   pce-client                   Configure PCE Client
+[19/08/22 - 17:00:18:058]   performance-management       Performance management
+[19/08/22 - 17:00:18:059]   pim                          Protocol Independent Multicast (PIM) module
+[19/08/22 - 17:00:18:060]   ping                         Ping function
+[19/08/22 - 17:00:18:061] ---- More ----               [19/08/22 - 17:00:18:244]   pki                          Public Key Infrastructure (PKI) module
+[19/08/22 - 17:00:18:244]   placement                    Program placement configuration
+[19/08/22 - 17:00:18:245]   policy-based-route           Specify a policy based routing
+[19/08/22 - 17:00:18:246]   power                        Power management
+[19/08/22 - 17:00:18:246]   power-off                    Power off hardware
+[19/08/22 - 17:00:18:249]   ppp                          Point-to-Point Protocol module
+[19/08/22 - 17:00:18:252]   priority-flow-control        Priority-based flow control (PFC) configuration
+[19/08/22 - 17:00:18:252]   probe                        Probe Module
+[19/08/22 - 17:00:18:252]   ptp                          Precision Time Protocol module
+[19/08/22 - 17:00:18:252]   public-key                   Public key commands
+[19/08/22 - 17:00:18:252]   pw-class                     Configure a pseudowire class
+[19/08/22 - 17:00:18:252]   qinq                         802.1QinQ function
+[19/08/22 - 17:00:18:252]   qos                          Quality of Service (QoS) module
+[19/08/22 - 17:00:18:252]   quit                         Exit from current command view
+[19/08/22 - 17:00:18:253]   radius                       Remote Authentication Dial-In User Service 
+[19/08/22 - 17:00:18:254]                                (RADIUS) module
+[19/08/22 - 17:00:18:254]   radius-server                RADIUS server function
+[19/08/22 - 17:00:18:255]   receive                      Traffic receiving load balancing mode
+[19/08/22 - 17:00:18:255]   refresh                      Execute refresh operation
+[19/08/22 - 17:00:18:255]   reserved                     Reserved a VXLAN for protocol
+[19/08/22 - 17:00:18:255]   reset                        Clear operation.
+[19/08/22 - 17:00:18:255]   resource-monitor             Resource monitoring
+[19/08/22 - 17:00:18:255]   restful                      RESTful module
+[19/08/22 - 17:00:18:255] ---- More ----                 return                       Exit to User View
+[19/08/22 - 17:00:18:508]   rib                          Route Information Base (RIB) commands
+[19/08/22 - 17:00:18:509]   rip                          Routing Information Protocol (RIP) commands
+[19/08/22 - 17:00:18:509]   ripng                        Routing Information Protocol next generation 
+[19/08/22 - 17:00:18:510]                                (RIPng) commands
+[19/08/22 - 17:00:18:510]   rmon                         RMON module
+[19/08/22 - 17:00:18:510]   role                         Specify the user role configuration information
+[19/08/22 - 17:00:18:512]   route-aggregation            Route aggregation interface
+[19/08/22 - 17:00:18:512]   route-policy                 Specify a routing policy
+[19/08/22 - 17:00:18:512]   router                       Configure router information
+[19/08/22 - 17:00:18:512]   rsvp                         Enable Resource Reservation Protocol (RSVP)
+[19/08/22 - 17:00:18:513]   rtm                          Real time management(RTM) Module
+[19/08/22 - 17:00:18:513]   s-trunk                      Smart Trunk (S-Trunk) for multichassis aggregate 
+[19/08/22 - 17:00:18:513]                                link redundancy
+[19/08/22 - 17:00:18:513]   sampler                      Configure a sampler
+[19/08/22 - 17:00:18:513]   save                         Save current configuration
+[19/08/22 - 17:00:18:514]   sbfd                         Seamless bidirectional forwarding detection 
+[19/08/22 - 17:00:18:514]                                module
+[19/08/22 - 17:00:18:514]   scheduler                    Scheduler configuration 
+[19/08/22 - 17:00:18:518]   scp                          Specify SCP service attribute
+[19/08/22 - 17:00:18:518]   security-logfile             Security log file configuration
+[19/08/22 - 17:00:18:518]   segment-routing              Configure segment routing features
+[19/08/22 - 17:00:18:518]   service-instance-group       Configure a service instance group
+[19/08/22 - 17:00:18:518] ---- More ----                 session                      Session management module
+[19/08/22 - 17:00:18:748]   sftp                         Specify SFTP service attribute
+[19/08/22 - 17:00:18:748]   show                         Alias for 'display'
+[19/08/22 - 17:00:18:748]   shutdown                     Shut down interfaces
+[19/08/22 - 17:00:18:749]   shutdown-interval            Shutdown detection
+[19/08/22 - 17:00:18:752]   slot                         Configure a slot
+[19/08/22 - 17:00:18:752]   slot-user-warning-threshold  Set user count warning threshold per slot
+[19/08/22 - 17:00:18:752]   sma-anti-spoof               State Machine Based Anti-Spoofing (SMA) 
+[19/08/22 - 17:00:18:752]                                information
+[19/08/22 - 17:00:18:752]   snmp-agent                   Specify Simple Network Management Protocol (SNMP)
+[19/08/22 - 17:00:18:752]                                configuration information
+[19/08/22 - 17:00:18:753]   sntp                         Simple Network Time Protocol (SNTP) module
+[19/08/22 - 17:00:18:753]   srpm                         Segment Routing Performance Measurement module
+[19/08/22 - 17:00:18:753]   ssh                          Secure Shell module
+[19/08/22 - 17:00:18:753]   ssh2                         Secure Shell module version 2.0
+[19/08/22 - 17:00:18:754]   ssl                          Secure Socket Layer (SSL) module
+[19/08/22 - 17:00:18:755]   static-cr-lsp                Configure a static CRLSP
+[19/08/22 - 17:00:18:755]   static-lsp                   Configure a static LSP
+[19/08/22 - 17:00:18:755]   static-sr-mpls               Static segment routing with MPLS
+[19/08/22 - 17:00:18:756]   static-user                  Static user
+[19/08/22 - 17:00:18:756]   storm-constrain              Port storm control
+[19/08/22 - 17:00:18:756]   stp                          Spanning Tree Protocol module
+[19/08/22 - 17:00:18:756]   subslot-working-mode         Specify the subslot working mode
+[19/08/22 - 17:00:18:756] ---- More ----               [19/08/22 - 17:00:19:552] ~[pe3]
+[19/08/22 - 17:00:19:756] ~[pe3]
+[19/08/22 - 17:00:19:931] ~[pe3]
+[19/08/22 - 17:00:20:084] ~[pe3]
+[19/08/22 - 17:00:20:226] ~[pe3]aa
+[19/08/22 - 17:00:20:799] ~[pe3]aaa ?
+[19/08/22 - 17:00:21:784]   abnormal-offline-record  User abnormal offline recording
+[19/08/22 - 17:00:21:786]   device-id                Specify the device identifier
+[19/08/22 - 17:00:21:788]   nas-id                   NAS-ID configuration
+[19/08/22 - 17:00:21:789]   nas-port-id              NAS-Port-Id attribute
+[19/08/22 - 17:00:21:790]   normal-offline-record    User normal offline recording
+[19/08/22 - 17:00:21:790]   offline-record           User offline recording
+[19/08/22 - 17:00:21:791]   online-fail-record       User online failure recording
+[19/08/22 - 17:00:21:791]   session-limit            Configure session limits
+[19/08/22 - 17:00:21:794] 
+[19/08/22 - 17:00:21:814] ~[pe3]aaa na
+[19/08/22 - 17:00:25:246] ~[pe3]aaa nas-
+[19/08/22 - 17:00:26:071] ~[pe3]aaa nas-port-id ?
+[19/08/22 - 17:00:27:592]   vlanid  Configure the format of the VLANID string in this attribute
+[19/08/22 - 17:00:27:594] 
+[19/08/22 - 17:00:27:619] ~[pe3]aaa nas-port-id v
+[19/08/22 - 17:00:29:151] ~[pe3]aaa nas-port-id vlanid ?
+[19/08/22 - 17:00:29:911]   uppercase  Use uppercase letters
+[19/08/22 - 17:00:29:925] 
+[19/08/22 - 17:00:29:946] ~[pe3]aaa nas-port-id vlanid u
+[19/08/22 - 17:00:31:502] ~[pe3]aaa nas-port-id vlanid uppercase ?
+[19/08/22 - 17:00:32:234]   <cr>  
+[19/08/22 - 17:00:32:238] 
+[19/08/22 - 17:00:32:255] ~[pe3]aaa nas-port-id vlanid uppercase 
+[19/08/22 - 17:00:33:339] ~[pe3]
+[19/08/22 - 17:00:33:891] ~[pe3]
+[19/08/22 - 17:00:34:060] ~[pe3]
+[19/08/22 - 17:00:34:219] ~[pe3]
+[19/08/22 - 17:00:34:379] ~[pe3]dis 
+[19/08/22 - 17:00:35:326] ~[pe3]display log
+[19/08/22 - 17:00:38:133] ~[pe3]display logfilebu
+[19/08/22 - 17:00:38:660] ~[pe3]display logfilebu[1D[J[1D[J[1D[J[1D[J[1D[J[1D[Jbu
+[19/08/22 - 17:00:40:594] ~[pe3]display logbuffer 
+[19/08/22 - 17:00:41:691] Log buffer: Enabled
+[19/08/22 - 17:00:41:693] Max buffer size: 1024
+[19/08/22 - 17:00:41:696] Actual buffer size: 512
+[19/08/22 - 17:00:41:698] Dropped messages: 0
+[19/08/22 - 17:00:41:698] Overwritten messages: 54337
+[19/08/22 - 17:00:41:698] Current messages: 512
+[19/08/22 - 17:00:41:699] Some messages might not be displayed due to permission issues.
+[19/08/22 - 17:00:41:702] %Aug 19 11:19:29:705 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.539 changed to up.
+[19/08/22 - 17:00:41:703] %Aug 19 11:19:29:705 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.540 changed to up.
+[19/08/22 - 17:00:41:705] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.541 changed to up.
+[19/08/22 - 17:00:41:706] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.542 changed to up.
+[19/08/22 - 17:00:41:708] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.543 changed to up.
+[19/08/22 - 17:00:41:709] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.544 changed to up.
+[19/08/22 - 17:00:41:711] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.545 changed to up.
+[19/08/22 - 17:00:41:712] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.546 changed to up.
+[19/08/22 - 17:00:41:723] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.547 changed to up.
+[19/08/22 - 17:00:41:723] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.548 changed to up.
+[19/08/22 - 17:00:41:723] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.549 changed to up.
+[19/08/22 - 17:00:41:723] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.550 changed to up.
+[19/08/22 - 17:00:41:724] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.551 changed to up.
+[19/08/22 - 17:00:41:724] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.552 changed to up.
+[19/08/22 - 17:00:41:724] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.553 changed to up.
+[19/08/22 - 17:00:41:725] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.554 changed to up.
+[19/08/22 - 17:00:41:725] ---- More ----               %Aug 19 11:19:29:707 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.555 changed to up.
+[19/08/22 - 17:00:42:493] %Aug 19 11:19:29:707 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.556 changed to up.
+[19/08/22 - 17:00:42:493] %Aug 19 11:19:29:707 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.557 changed to up.
+[19/08/22 - 17:00:42:493] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.558 changed to up.
+[19/08/22 - 17:00:42:494] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.559 changed to up.
+[19/08/22 - 17:00:42:494] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.560 changed to up.
+[19/08/22 - 17:00:42:494] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.561 changed to up.
+[19/08/22 - 17:00:42:494] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.562 changed to up.
+[19/08/22 - 17:00:42:495] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.563 changed to up.
+[19/08/22 - 17:00:42:495] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.564 changed to up.
+[19/08/22 - 17:00:42:495] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.565 changed to up.
+[19/08/22 - 17:00:42:496] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.566 changed to up.
+[19/08/22 - 17:00:42:496] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.567 changed to up.
+[19/08/22 - 17:00:42:496] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.568 changed to up.
+[19/08/22 - 17:00:42:496] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.569 changed to up.
+[19/08/22 - 17:00:42:497] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.570 changed to up.
+[19/08/22 - 17:00:42:497] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.571 changed to up.
+[19/08/22 - 17:00:42:497] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.572 changed to up.
+[19/08/22 - 17:00:42:497] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.573 changed to up.
+[19/08/22 - 17:00:42:498] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.574 changed to up.
+[19/08/22 - 17:00:42:498] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.575 changed to up.
+[19/08/22 - 17:00:42:498] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.576 changed to up.
+[19/08/22 - 17:00:42:498] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.577 changed to up.
+[19/08/22 - 17:00:42:499] ---- More ----               %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.578 changed to up.
+[19/08/22 - 17:00:43:030] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.579 changed to up.
+[19/08/22 - 17:00:43:030] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.580 changed to up.
+[19/08/22 - 17:00:43:031] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.581 changed to up.
+[19/08/22 - 17:00:43:031] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.582 changed to up.
+[19/08/22 - 17:00:43:031] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.583 changed to up.
+[19/08/22 - 17:00:43:032] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.584 changed to up.
+[19/08/22 - 17:00:43:032] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.585 changed to up.
+[19/08/22 - 17:00:43:032] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.586 changed to up.
+[19/08/22 - 17:00:43:032] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.587 changed to up.
+[19/08/22 - 17:00:43:033] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.588 changed to up.
+[19/08/22 - 17:00:43:033] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.589 changed to up.
+[19/08/22 - 17:00:43:033] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.590 changed to up.
+[19/08/22 - 17:00:43:033] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.591 changed to up.
+[19/08/22 - 17:00:43:034] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.592 changed to up.
+[19/08/22 - 17:00:43:034] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.593 changed to up.
+[19/08/22 - 17:00:43:034] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.594 changed to up.
+[19/08/22 - 17:00:43:034] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.595 changed to up.
+[19/08/22 - 17:00:43:035] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.596 changed to up.
+[19/08/22 - 17:00:43:035] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.597 changed to up.[19/08/22 - 17:00:43:035] 
+[19/08/22 - 17:00:43:035] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.598 changed to up.
+[19/08/22 - 17:00:43:035] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.599 changed to up.
+[19/08/22 - 17:00:43:036] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.600 changed to up.
+[19/08/22 - 17:00:43:036] ---- More ----               [19/08/22 - 17:00:43:997] ~[pe3]display logbuffer 
+[19/08/22 - 17:00:45:038] Log buffer: Enabled
+[19/08/22 - 17:00:45:040] Max buffer size: 1024
+[19/08/22 - 17:00:45:045] Actual buffer size: 512
+[19/08/22 - 17:00:45:045] Dropped messages: 0
+[19/08/22 - 17:00:45:046] Overwritten messages: 54339
+[19/08/22 - 17:00:45:047] Current messages: 512
+[19/08/22 - 17:00:45:048] Some messages might not be displayed due to permission issues.
+[19/08/22 - 17:00:45:048] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.541 changed to up.
+[19/08/22 - 17:00:45:050] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.542 changed to up.
+[19/08/22 - 17:00:45:052] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.543 changed to up.
+[19/08/22 - 17:00:45:053] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.544 changed to up.
+[19/08/22 - 17:00:45:055] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.545 changed to up.
+[19/08/22 - 17:00:45:056] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.546 changed to up.
+[19/08/22 - 17:00:45:057] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.547 changed to up.
+[19/08/22 - 17:00:45:058] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.548 changed to up.
+[19/08/22 - 17:00:45:060] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.549 changed to up.
+[19/08/22 - 17:00:45:061] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.550 changed to up.
+[19/08/22 - 17:00:45:063] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.551 changed to up.
+[19/08/22 - 17:00:45:064] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.552 changed to up.
+[19/08/22 - 17:00:45:071] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.553 changed to up.
+[19/08/22 - 17:00:45:071] %Aug 19 11:19:29:706 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.554 changed to up.
+[19/08/22 - 17:00:45:071] %Aug 19 11:19:29:707 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.555 changed to up.
+[19/08/22 - 17:00:45:072] %Aug 19 11:19:29:707 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.556 changed to up.
+[19/08/22 - 17:00:45:072] ---- More ----               %Aug 19 11:19:29:707 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.557 changed to up.
+[19/08/22 - 17:00:45:613] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.558 changed to up.
+[19/08/22 - 17:00:45:614] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.559 changed to up.
+[19/08/22 - 17:00:45:614] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.560 changed to up.
+[19/08/22 - 17:00:45:614] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.561 changed to up.
+[19/08/22 - 17:00:45:614] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.562 changed to up.
+[19/08/22 - 17:00:45:615] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.563 changed to up.
+[19/08/22 - 17:00:45:615] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.564 changed to up.
+[19/08/22 - 17:00:45:615] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.565 changed to up.
+[19/08/22 - 17:00:45:615] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.566 changed to up.
+[19/08/22 - 17:00:45:616] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.567 changed to up.
+[19/08/22 - 17:00:45:616] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.568 changed to up.
+[19/08/22 - 17:00:45:616] %Aug 19 11:19:29:708 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.569 changed to up.
+[19/08/22 - 17:00:45:616] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.570 changed to up.
+[19/08/22 - 17:00:45:616] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.571 changed to up.
+[19/08/22 - 17:00:45:617] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.572 changed to up.
+[19/08/22 - 17:00:45:617] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.573 changed to up.
+[19/08/22 - 17:00:45:617] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.574 changed to up.
+[19/08/22 - 17:00:45:617] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.575 changed to up.
+[19/08/22 - 17:00:45:617] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.576 changed to up.
+[19/08/22 - 17:00:45:618] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.577 changed to up.
+[19/08/22 - 17:00:45:618] %Aug 19 11:19:29:709 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.578 changed to up.
+[19/08/22 - 17:00:45:618] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.579 changed to up.
+[19/08/22 - 17:00:45:618] ---- More ----               %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.580 changed to up.
+[19/08/22 - 17:00:46:036] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.581 changed to up.
+[19/08/22 - 17:00:46:036] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.582 changed to up.
+[19/08/22 - 17:00:46:036] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.583 changed to up.
+[19/08/22 - 17:00:46:036] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.584 changed to up.
+[19/08/22 - 17:00:46:037] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.585 changed to up.
+[19/08/22 - 17:00:46:037] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.586 changed to up.
+[19/08/22 - 17:00:46:037] %Aug 19 11:19:29:710 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.587 changed to up.
+[19/08/22 - 17:00:46:037] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.588 changed to up.
+[19/08/22 - 17:00:46:038] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.589 changed to up.
+[19/08/22 - 17:00:46:038] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.590 changed to up.
+[19/08/22 - 17:00:46:038] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.591 changed to up.
+[19/08/22 - 17:00:46:038] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.592 changed to up.
+[19/08/22 - 17:00:46:038] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.593 changed to up.
+[19/08/22 - 17:00:46:039] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.594 changed to up.
+[19/08/22 - 17:00:46:039] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.595 changed to up.
+[19/08/22 - 17:00:46:039] %Aug 19 11:19:29:711 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.596 changed to up.
+[19/08/22 - 17:00:46:039] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.597 changed to up.
+[19/08/22 - 17:00:46:039] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.598 changed to up.
+[19/08/22 - 17:00:46:040] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.599 changed to up.
+[19/08/22 - 17:00:46:040] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.600 changed to up.
+[19/08/22 - 17:00:46:040] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.601 changed to up.
+[19/08/22 - 17:00:46:040] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.602 changed to up.
+[19/08/22 - 17:00:46:041] ---- More ----               %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.603 changed to up.
+[19/08/22 - 17:00:46:537] %Aug 19 11:19:29:712 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.604 changed to up.
+[19/08/22 - 17:00:46:538] %Aug 19 11:19:29:713 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.605 changed to up.
+[19/08/22 - 17:00:46:538] %Aug 19 11:19:29:713 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.606 changed to up.
+[19/08/22 - 17:00:46:538] %Aug 19 11:19:29:713 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.607 changed to up.
+[19/08/22 - 17:00:46:538] %Aug 19 11:19:29:713 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.608 changed to up.
+[19/08/22 - 17:00:46:538] %Aug 19 11:19:29:713 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.609 changed to up.
+[19/08/22 - 17:00:46:539] %Aug 19 11:19:29:713 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.610 changed to up.
+[19/08/22 - 17:00:46:539] %Aug 19 11:19:29:713 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.611 changed to up.
+[19/08/22 - 17:00:46:539] %Aug 19 11:19:29:713 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.612 changed to up.
+[19/08/22 - 17:00:46:539] %Aug 19 11:19:29:713 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.613 changed to up.
+[19/08/22 - 17:00:46:540] %Aug 19 11:19:29:713 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.614 changed to up.
+[19/08/22 - 17:00:46:540] %Aug 19 11:19:29:714 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.615 changed to up.
+[19/08/22 - 17:00:46:540] %Aug 19 11:19:29:714 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.616 changed to up.
+[19/08/22 - 17:00:46:540] %Aug 19 11:19:29:714 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.617 changed to up.
+[19/08/22 - 17:00:46:540] %Aug 19 11:19:29:714 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.618 changed to up.
+[19/08/22 - 17:00:46:541] %Aug 19 11:19:29:714 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.619 changed to up.
+[19/08/22 - 17:00:46:541] %Aug 19 11:19:29:714 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.620 changed to up.
+[19/08/22 - 17:00:46:541] %Aug 19 11:19:29:715 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.621 changed to up.
+[19/08/22 - 17:00:46:541] %Aug 19 11:19:29:715 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.622 changed to up.
+[19/08/22 - 17:00:46:541] %Aug 19 11:19:29:715 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.623 changed to up.
+[19/08/22 - 17:00:46:542] %Aug 19 11:19:29:715 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.624 changed to up.
+[19/08/22 - 17:00:46:542] %Aug 19 11:19:29:715 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.625 changed to up.
+[19/08/22 - 17:00:46:542] ---- More ----               %Aug 19 11:19:29:715 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.626 changed to up.
+[19/08/22 - 17:00:46:575] %Aug 19 11:19:29:715 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.627 changed to up.
+[19/08/22 - 17:00:46:575] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.628 changed to up.
+[19/08/22 - 17:00:46:575] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.629 changed to up.
+[19/08/22 - 17:00:46:575] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.630 changed to up.
+[19/08/22 - 17:00:46:575] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.631 changed to up.
+[19/08/22 - 17:00:46:576] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.632 changed to up.
+[19/08/22 - 17:00:46:576] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.633 changed to up.
+[19/08/22 - 17:00:46:576] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.634 changed to up.
+[19/08/22 - 17:00:46:576] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.635 changed to up.
+[19/08/22 - 17:00:46:576] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.636 changed to up.
+[19/08/22 - 17:00:46:577] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.637 changed to up.
+[19/08/22 - 17:00:46:577] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.638 changed to up.
+[19/08/22 - 17:00:46:577] %Aug 19 11:19:29:716 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.639 changed to up.
+[19/08/22 - 17:00:46:577] %Aug 19 11:19:29:717 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.640 changed to up.
+[19/08/22 - 17:00:46:578] %Aug 19 11:19:29:717 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.641 changed to up.
+[19/08/22 - 17:00:46:578] %Aug 19 11:19:29:717 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.642 changed to up.
+[19/08/22 - 17:00:46:578] %Aug 19 11:19:29:717 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.643 changed to up.
+[19/08/22 - 17:00:46:578] %Aug 19 11:19:29:717 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.644 changed to up.
+[19/08/22 - 17:00:46:578] %Aug 19 11:19:29:717 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.645 changed to up.[19/08/22 - 17:00:46:579] 
+[19/08/22 - 17:00:46:579] %Aug 19 11:19:29:717 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.646 changed to up.
+[19/08/22 - 17:00:46:579] %Aug 19 11:19:29:717 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.647 changed to up.
+[19/08/22 - 17:00:46:579] %Aug 19 11:19:29:717 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.648 changed to up.
+[19/08/22 - 17:00:46:580] ---- More ----               %Aug 19 11:19:29:717 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.649 changed to up.
+[19/08/22 - 17:00:46:607] %Aug 19 11:19:29:718 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.650 changed to up.
+[19/08/22 - 17:00:46:607] %Aug 19 11:19:29:718 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.651 changed to up.
+[19/08/22 - 17:00:46:607] %Aug 19 11:19:29:718 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.652 changed to up.
+[19/08/22 - 17:00:46:608] %Aug 19 11:19:29:718 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.653 changed to up.
+[19/08/22 - 17:00:46:608] %Aug 19 11:19:29:718 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.654 changed to up.
+[19/08/22 - 17:00:46:608] %Aug 19 11:19:29:718 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.655 changed to up.
+[19/08/22 - 17:00:46:608] %Aug 19 11:19:29:718 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.656 changed to up.
+[19/08/22 - 17:00:46:608] %Aug 19 11:19:29:718 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.657 changed to up.
+[19/08/22 - 17:00:46:609] %Aug 19 11:19:29:718 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.658 changed to up.
+[19/08/22 - 17:00:46:609] %Aug 19 11:19:29:718 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.659 changed to up.
+[19/08/22 - 17:00:46:609] %Aug 19 11:19:29:719 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.660 changed to up.
+[19/08/22 - 17:00:46:609] %Aug 19 11:19:29:719 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.661 changed to up.
+[19/08/22 - 17:00:46:610] %Aug 19 11:19:29:719 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.662 changed to up.
+[19/08/22 - 17:00:46:610] %Aug 19 11:19:29:719 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.663 changed to up.
+[19/08/22 - 17:00:46:610] %Aug 19 11:19:29:719 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.664 changed to up.
+[19/08/22 - 17:00:46:610] %Aug 19 11:19:29:719 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.665 changed to up.
+[19/08/22 - 17:00:46:610] %Aug 19 11:19:29:719 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.666 changed to up.
+[19/08/22 - 17:00:46:611] %Aug 19 11:19:29:719 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.667 changed to up.
+[19/08/22 - 17:00:46:611] %Aug 19 11:19:29:719 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.668 changed to up.[19/08/22 - 17:00:46:611] 
+[19/08/22 - 17:00:46:611] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.669 changed to up.
+[19/08/22 - 17:00:46:611] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.670 changed to up.
+[19/08/22 - 17:00:46:611] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.671 changed to up.
+[19/08/22 - 17:00:46:612] ---- More ----               %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.672 changed to up.
+[19/08/22 - 17:00:46:637] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.673 changed to up.
+[19/08/22 - 17:00:46:637] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.674 changed to up.
+[19/08/22 - 17:00:46:637] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.675 changed to up.
+[19/08/22 - 17:00:46:638] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.676 changed to up.
+[19/08/22 - 17:00:46:638] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.677 changed to up.
+[19/08/22 - 17:00:46:638] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.678 changed to up.
+[19/08/22 - 17:00:46:638] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.679 changed to up.
+[19/08/22 - 17:00:46:638] %Aug 19 11:19:29:720 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.680 changed to up.
+[19/08/22 - 17:00:46:639] %Aug 19 11:19:29:721 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.681 changed to up.
+[19/08/22 - 17:00:46:639] %Aug 19 11:19:29:722 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.682 changed to up.
+[19/08/22 - 17:00:46:639] %Aug 19 11:19:29:722 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.683 changed to up.
+[19/08/22 - 17:00:46:639] %Aug 19 11:19:29:722 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.684 changed to up.
+[19/08/22 - 17:00:46:640] %Aug 19 11:19:29:722 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.685 changed to up.
+[19/08/22 - 17:00:46:640] %Aug 19 11:19:29:722 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.686 changed to up.
+[19/08/22 - 17:00:46:640] %Aug 19 11:19:29:722 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.687 changed to up.
+[19/08/22 - 17:00:46:640] %Aug 19 11:19:29:723 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.688 changed to up.
+[19/08/22 - 17:00:46:640] %Aug 19 11:19:29:723 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.689 changed to up.
+[19/08/22 - 17:00:46:641] %Aug 19 11:19:29:723 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.690 changed to up.
+[19/08/22 - 17:00:46:641] %Aug 19 11:19:29:723 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.691 changed to up.[19/08/22 - 17:00:46:641] 
+[19/08/22 - 17:00:46:641] %Aug 19 11:19:29:723 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.692 changed to up.
+[19/08/22 - 17:00:46:641] %Aug 19 11:19:29:723 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.693 changed to up.
+[19/08/22 - 17:00:46:641] %Aug 19 11:19:29:724 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.694 changed to up.
+[19/08/22 - 17:00:46:642] ---- More ----               %Aug 19 11:19:29:724 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.695 changed to up.
+[19/08/22 - 17:00:46:669] %Aug 19 11:19:29:724 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.696 changed to up.
+[19/08/22 - 17:00:46:670] %Aug 19 11:19:29:724 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.697 changed to up.
+[19/08/22 - 17:00:46:670] %Aug 19 11:19:29:724 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.698 changed to up.
+[19/08/22 - 17:00:46:670] %Aug 19 11:19:29:724 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.699 changed to up.
+[19/08/22 - 17:00:46:670] %Aug 19 11:19:29:724 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.700 changed to up.
+[19/08/22 - 17:00:46:670] %Aug 19 11:19:29:724 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.701 changed to up.
+[19/08/22 - 17:00:46:671] %Aug 19 11:19:29:724 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.702 changed to up.
+[19/08/22 - 17:00:46:671] %Aug 19 11:19:29:724 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.703 changed to up.
+[19/08/22 - 17:00:46:671] %Aug 19 11:19:29:725 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.704 changed to up.
+[19/08/22 - 17:00:46:671] %Aug 19 11:19:29:725 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.705 changed to up.
+[19/08/22 - 17:00:46:672] %Aug 19 11:19:29:725 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.706 changed to up.
+[19/08/22 - 17:00:46:672] %Aug 19 11:19:29:725 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.707 changed to up.
+[19/08/22 - 17:00:46:672] %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.708 changed to up.
+[19/08/22 - 17:00:46:672] %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.709 changed to up.
+[19/08/22 - 17:00:46:673] %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.710 changed to up.
+[19/08/22 - 17:00:46:673] %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.711 changed to up.
+[19/08/22 - 17:00:46:673] %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.712 changed to up.
+[19/08/22 - 17:00:46:673] %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.713 changed to up.
+[19/08/22 - 17:00:46:673] %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.714 changed to up.[19/08/22 - 17:00:46:674] 
+[19/08/22 - 17:00:46:674] %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.715 changed to up.
+[19/08/22 - 17:00:46:674] %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.716 changed to up.
+[19/08/22 - 17:00:46:674] %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.717 changed to up.
+[19/08/22 - 17:00:46:674] ---- More ----               %Aug 19 11:19:29:726 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.718 changed to up.
+[19/08/22 - 17:00:46:700] %Aug 19 11:19:29:727 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.719 changed to up.
+[19/08/22 - 17:00:46:700] %Aug 19 11:19:29:727 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.720 changed to up.
+[19/08/22 - 17:00:46:700] %Aug 19 11:19:29:727 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.721 changed to up.
+[19/08/22 - 17:00:46:701] %Aug 19 11:19:29:727 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.722 changed to up.
+[19/08/22 - 17:00:46:701] %Aug 19 11:19:29:727 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.723 changed to up.
+[19/08/22 - 17:00:46:701] %Aug 19 11:19:29:727 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.724 changed to up.
+[19/08/22 - 17:00:46:701] %Aug 19 11:19:29:727 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.725 changed to up.
+[19/08/22 - 17:00:46:701] %Aug 19 11:19:29:727 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.726 changed to up.
+[19/08/22 - 17:00:46:702] %Aug 19 11:19:29:727 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.727 changed to up.
+[19/08/22 - 17:00:46:702] %Aug 19 11:19:29:727 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.728 changed to up.
+[19/08/22 - 17:00:46:702] %Aug 19 11:19:29:728 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.729 changed to up.
+[19/08/22 - 17:00:46:702] %Aug 19 11:19:29:728 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.730 changed to up.
+[19/08/22 - 17:00:46:703] %Aug 19 11:19:29:728 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.731 changed to up.
+[19/08/22 - 17:00:46:703] %Aug 19 11:19:29:728 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.732 changed to up.
+[19/08/22 - 17:00:46:703] %Aug 19 11:19:29:729 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.733 changed to up.
+[19/08/22 - 17:00:46:703] %Aug 19 11:19:29:729 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.734 changed to up.
+[19/08/22 - 17:00:46:703] %Aug 19 11:19:29:729 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.735 changed to up.
+[19/08/22 - 17:00:46:704] %Aug 19 11:19:29:729 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.736 changed to up.
+[19/08/22 - 17:00:46:704] %Aug 19 11:19:29:729 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.737 changed to up.[19/08/22 - 17:00:46:704] 
+[19/08/22 - 17:00:46:704] %Aug 19 11:19:29:729 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.738 changed to up.
+[19/08/22 - 17:00:46:704] %Aug 19 11:19:29:730 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.739 changed to up.
+[19/08/22 - 17:00:46:705] %Aug 19 11:19:29:730 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.740 changed to up.
+[19/08/22 - 17:00:46:705] ---- More ----               %Aug 19 11:19:29:730 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.741 changed to up.
+[19/08/22 - 17:00:46:733] %Aug 19 11:19:29:731 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.742 changed to up.
+[19/08/22 - 17:00:46:733] %Aug 19 11:19:29:731 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.743 changed to up.
+[19/08/22 - 17:00:46:734] %Aug 19 11:19:29:731 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.744 changed to up.
+[19/08/22 - 17:00:46:734] %Aug 19 11:19:29:731 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.745 changed to up.
+[19/08/22 - 17:00:46:734] %Aug 19 11:19:29:731 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.746 changed to up.
+[19/08/22 - 17:00:46:734] %Aug 19 11:19:29:731 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.747 changed to up.
+[19/08/22 - 17:00:46:734] %Aug 19 11:19:29:731 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.748 changed to up.
+[19/08/22 - 17:00:46:735] %Aug 19 11:19:29:731 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.749 changed to up.
+[19/08/22 - 17:00:46:735] %Aug 19 11:19:29:731 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.750 changed to up.
+[19/08/22 - 17:00:46:735] %Aug 19 11:19:29:732 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.751 changed to up.
+[19/08/22 - 17:00:46:735] %Aug 19 11:19:29:732 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.752 changed to up.
+[19/08/22 - 17:00:46:736] %Aug 19 11:19:29:732 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.753 changed to up.
+[19/08/22 - 17:00:46:736] %Aug 19 11:19:29:732 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.754 changed to up.
+[19/08/22 - 17:00:46:736] %Aug 19 11:19:29:732 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.755 changed to up.
+[19/08/22 - 17:00:46:736] %Aug 19 11:19:29:732 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.756 changed to up.
+[19/08/22 - 17:00:46:736] %Aug 19 11:19:29:733 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.757 changed to up.
+[19/08/22 - 17:00:46:737] %Aug 19 11:19:29:733 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.758 changed to up.
+[19/08/22 - 17:00:46:737] %Aug 19 11:19:29:733 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.759 changed to up.
+[19/08/22 - 17:00:46:737] %Aug 19 11:19:29:733 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.760 changed to up.[19/08/22 - 17:00:46:737] 
+[19/08/22 - 17:00:46:737] %Aug 19 11:19:29:733 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.761 changed to up.
+[19/08/22 - 17:00:46:738] %Aug 19 11:19:29:733 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.762 changed to up.
+[19/08/22 - 17:00:46:738] %Aug 19 11:19:29:733 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.763 changed to up.
+[19/08/22 - 17:00:46:738] ---- More ----               %Aug 19 11:19:29:733 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.764 changed to up.
+[19/08/22 - 17:00:46:766] %Aug 19 11:19:29:733 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.765 changed to up.
+[19/08/22 - 17:00:46:766] %Aug 19 11:19:29:735 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.766 changed to up.
+[19/08/22 - 17:00:46:767] %Aug 19 11:19:29:735 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.767 changed to up.
+[19/08/22 - 17:00:46:767] %Aug 19 11:19:29:735 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.768 changed to up.
+[19/08/22 - 17:00:46:767] %Aug 19 11:19:29:735 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.769 changed to up.
+[19/08/22 - 17:00:46:767] %Aug 19 11:19:29:736 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.770 changed to up.
+[19/08/22 - 17:00:46:767] %Aug 19 11:19:29:736 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.771 changed to up.
+[19/08/22 - 17:00:46:768] %Aug 19 11:19:29:736 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.772 changed to up.
+[19/08/22 - 17:00:46:768] %Aug 19 11:19:29:736 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.773 changed to up.
+[19/08/22 - 17:00:46:768] %Aug 19 11:19:29:737 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.774 changed to up.
+[19/08/22 - 17:00:46:769] %Aug 19 11:19:29:737 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.775 changed to up.
+[19/08/22 - 17:00:46:769] %Aug 19 11:19:29:737 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.776 changed to up.
+[19/08/22 - 17:00:46:769] %Aug 19 11:19:29:737 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.777 changed to up.
+[19/08/22 - 17:00:46:769] %Aug 19 11:19:29:737 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.778 changed to up.
+[19/08/22 - 17:00:46:770] %Aug 19 11:19:29:737 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.779 changed to up.
+[19/08/22 - 17:00:46:770] %Aug 19 11:19:29:737 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.780 changed to up.
+[19/08/22 - 17:00:46:770] %Aug 19 11:19:29:738 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.781 changed to up.
+[19/08/22 - 17:00:46:770] %Aug 19 11:19:29:738 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.782 changed to up.
+[19/08/22 - 17:00:46:770] %Aug 19 11:19:29:738 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.783 changed to up.[19/08/22 - 17:00:46:771] 
+[19/08/22 - 17:00:46:771] %Aug 19 11:19:29:738 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.784 changed to up.
+[19/08/22 - 17:00:46:771] %Aug 19 11:19:29:739 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.785 changed to up.
+[19/08/22 - 17:00:46:771] %Aug 19 11:19:29:739 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.786 changed to up.
+[19/08/22 - 17:00:46:771] ---- More ----               %Aug 19 11:19:29:739 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.787 changed to up.
+[19/08/22 - 17:00:46:806] %Aug 19 11:19:29:739 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.788 changed to up.
+[19/08/22 - 17:00:46:807] %Aug 19 11:19:29:739 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.789 changed to up.
+[19/08/22 - 17:00:46:807] %Aug 19 11:19:29:739 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.790 changed to up.
+[19/08/22 - 17:00:46:807] %Aug 19 11:19:29:739 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.791 changed to up.
+[19/08/22 - 17:00:46:807] %Aug 19 11:19:29:739 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.792 changed to up.
+[19/08/22 - 17:00:46:807] %Aug 19 11:19:29:740 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.793 changed to up.
+[19/08/22 - 17:00:46:808] %Aug 19 11:19:29:740 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.794 changed to up.
+[19/08/22 - 17:00:46:808] %Aug 19 11:19:29:740 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.795 changed to up.
+[19/08/22 - 17:00:46:808] %Aug 19 11:19:29:740 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.796 changed to up.
+[19/08/22 - 17:00:46:808] %Aug 19 11:19:29:740 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.797 changed to up.
+[19/08/22 - 17:00:46:808] %Aug 19 11:19:29:740 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.798 changed to up.
+[19/08/22 - 17:00:46:809] %Aug 19 11:19:29:740 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.799 changed to up.
+[19/08/22 - 17:00:46:809] %Aug 19 11:19:29:740 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.800 changed to up.
+[19/08/22 - 17:00:46:809] %Aug 19 11:19:29:741 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.801 changed to up.
+[19/08/22 - 17:00:46:809] %Aug 19 11:19:29:741 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.802 changed to up.
+[19/08/22 - 17:00:46:810] %Aug 19 11:19:29:741 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.803 changed to up.
+[19/08/22 - 17:00:46:810] %Aug 19 11:19:29:744 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.804 changed to up.
+[19/08/22 - 17:00:46:810] %Aug 19 11:19:29:744 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.805 changed to up.
+[19/08/22 - 17:00:46:810] %Aug 19 11:19:29:745 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.806 changed to up.
+[19/08/22 - 17:00:46:810] %Aug 19 11:19:29:745 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.807 changed to up.
+[19/08/22 - 17:00:46:811] %Aug 19 11:19:29:745 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.808 changed to up.
+[19/08/22 - 17:00:46:811] %Aug 19 11:19:29:745 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.809 changed to up.
+[19/08/22 - 17:00:46:811] ---- More ----               %Aug 19 11:19:29:745 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.810 changed to up.
+[19/08/22 - 17:00:46:839] %Aug 19 11:19:29:745 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.811 changed to up.
+[19/08/22 - 17:00:46:841] %Aug 19 11:19:29:745 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.812 changed to up.
+[19/08/22 - 17:00:46:841] %Aug 19 11:19:29:745 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.813 changed to up.
+[19/08/22 - 17:00:46:841] %Aug 19 11:19:29:745 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.814 changed to up.
+[19/08/22 - 17:00:46:841] %Aug 19 11:19:29:745 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.815 changed to up.
+[19/08/22 - 17:00:46:841] %Aug 19 11:19:29:764 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.816 changed to up.
+[19/08/22 - 17:00:46:842] %Aug 19 11:19:29:764 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.817 changed to up.
+[19/08/22 - 17:00:46:842] %Aug 19 11:19:29:764 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.818 changed to up.
+[19/08/22 - 17:00:46:842] %Aug 19 11:19:29:764 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.819 changed to up.
+[19/08/22 - 17:00:46:842] %Aug 19 11:19:29:764 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.820 changed to up.
+[19/08/22 - 17:00:46:843] %Aug 19 11:19:29:764 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.821 changed to up.
+[19/08/22 - 17:00:46:844] %Aug 19 11:19:29:764 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.822 changed to up.
+[19/08/22 - 17:00:46:844] %Aug 19 11:19:29:764 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.823 changed to up.
+[19/08/22 - 17:00:46:844] %Aug 19 11:19:29:764 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.824 changed to up.
+[19/08/22 - 17:00:46:844] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.825 changed to up.
+[19/08/22 - 17:00:46:845] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.826 changed to up.
+[19/08/22 - 17:00:46:845] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.827 changed to up.
+[19/08/22 - 17:00:46:845] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.828 changed to up.
+[19/08/22 - 17:00:46:845] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.829 changed to up.
+[19/08/22 - 17:00:46:845] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.830 changed to up.
+[19/08/22 - 17:00:46:846] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.831 changed to up.
+[19/08/22 - 17:00:46:846] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.832 changed to up.
+[19/08/22 - 17:00:46:846] ---- More ----               %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.833 changed to up.
+[19/08/22 - 17:00:46:868] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.834 changed to up.
+[19/08/22 - 17:00:46:869] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.835 changed to up.
+[19/08/22 - 17:00:46:869] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.836 changed to up.
+[19/08/22 - 17:00:46:869] %Aug 19 11:19:29:765 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.837 changed to up.
+[19/08/22 - 17:00:46:869] %Aug 19 11:19:29:766 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.838 changed to up.
+[19/08/22 - 17:00:46:869] %Aug 19 11:19:29:766 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.839 changed to up.
+[19/08/22 - 17:00:46:869] %Aug 19 11:19:29:766 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.840 changed to up.
+[19/08/22 - 17:00:46:869] %Aug 19 11:19:29:766 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.841 changed to up.
+[19/08/22 - 17:00:46:870] %Aug 19 11:19:29:766 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.842 changed to up.
+[19/08/22 - 17:00:46:870] %Aug 19 11:19:29:767 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.843 changed to up.
+[19/08/22 - 17:00:46:870] %Aug 19 11:19:29:767 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.844 changed to up.
+[19/08/22 - 17:00:46:870] %Aug 19 11:19:29:768 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.845 changed to up.
+[19/08/22 - 17:00:46:870] %Aug 19 11:19:29:768 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.846 changed to up.
+[19/08/22 - 17:00:46:870] %Aug 19 11:19:29:768 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.847 changed to up.
+[19/08/22 - 17:00:46:870] %Aug 19 11:19:29:768 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.848 changed to up.
+[19/08/22 - 17:00:46:871] %Aug 19 11:19:29:768 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.849 changed to up.
+[19/08/22 - 17:00:46:871] %Aug 19 11:19:29:768 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.850 changed to up.
+[19/08/22 - 17:00:46:871] %Aug 19 11:19:29:768 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.851 changed to up.
+[19/08/22 - 17:00:46:871] %Aug 19 11:19:29:768 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.852 changed to up.
+[19/08/22 - 17:00:46:871] %Aug 19 11:19:29:769 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.853 changed to up.
+[19/08/22 - 17:00:46:871] %Aug 19 11:19:29:769 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.854 changed to up.
+[19/08/22 - 17:00:46:871] %Aug 19 11:19:29:769 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.855 changed to up.
+[19/08/22 - 17:00:46:872] ---- More ----               %Aug 19 11:19:29:769 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.856 changed to up.
+[19/08/22 - 17:00:46:905] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.857 changed to up.
+[19/08/22 - 17:00:46:906] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.858 changed to up.
+[19/08/22 - 17:00:46:906] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.859 changed to up.
+[19/08/22 - 17:00:46:906] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.860 changed to up.
+[19/08/22 - 17:00:46:906] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.861 changed to up.
+[19/08/22 - 17:00:46:906] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.862 changed to up.
+[19/08/22 - 17:00:46:906] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.863 changed to up.
+[19/08/22 - 17:00:46:907] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.864 changed to up.
+[19/08/22 - 17:00:46:907] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.865 changed to up.
+[19/08/22 - 17:00:46:907] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.866 changed to up.
+[19/08/22 - 17:00:46:907] %Aug 19 11:19:29:770 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.867 changed to up.
+[19/08/22 - 17:00:46:907] %Aug 19 11:19:29:771 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.868 changed to up.
+[19/08/22 - 17:00:46:907] %Aug 19 11:19:29:771 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.869 changed to up.
+[19/08/22 - 17:00:46:907] %Aug 19 11:19:29:771 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.870 changed to up.
+[19/08/22 - 17:00:46:908] %Aug 19 11:19:29:771 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.871 changed to up.
+[19/08/22 - 17:00:46:908] %Aug 19 11:19:29:771 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.872 changed to up.
+[19/08/22 - 17:00:46:908] %Aug 19 11:19:29:771 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.873 changed to up.
+[19/08/22 - 17:00:46:908] %Aug 19 11:19:29:771 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.874 changed to up.
+[19/08/22 - 17:00:46:908] %Aug 19 11:19:29:772 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.875 changed to up.
+[19/08/22 - 17:00:46:909] %Aug 19 11:19:29:772 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.876 changed to up.
+[19/08/22 - 17:00:46:909] %Aug 19 11:19:29:772 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.877 changed to up.
+[19/08/22 - 17:00:46:909] %Aug 19 11:19:29:772 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.878 changed to up.
+[19/08/22 - 17:00:46:909] ---- More ----               %Aug 19 11:19:29:772 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.879 changed to up.
+[19/08/22 - 17:00:46:935] %Aug 19 11:19:29:772 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.880 changed to up.
+[19/08/22 - 17:00:46:938] %Aug 19 11:19:29:772 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.881 changed to up.
+[19/08/22 - 17:00:46:938] %Aug 19 11:19:29:772 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.882 changed to up.
+[19/08/22 - 17:00:46:938] %Aug 19 11:19:29:772 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.883 changed to up.
+[19/08/22 - 17:00:46:938] %Aug 19 11:19:29:773 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.884 changed to up.
+[19/08/22 - 17:00:46:938] %Aug 19 11:19:29:773 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.885 changed to up.
+[19/08/22 - 17:00:46:938] %Aug 19 11:19:29:773 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.886 changed to up.
+[19/08/22 - 17:00:46:938] %Aug 19 11:19:29:773 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.887 changed to up.
+[19/08/22 - 17:00:46:939] %Aug 19 11:19:29:773 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.888 changed to up.
+[19/08/22 - 17:00:46:939] %Aug 19 11:19:29:773 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.889 changed to up.
+[19/08/22 - 17:00:46:939] %Aug 19 11:19:29:774 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.890 changed to up.
+[19/08/22 - 17:00:46:939] %Aug 19 11:19:29:774 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.891 changed to up.
+[19/08/22 - 17:00:46:939] %Aug 19 11:19:29:774 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.892 changed to up.
+[19/08/22 - 17:00:46:939] %Aug 19 11:19:29:774 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.893 changed to up.
+[19/08/22 - 17:00:46:940] %Aug 19 11:19:29:775 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.894 changed to up.
+[19/08/22 - 17:00:46:940] %Aug 19 11:19:29:775 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.895 changed to up.
+[19/08/22 - 17:00:46:940] %Aug 19 11:19:29:775 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.896 changed to up.
+[19/08/22 - 17:00:46:940] %Aug 19 11:19:29:775 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.897 changed to up.
+[19/08/22 - 17:00:46:940] %Aug 19 11:19:29:776 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.898 changed to up.
+[19/08/22 - 17:00:46:940] %Aug 19 11:19:29:776 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.899 changed to up.
+[19/08/22 - 17:00:46:940] %Aug 19 11:19:29:776 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.900 changed to up.
+[19/08/22 - 17:00:46:941] %Aug 19 11:19:29:776 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.901 changed to up.
+[19/08/22 - 17:00:46:941] ---- More ----               %Aug 19 11:19:29:776 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.902 changed to up.
+[19/08/22 - 17:00:46:965] %Aug 19 11:19:29:777 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.903 changed to up.
+[19/08/22 - 17:00:46:965] %Aug 19 11:19:29:777 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.904 changed to up.
+[19/08/22 - 17:00:46:965] %Aug 19 11:19:29:777 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.905 changed to up.
+[19/08/22 - 17:00:46:965] %Aug 19 11:19:29:777 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.906 changed to up.
+[19/08/22 - 17:00:46:965] %Aug 19 11:19:29:777 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.907 changed to up.
+[19/08/22 - 17:00:46:965] %Aug 19 11:19:29:777 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.908 changed to up.
+[19/08/22 - 17:00:46:966] %Aug 19 11:19:29:777 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.909 changed to up.
+[19/08/22 - 17:00:46:966] %Aug 19 11:19:29:777 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.910 changed to up.
+[19/08/22 - 17:00:46:966] %Aug 19 11:19:29:777 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.911 changed to up.
+[19/08/22 - 17:00:46:966] %Aug 19 11:19:29:777 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.912 changed to up.
+[19/08/22 - 17:00:46:966] %Aug 19 11:19:29:778 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.913 changed to up.
+[19/08/22 - 17:00:46:966] %Aug 19 11:19:29:778 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.914 changed to up.
+[19/08/22 - 17:00:46:966] %Aug 19 11:19:29:778 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.915 changed to up.
+[19/08/22 - 17:00:46:967] %Aug 19 11:19:29:778 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.916 changed to up.
+[19/08/22 - 17:00:46:967] %Aug 19 11:19:29:778 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.917 changed to up.
+[19/08/22 - 17:00:46:967] %Aug 19 11:19:29:778 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.918 changed to up.
+[19/08/22 - 17:00:46:967] %Aug 19 11:19:29:778 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.919 changed to up.
+[19/08/22 - 17:00:46:967] %Aug 19 11:19:29:778 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.920 changed to up.
+[19/08/22 - 17:00:46:967] %Aug 19 11:19:29:778 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.921 changed to up.
+[19/08/22 - 17:00:46:967] %Aug 19 11:19:29:778 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.922 changed to up.
+[19/08/22 - 17:00:46:967] %Aug 19 11:19:29:779 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.923 changed to up.
+[19/08/22 - 17:00:46:968] %Aug 19 11:19:29:779 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.924 changed to up.
+[19/08/22 - 17:00:46:968] ---- More ----               %Aug 19 11:19:29:779 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.925 changed to up.
+[19/08/22 - 17:00:46:999] %Aug 19 11:19:29:779 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.926 changed to up.
+[19/08/22 - 17:00:47:000] %Aug 19 11:19:29:779 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.927 changed to up.
+[19/08/22 - 17:00:47:000] %Aug 19 11:19:29:779 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.928 changed to up.
+[19/08/22 - 17:00:47:000] %Aug 19 11:19:29:779 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.929 changed to up.
+[19/08/22 - 17:00:47:000] %Aug 19 11:19:29:779 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.930 changed to up.
+[19/08/22 - 17:00:47:001] %Aug 19 11:19:29:779 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.931 changed to up.
+[19/08/22 - 17:00:47:001] %Aug 19 11:19:29:780 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.932 changed to up.
+[19/08/22 - 17:00:47:001] %Aug 19 11:19:29:780 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.933 changed to up.
+[19/08/22 - 17:00:47:001] %Aug 19 11:19:29:780 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.934 changed to up.
+[19/08/22 - 17:00:47:001] %Aug 19 11:19:29:780 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.935 changed to up.
+[19/08/22 - 17:00:47:002] %Aug 19 11:19:29:780 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.936 changed to up.
+[19/08/22 - 17:00:47:002] %Aug 19 11:19:29:780 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.937 changed to up.
+[19/08/22 - 17:00:47:002] %Aug 19 11:19:29:780 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.938 changed to up.
+[19/08/22 - 17:00:47:003] %Aug 19 11:19:29:780 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.939 changed to up.
+[19/08/22 - 17:00:47:003] %Aug 19 11:19:29:780 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.940 changed to up.
+[19/08/22 - 17:00:47:003] %Aug 19 11:19:29:780 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.941 changed to up.
+[19/08/22 - 17:00:47:004] %Aug 19 11:19:29:781 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.942 changed to up.
+[19/08/22 - 17:00:47:004] %Aug 19 11:19:29:781 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.943 changed to up.
+[19/08/22 - 17:00:47:005] %Aug 19 11:19:29:781 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.944 changed to up.
+[19/08/22 - 17:00:47:005] %Aug 19 11:19:29:781 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.945 changed to up.
+[19/08/22 - 17:00:47:005] %Aug 19 11:19:29:781 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.946 changed to up.
+[19/08/22 - 17:00:47:005] %Aug 19 11:19:29:781 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.947 changed to up.
+[19/08/22 - 17:00:47:005] ---- More ----               %Aug 19 11:19:29:781 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.948 changed to up.
+[19/08/22 - 17:00:47:031] %Aug 19 11:19:29:781 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.949 changed to up.
+[19/08/22 - 17:00:47:032] %Aug 19 11:19:29:781 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.950 changed to up.
+[19/08/22 - 17:00:47:032] %Aug 19 11:19:29:781 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.951 changed to up.
+[19/08/22 - 17:00:47:032] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.952 changed to up.
+[19/08/22 - 17:00:47:033] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.953 changed to up.
+[19/08/22 - 17:00:47:033] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.954 changed to up.
+[19/08/22 - 17:00:47:033] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.955 changed to up.
+[19/08/22 - 17:00:47:033] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.956 changed to up.
+[19/08/22 - 17:00:47:033] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.957 changed to up.
+[19/08/22 - 17:00:47:033] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.958 changed to up.
+[19/08/22 - 17:00:47:033] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.959 changed to up.
+[19/08/22 - 17:00:47:034] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.960 changed to up.
+[19/08/22 - 17:00:47:034] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.961 changed to up.
+[19/08/22 - 17:00:47:034] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.962 changed to up.
+[19/08/22 - 17:00:47:034] %Aug 19 11:19:29:782 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.963 changed to up.
+[19/08/22 - 17:00:47:034] %Aug 19 11:19:29:783 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.964 changed to up.
+[19/08/22 - 17:00:47:034] %Aug 19 11:19:29:783 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.965 changed to up.
+[19/08/22 - 17:00:47:034] %Aug 19 11:19:29:783 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.966 changed to up.
+[19/08/22 - 17:00:47:035] %Aug 19 11:19:29:783 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.967 changed to up.
+[19/08/22 - 17:00:47:035] %Aug 19 11:19:29:783 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.968 changed to up.
+[19/08/22 - 17:00:47:035] %Aug 19 11:19:29:783 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.969 changed to up.
+[19/08/22 - 17:00:47:035] %Aug 19 11:19:29:784 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.970 changed to up.
+[19/08/22 - 17:00:47:035] ---- More ----               %Aug 19 11:19:29:784 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.971 changed to up.
+[19/08/22 - 17:00:47:069] %Aug 19 11:19:29:784 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.972 changed to up.
+[19/08/22 - 17:00:47:069] %Aug 19 11:19:29:784 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.973 changed to up.
+[19/08/22 - 17:00:47:070] %Aug 19 11:19:29:784 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.974 changed to up.
+[19/08/22 - 17:00:47:070] %Aug 19 11:19:29:784 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.975 changed to up.
+[19/08/22 - 17:00:47:070] %Aug 19 11:19:29:785 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.976 changed to up.
+[19/08/22 - 17:00:47:070] %Aug 19 11:19:29:785 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.977 changed to up.
+[19/08/22 - 17:00:47:070] %Aug 19 11:19:29:785 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.978 changed to up.
+[19/08/22 - 17:00:47:070] %Aug 19 11:19:29:785 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.979 changed to up.
+[19/08/22 - 17:00:47:070] %Aug 19 11:19:29:785 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.980 changed to up.
+[19/08/22 - 17:00:47:071] %Aug 19 11:19:29:785 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.981 changed to up.
+[19/08/22 - 17:00:47:071] %Aug 19 11:19:29:785 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.982 changed to up.
+[19/08/22 - 17:00:47:071] %Aug 19 11:19:29:785 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.983 changed to up.
+[19/08/22 - 17:00:47:071] %Aug 19 11:19:29:786 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.984 changed to up.
+[19/08/22 - 17:00:47:071] %Aug 19 11:19:29:786 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.985 changed to up.
+[19/08/22 - 17:00:47:071] %Aug 19 11:19:29:786 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.986 changed to up.
+[19/08/22 - 17:00:47:072] %Aug 19 11:19:29:786 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.987 changed to up.
+[19/08/22 - 17:00:47:072] %Aug 19 11:19:29:787 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.988 changed to up.
+[19/08/22 - 17:00:47:072] %Aug 19 11:19:29:787 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.989 changed to up.
+[19/08/22 - 17:00:47:072] %Aug 19 11:19:29:787 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.990 changed to up.
+[19/08/22 - 17:00:47:072] %Aug 19 11:19:29:787 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.991 changed to up.
+[19/08/22 - 17:00:47:072] %Aug 19 11:19:29:787 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.992 changed to up.
+[19/08/22 - 17:00:47:073] %Aug 19 11:19:29:788 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.993 changed to up.
+[19/08/22 - 17:00:47:073] ---- More ----               %Aug 19 11:19:29:788 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.994 changed to up.
+[19/08/22 - 17:00:47:104] %Aug 19 11:19:29:788 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.995 changed to up.
+[19/08/22 - 17:00:47:105] %Aug 19 11:19:29:788 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.996 changed to up.
+[19/08/22 - 17:00:47:105] %Aug 19 11:19:29:788 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.997 changed to up.
+[19/08/22 - 17:00:47:105] %Aug 19 11:19:29:788 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.998 changed to up.
+[19/08/22 - 17:00:47:105] %Aug 19 11:19:29:788 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.999 changed to up.
+[19/08/22 - 17:00:47:105] %Aug 19 11:19:29:788 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.1000 changed to up.
+[19/08/22 - 17:00:47:106] %Aug 19 11:19:29:788 2022 pe3 IFNET/4/LINK_UPDOWN: Line protocol state on the interface Ten-GigabitEthernet2/1/4.1001 changed to up.
+[19/08/22 - 17:00:47:106] %Aug 19 11:19:29:815 2022 pe3 L3VPN/6/L3VPN_VRF_IPV6_IFDOWN_CLEAR: The IPv6 status of interface bound to a VPN instance went up.(VPN instance name=vpn2,Interface name=T
+[19/08/22 - 17:00:47:106] en-GigabitEthernet2/1/4)
+[19/08/22 - 17:00:47:106] %Aug 19 11:19:31:619 2022 pe3 ARP/5/ARP_SPEEDLIMIT_ALARM_CLEAR: -Slot=2; Packet rate dropped below the rate limit. ThresholdRate=600; CurrentRate=0; SuppressType=ARP.
+[19/08/22 - 17:00:47:106] %Aug 19 11:35:56:483 2022 pe3 IFNET/3/PHY_UPDOWN: Physical state on the interface Ten-GigabitEthernet2/2/1 changed to down.
+[19/08/22 - 17:00:47:106] %Aug 19 11:37:41:603 2022 pe3 LLDP/4/LLDP_NEIGHBOR_AGE_OUT: -Slot=2; Nearest bridge agent neighbor aged out on port Ten-GigabitEthernet2/2/1 (IfIndex 433), neighbor's c
+[19/08/22 - 17:00:47:107] hassis ID is 48bd-3db9-cae6, port ID is Ten-GigabitEthernet1/0/49:2.
+[19/08/22 - 17:00:47:107] %Aug 19 11:46:50:164 2022 pe3 LAGG/6/LAGG_LACP_RECEIVE_TIMEOUT: -Slot=2; LACPDU reception timed out on member port XGE2/2/1 in aggregation group RAGG100.
+[19/08/22 - 17:00:47:107] %Aug 19 11:46:49:458 2022 pe3 IFNET/3/PHY_UPDOWN: Physical state on the interface Ten-GigabitEthernet2/2/1 changed to up.
+[19/08/22 - 17:00:47:107] %Aug 19 11:46:51:361 2022 pe3 LLDP/6/LLDP_CREATE_NEIGHBOR: -Slot=2; Nearest bridge agent neighbor created on port Ten-GigabitEthernet2/2/1 (IfIndex 433), neighbor's cha
+[19/08/22 - 17:00:47:107] ssis ID is 48bd-3db9-cae6, port ID is Ten-GigabitEthernet1/0/49:2.
+[19/08/22 - 17:00:47:107] %Aug 19 14:16:43:228 2022 pe3 IFNET/3/PHY_UPDOWN: Physical state on the interface Ten-GigabitEthernet2/2/1 changed to down.
+[19/08/22 - 17:00:47:108] %Aug 19 14:18:32:603 2022 pe3 LLDP/4/LLDP_NEIGHBOR_AGE_OUT: -Slot=2; Nearest bridge agent neighbor aged out on port Ten-GigabitEthernet2/2/1 (IfIndex 433), neighbor's c
+[19/08/22 - 17:00:47:108] hassis ID is 48bd-3db9-cae6, port ID is Ten-GigabitEthernet1/0/49:2.
+[19/08/22 - 17:00:47:108] %Aug 19 14:26:24:790 2022 pe3 LAGG/6/LAGG_LACP_RECEIVE_TIMEOUT: -Slot=2; LACPDU reception timed out on member port XGE2/2/1 in aggregation group RAGG100.
+[19/08/22 - 17:00:47:108] %Aug 19 14:26:23:954 2022 pe3 IFNET/3/PHY_UPDOWN: Physical state on the interface Ten-GigabitEthernet2/2/1 changed to up.
+[19/08/22 - 17:00:47:108] %Aug 19 14:26:25:646 2022 pe3 LLDP/6/LLDP_CREATE_NEIGHBOR: -Slot=2; Nearest bridge agent neighbor created on port Ten-GigabitEthernet2/2/1 (IfIndex 433), neighbor's cha
+[19/08/22 - 17:00:47:108] ssis ID is 48bd-3db9-cae6, port ID is Ten-GigabitEthernet1/0/49:2.
+[19/08/22 - 17:00:47:108] %Aug 19 14:28:57:258 2022 pe3 IFNET/3/PHY_UPDOWN: Physical state on the interface Ten-GigabitEthernet2/2/1 changed to down.
+[19/08/22 - 17:00:47:108] %Aug 19 14:30:45:603 2022 pe3 LLDP/4/LLDP_NEIGHBOR_AGE_OUT: -Slot=2; Nearest bridge agent neighbor aged out on port Ten-GigabitEthernet2/2/1 (IfIndex 433), neighbor's c
+[19/08/22 - 17:00:47:109] hassis ID is 48bd-3db9-cae6, port ID is Ten-GigabitEthernet1/0/49:2.
+[19/08/22 - 17:00:47:109] %Aug 19 14:39:45:614 2022 pe3 LAGG/6/LAGG_LACP_RECEIVE_TIMEOUT: -Slot=2; LACPDU reception timed out on member port XGE2/2/1 in aggregation group RAGG100.
+[19/08/22 - 17:00:47:109] ---- More ----               [19/08/22 - 17:00:47:616] ~[pe3]qu 
+[19/08/22 - 17:00:50:150] Uncommitted changes found. Commit them before exiting? [Y(yes)/N(no)/C(cancel)]:y
+[19/08/22 - 17:00:51:969] Wait for the configuration commit: Done.
+[19/08/22 - 17:00:52:003] Exit from the current view? [Y/N]:y
+[19/08/22 - 17:00:54:194] <pe3>
+[19/08/22 - 17:00:54:355] <pe3>
+[19/08/22 - 17:00:54:500] <pe3>
+[19/08/22 - 17:00:54:650] <pe3>
+[19/08/22 - 17:00:54:789] <pe3>
+[19/08/22 - 17:00:54:922] <pe3>re
+[19/08/22 - 17:00:55:858] <pe3>reset lo
+[19/08/22 - 17:00:57:103] <pe3>reset logbuffer  
+[19/08/22 - 17:00:57:700] <pe3>
+[19/08/22 - 17:00:58:106] <pe3>
+[19/08/22 - 17:00:58:252] <pe3>sys
+[19/08/22 - 17:00:58:866] <pe3>system-view p
+[19/08/22 - 17:00:59:813] <pe3>system-view private 
+[19/08/22 - 17:00:59:981] The commit service is synchronizing configuration, please wait.
+[19/08/22 - 17:00:59:981] <pe3>
+[19/08/22 - 17:01:00:475] <pe3>
+[19/08/22 - 17:01:00:626] <pe3>
+[19/08/22 - 17:01:00:786] <pe3>system-view private 
+[19/08/22 - 17:01:02:280] The commit service is synchronizing configuration, please wait.
+[19/08/22 - 17:01:02:280] <pe3>system-view private 
+[19/08/22 - 17:01:03:216] The commit service is synchronizing configuration, please wait.
+[19/08/22 - 17:01:03:216] <pe3>system-view private 
+[19/08/22 - 17:01:03:747] The commit service is synchronizing configuration, please wait.
+[19/08/22 - 17:01:03:748] <pe3>system-view private 
+[19/08/22 - 17:01:04:115] The commit service is synchronizing configuration, please wait.
+[19/08/22 - 17:01:04:116] <pe3>system-view private 
+[19/08/22 - 17:01:04:435] The commit service is synchronizing configuration, please wait.
+[19/08/22 - 17:01:04:436] <pe3>
+[19/08/22 - 17:01:04:772] <pe3>system-view private 
+[19/08/22 - 17:01:06:492] The commit service is synchronizing configuration, please wait.
+[19/08/22 - 17:01:06:492] <pe3>
+[19/08/22 - 17:01:15:578] <pe3>
+[19/08/22 - 17:01:15:730] <pe3>system-view private 
+[19/08/22 - 17:01:16:742] System View: return to User View with Ctrl+Z.
+[19/08/22 - 17:01:16:744] ~[pe3]?
+[19/08/22 - 17:01:19:405] System view commands:
+[19/08/22 - 17:01:19:444]   aaa                          AAA configuration
+[19/08/22 - 17:01:19:446]   abort                        Return to user view without any confirmation 
+[19/08/22 - 17:01:19:448]                                required
+[19/08/22 - 17:01:19:449]   access-list                  Alias for 'acl'
+[19/08/22 - 17:01:19:451]   access-user                  Access user information
+[19/08/22 - 17:01:19:451]   acl                          Specify ACL configuration information
+[19/08/22 - 17:01:19:452]   aft                          Address Family Translation module
+[19/08/22 - 17:01:19:452]   alias                        Configure an alias for a command
+[19/08/22 - 17:01:19:453]   ancp                         Access Node Control Protocol module
+[19/08/22 - 17:01:19:454]   archive                      Archiving parameters
+[19/08/22 - 17:01:19:454]   arp                          Address Resolution Protocol (ARP) module
+[19/08/22 - 17:01:19:455]   as-notation                  Specify AS notation configuration information
+[19/08/22 - 17:01:19:456]   attack-defense               Configure the attack defense function
+[19/08/22 - 17:01:19:456]   bandwidth-based-sharing      Specify the bandwidth-based load-sharing mode
+[19/08/22 - 17:01:19:458]   bfd                          Bidirectional Forwarding Detection module
+[19/08/22 - 17:01:19:459]   bgp                          Border Gateway Protocol (BGP) module
+[19/08/22 - 17:01:19:460]   bier                         Configure Bit Index Explicit Replication module
+[19/08/22 - 17:01:19:461]   bmp                          BGP Monitoring Protocol module
+[19/08/22 - 17:01:19:462]   bootrom-update               Bootrom update
+[19/08/22 - 17:01:19:462]   bras                         Broadband Remote Access Server
+[19/08/22 - 17:01:19:463]   card-mode                    Card mode configuration
+[19/08/22 - 17:01:19:464]   cfd                          Connectivity Fault Detection (CFD) module
+[19/08/22 - 17:01:19:464]   cgn-l3-service               L3-Service function configuration
+[19/08/22 - 17:01:19:475] ---- More ----               [19/08/22 - 17:01:21:704] ~[pe3]al
+[19/08/22 - 17:01:22:301] ~[pe3]alias  [1D[J[1D[J[1D[J[1D[J[1D[J[1D[J[1D[J
+[19/08/22 - 17:01:24:419] ~[pe3]
+[19/08/22 - 17:01:24:574] ~[pe3]
+[19/08/22 - 17:01:24:682] ~[pe3]acl ?
+[19/08/22 - 17:01:26:506]   advanced   Configure an advanced ACL
+[19/08/22 - 17:01:26:507]   basic      Configure a basic ACL
+[19/08/22 - 17:01:26:508]   copy       Specify a source ACL
+[19/08/22 - 17:01:26:509]   ipv6       Configure an IPv6 ACL
+[19/08/22 - 17:01:26:510]   logging    Enable ACL match event logging
+[19/08/22 - 17:01:26:511]   mac        Configure a Layer 2 ACL
+[19/08/22 - 17:01:26:512]   resource   TCAM resource usage
+[19/08/22 - 17:01:26:513]   trap       Enable sending traps for ACL match events
+[19/08/22 - 17:01:26:514]   whitelist  Whitelist configuration
+[19/08/22 - 17:01:26:515] 
+[19/08/22 - 17:01:26:531] ~[pe3]acl b
+[19/08/22 - 17:01:33:893] ~[pe3]acl basic ?
+[19/08/22 - 17:01:34:685]   INTEGER<2000-2999>  Basic ACL number
+[19/08/22 - 17:01:34:686]   name                Specify a named ACL
+[19/08/22 - 17:01:34:686] 
+[19/08/22 - 17:01:34:702] ~[pe3]acl basic na
+[19/08/22 - 17:01:36:286] ~[pe3]acl basic name lxy
+[19/08/22 - 17:01:38:407] ~[pe3-acl-ipv4-basic-lxy]
+[19/08/22 - 17:01:39:148] ~[pe3-acl-ipv4-basic-lxy]
+[19/08/22 - 17:01:39:356] ~[pe3-acl-ipv4-basic-lxy]
+[19/08/22 - 17:01:39:524] ~[pe3-acl-ipv4-basic-lxy]
+[19/08/22 - 17:01:39:676] ~[pe3-acl-ipv4-basic-lxy]com
+[19/08/22 - 17:01:41:795] ~[pe3-acl-ipv4-basic-lxy]commit '
+[19/08/22 - 17:01:42:366]                                 ^
+[19/08/22 - 17:01:42:366]  % Too many parameters found at '^' position.
+[19/08/22 - 17:01:42:366] ~[pe3-acl-ipv4-basic-lxy]commit '
+[19/08/22 - 17:01:46:221]                                 ^
+[19/08/22 - 17:01:46:221]  % Too many parameters found at '^' position.
+[19/08/22 - 17:01:46:221] ~[pe3-acl-ipv4-basic-lxy]commo
+[19/08/22 - 17:01:47:755] ~[pe3-acl-ipv4-basic-lxy]commo[1D[J[1D[J[1D[J[1D[J[1D[J
+[19/08/22 - 17:01:49:691] ~[pe3-acl-ipv4-basic-lxy]
+[19/08/22 - 17:01:49:851] ~[pe3-acl-ipv4-basic-lxy]comm
+[19/08/22 - 17:01:51:467] ~[pe3-acl-ipv4-basic-lxy]commit 
+[19/08/22 - 17:01:51:930] Wait for the configuration commit: Done.
+[19/08/22 - 17:02:11:223] ~[pe3-acl-ipv4-basic-lxy]qu 
+[19/08/22 - 17:02:13:530] ~[pe3]qu 
+[19/08/22 - 17:02:15:107] <pe3>
+[19/08/22 - 17:02:15:794] <pe3>
+[19/08/22 - 17:02:15:970] <pe3>dis
+[19/08/22 - 17:02:17:260] <pe3>display lo
+[19/08/22 - 17:02:17:972] <pe3>display logfile [1D[J[1D[J[1D[J[1D[J[1D[Jbu
+[19/08/22 - 17:02:20:107] <pe3>display logbuffer 
+[19/08/22 - 17:02:20:522] Log buffer: Enabled
+[19/08/22 - 17:02:20:523] Max buffer size: 1024
+[19/08/22 - 17:02:20:526] Actual buffer size: 512
+[19/08/22 - 17:02:20:527] Dropped messages: 0
+[19/08/22 - 17:02:20:529] Overwritten messages: 0
+[19/08/22 - 17:02:20:530] Current messages: 21
+[19/08/22 - 17:02:20:531] Some messages might not be displayed due to permission issues.
+[19/08/22 - 17:02:20:531] %Aug 19 17:03:02:372 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.1.110-User=**; Command is reset logbuffer
+[19/08/22 - 17:02:20:532] %Aug 19 17:03:04:655 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.1.110-User=**; Command is system-view private
+[19/08/22 - 17:02:20:532] %Aug 19 17:03:06:955 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.1.110-User=**; Command is system-view private
+[19/08/22 - 17:02:20:533] %Aug 19 17:03:07:891 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.1.110-User=**; Command is system-view private
+[19/08/22 - 17:02:20:533] %Aug 19 17:03:08:423 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.1.110-User=**; Command is system-view private
+[19/08/22 - 17:02:20:534] %Aug 19 17:03:08:791 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.1.110-User=**; Command is system-view private
+[19/08/22 - 17:02:20:534] %Aug 19 17:03:09:111 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.1.110-User=**; Command is system-view private
+[19/08/22 - 17:02:20:535] %Aug 19 17:03:11:167 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.1.110-User=**; Command is system-view private
+[19/08/22 - 17:02:20:538] %Aug 19 17:03:14:861 2022 pe3 SHELL/5/SHELL_SAVEPOINT_SUCCESS: Created a new rollback point.
+[19/08/22 - 17:02:20:538] %Aug 19 17:03:20:999 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.1.110-User=**; Command is system-view private
+[19/08/22 - 17:02:20:539] %Aug 19 17:03:43:073 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.8.112-User=**; Command is acl basic name lxy
+[19/08/22 - 17:02:20:542] %Aug 19 17:03:43:078 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.8.112-User=**; Command is acl basic name lxy
+[19/08/22 - 17:02:20:543] %Aug 19 17:03:47:039 2022 pe3 SHELL/4/SHELL_CMD_MATCHFAIL: -User=**-IPAddr=172.16.8.112; Command commit ' in view acl-ipv4-basic-lxy failed to be matched.
+[19/08/22 - 17:02:20:544] %Aug 19 17:03:50:895 2022 pe3 SHELL/4/SHELL_CMD_MATCHFAIL: -User=**-IPAddr=172.16.8.112; Command commit ' in view acl-ipv4-basic-lxy failed to be matched.
+[19/08/22 - 17:02:20:545] %Aug 19 17:03:56:550 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.8.112-User=**; Command is commit
+[19/08/22 - 17:02:20:546] %Aug 19 17:03:56:642 2022 pe3 SHELL/5/SHELL_COMMIT_SUCCESS: -Line=vty2-IPAddr=172.16.8.112-User=**; Target configuration successfully committed.
+[19/08/22 - 17:02:20:546] ---- More ----               %Aug 19 17:04:14:762 2022 pe3 SHELL/5/SHELL_SAVEPOINT_SUCCESS: Created a new rollback point.
+[19/08/22 - 17:02:21:112] %Aug 19 17:04:15:891 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.8.112-User=**; Command is acl basic name lxy
+[19/08/22 - 17:02:21:112] %Aug 19 17:04:15:893 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.8.112-User=**; Command is acl basic name lxy
+[19/08/22 - 17:02:21:112] %Aug 19 17:04:18:167 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.8.112-User=**; Command is qu
+[19/08/22 - 17:02:21:112] %Aug 19 17:04:18:782 2022 pe3 SHELL/6/SHELL_CMD: -Line=vty2-IPAddr=172.16.8.112-User=**; Command is qu
+[19/08/22 - 17:02:21:117] <pe3> sys 
+[19/08/22 - 17:03:37:877] System View: return to User View with Ctrl+Z.
+[19/08/22 - 17:03:37:877] [pe3]dis
+[19/08/22 - 17:03:38:537] [pe3]display inte
+[19/08/22 - 17:03:39:221] [pe3]display interface b
+[19/08/22 - 17:03:39:600] [pe3]display interface brief 
+[19/08/22 - 17:03:40:391] Brief information on interfaces in route mode:
+[19/08/22 - 17:03:40:392] Link: ADM - administratively down; Stby - standby
+[19/08/22 - 17:03:40:392] Protocol: (s) - spoofing
+[19/08/22 - 17:03:40:393] Interface                         Link Protocol Primary IP      Description      
+[19/08/22 - 17:03:40:394] InLoop0                           UP   UP(s)    --              
+[19/08/22 - 17:03:40:398] Loop0                             UP   UP(s)    5.5.5.5         
+[19/08/22 - 17:03:40:399] Loop1                             UP   UP(s)    --              
+[19/08/22 - 17:03:40:406] Loop2                             UP   UP(s)    33.33.33.33     
+[19/08/22 - 17:03:40:408] Loop3                             UP   UP(s)    19.19.19.19     
+[19/08/22 - 17:03:40:410] Loop4                             UP   UP(s)    148.148.148.148 
+[19/08/22 - 17:03:40:420] Loop6                             UP   UP(s)    --              
+[19/08/22 - 17:03:40:420] Loop11                            UP   UP(s)    61.61.61.61     
+[19/08/22 - 17:03:40:420] Loop33                            UP   UP(s)    --              
+[19/08/22 - 17:03:40:420] Loop88                            UP   UP(s)    88.1.1.1        
+[19/08/22 - 17:03:40:425] Loop100                           UP   UP(s)    12.12.12.12     
+[19/08/22 - 17:03:40:428] Loop101                           UP   UP(s)    40.40.40.40     
+[19/08/22 - 17:03:40:430] Loop111                           UP   UP(s)    --              
+[19/08/22 - 17:03:40:434] Loop128                           UP   UP(s)    --              
+[19/08/22 - 17:03:40:436] Loop200                           UP   UP(s)    88.88.88.88     
+[19/08/22 - 17:03:40:440] Loop1000                          UP   UP(s)    11.11.11.2      
+[19/08/22 - 17:03:40:450] MGE0/0/0                          UP   UP       172.16.94.124   
+[19/08/22 - 17:03:40:450] NULL0                             UP   UP(s)    --              
+[19/08/22 - 17:03:40:451] REG0                              UP   --       --              
+[19/08/22 - 17:03:40:451] ---- More ----               RAGG1                             DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100                           DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.1                         DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.2                         DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.3                         DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.4                         DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.5                         DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.6                         DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.7                         DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.8                         DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.9                         DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.10                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.11                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.12                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:444] RAGG100.13                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:445] RAGG100.14                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:445] RAGG100.15                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:445] RAGG100.16                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:445] RAGG100.17                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:445] RAGG100.18                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:445] RAGG100.19                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:445] RAGG100.20                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:445] RAGG100.21                        DOWN DOWN     --              
+[19/08/22 - 17:03:41:445] ---- More ----               [19/08/22 - 17:03:45:392] [pe3]   int
+[19/08/22 - 17:03:47:709] [pe3]interface  m
+[19/08/22 - 17:03:48:015] [pe3]interface  M-GigabitEthernet 0/0/0
+[19/08/22 - 17:03:52:083] [pe3-M-GigabitEthernet0/0/0]dis thi 
+[19/08/22 - 17:03:53:363] #
+[19/08/22 - 17:03:53:364] interface M-GigabitEthernet0/0/0
+[19/08/22 - 17:03:53:366]  ip address 172.16.94.124 255.255.0.0
+[19/08/22 - 17:03:53:366] #
+[19/08/22 - 17:03:53:367] return
+[19/08/22 - 17:03:53:398] [pe3-M-GigabitEthernet0/0/0]ip address 172.16.94.124 255.255.0.0[1D[1D[1D[1D[1D[1D[1D[1D[1D[1D[1D[1D[24D[Jip address 172.16.94.12 255.255.0.0[12D[23D[Jip address 172.16.94.125 255.255.0.0[12D[12C
+[19/08/22 - 17:04:06:783] [pe3-M-GigabitEthernet0/0/0]
