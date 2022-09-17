@@ -12,22 +12,27 @@ from operatemtputty import Operatemtputty
 from extractlog import ExtractLog
 from generateNetconfTcl import generateNetconfTcl
 import time
+from miboperate import MibOperate
+from testMaster_UI_StreamCreate import testMasterStreamCreate
 
 
 
 
 class Gui_Mirror():
-    def __init__(self, init_window_name):
-        self.init_window_name = init_window_name
+    def __init__(self,init_window):
+        self.init_window_name = init_window
         self.logpath = ''
         self.tclpath = ''
         self.tempconfig = ''
         self.TMdata = []
         self.hostdata = []
+        self.selectdata = []
         self.operatemtputty = Operatemtputty()
         self.filelist = []
         self.log_path = os.path.abspath(os.path.dirname(__file__)) + '\\log\\'
         self.configfile_path = os.path.abspath(os.path.dirname(__file__)) + '\\configfile\\'
+        self.tmoperate = testMasterStreamCreate()
+        # print(self.tmoperate.tm_dir_star)
 
     def set_init_window(self):
         self.init_window_name.title("魔镜脚本开发系统")
@@ -67,14 +72,18 @@ class Gui_Mirror():
         self.button8.place(x=550, y=20, anchor='nw')
         self.button9 = Button(self.init_window_name, text='保存', background="lightblue", foreground='black', width=5,command=self.save_file)
         self.button9.place(x=700, y=135, anchor='nw')
+        self.button10 = Button(self.init_window_name, text=' 模拟打流 ', background="lightblue", foreground='black', width=10, command=self.tmoperate.set_init_window)
+        self.button10.place(x=100, y=580, anchor='nw')
 
         # 输出框
         self.logtext = Text(self.init_window_name, height=4, width=70)
         self.logtext.place(x=250, y=75, anchor='nw')
-        self.tcltext = Text(self.init_window_name, height=25, width=70)
+        self.tcltext = Text(self.init_window_name, height=32, width=70)
         self.tcltext.place(x=250, y=180, anchor='nw')
         self.showpath()
         self.writetext()
+
+        # self.init_window_name.mainloop()
 
     def tree_sort_column(self,tree, col, reverse):  # Treeview、列名、排列方式
         l = [(tree.set(k, col), k) for k in tree.get_children('')]
@@ -293,16 +302,19 @@ class Gui_Mirror():
     def select_popwind(self):
         self.pop_end_wind = tkinter.Toplevel(self.init_window_name)
         self.pop_end_wind.title("选择脚本类型")
-        self.pop_end_wind.geometry('300x200+650+380')
+        self.pop_end_wind.geometry('500x100+650+380')
         self.pop_end_wind["bg"] = "Ivory"
         self.pop_end_wind.resizable(False, False)
-        funbutton = tk.Button(self.pop_end_wind, text="功能脚本", background="lightblue", foreground='black', width=10,command=self.comtcl)
+        funbutton = tk.Button(self.pop_end_wind, text="功能脚本", background="lightblue", foreground='black', width=11,command=self.comtcl)
         funbutton.pack(side=tk.LEFT, expand=1)
 
-        netbutton = tk.Button(self.pop_end_wind, text="netconf脚本", background="lightblue", foreground='black', width=10,command=self.netconftcl)
+        netbutton = tk.Button(self.pop_end_wind, text="NETCONF脚本", background="lightblue", foreground='black', width=11,command=self.netconftcl)
         netbutton.pack(side=tk.LEFT, expand=1)
 
-        netbutton = tk.Button(self.pop_end_wind, text="NEW功能脚本", background="lightblue", foreground='black', width=10, command=self.newmod)
+        netbutton = tk.Button(self.pop_end_wind, text="NEW功能脚本", background="lightblue", foreground='black', width=11, command=self.newmod)
+        netbutton.pack(side=tk.LEFT, expand=1)
+
+        netbutton = tk.Button(self.pop_end_wind, text="MIB脚本", background="lightblue", foreground='black', width=11, command=self.mibtcl)
         netbutton.pack(side=tk.LEFT, expand=1)
 
     def popwind_device(self):
@@ -741,7 +753,7 @@ class Gui_Mirror():
         # 定义弹窗
         self.popwind3 = tkinter.Toplevel(self.init_window_name)
         # self.popwind3 = tk.Tk()
-        self.popwind3.title("设备连接信息")
+        self.popwind3.title("HOST连接信息")
         self.popwind3.geometry('750x600+386+163')
         self.popwind3["bg"] = "Ivory"
 
@@ -826,12 +838,16 @@ class Gui_Mirror():
         print('保存⽂件：', file_path)
         file_text = self.tcltext.get('1.0', tk.END)
         if file_path is not None:
-            with open(file=file_path, mode='w+', encoding='gbk') as file:
+            with open(file=file_path, mode='w+', encoding='utf-8') as file:
                 file.write(file_text)
                 file.close()
 
     def startest(self):
-        self.select_popwind()
+        return_config = self.operatemtputty.confimfiletype('./log', '.topo')
+        if return_config == 1:
+            self.select_popwind()
+        else:
+            self.operatemtputty.popwarningwin("没有拓扑文件，请添加topo文件")
 
     def endtest(self):
         operator = Operatemtputty()
@@ -852,16 +868,16 @@ class Gui_Mirror():
         operator.copyfile(self.logpath, './log', self.filelist)
         self.filelist = []
         if self.tempconfig == 1:
-            extractlog = ExtractLog('./log/', resultename)
+            extractlog = ExtractLog('./log/', resultename, self.tmoperate.tm_dir_star)
             extractlog.getcfgcommand('./tclconfig')
             extractlog.creattcl()
         elif self.tempconfig == 2:
-            extractlog = ExtractLog('./log/', resultename)
+            extractlog = ExtractLog('./log/', resultename, self.tmoperate.tm_dir_star)
             extractlog.getcfgcommand('./tclconfig')
             generate = generateNetconfTcl('./log/', resultename)
             generate.creattcl()
         elif self.tempconfig == 3:
-            extractlog = ExtractLog('./log/', resultename)
+            extractlog = ExtractLog('./log/', resultename, self.tmoperate.tm_dir_star)
             extractlog.getcfgcommand('./tclconfig')
             extractlog.creattcl3cd(self.path3cd)
 
@@ -883,7 +899,7 @@ class Gui_Mirror():
     def createcomtcl(self):
         self.pop_select_wind.destroy()
         resultename = self.tclpath + '\\' + 'Mirror_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.tcl'
-        create = ExtractLog('./log/',resultename)
+        create = ExtractLog('./log/',resultename, self.tmoperate.tm_dir_star)
         create.creattcl()
         self.open_file(resultename)
 
@@ -894,9 +910,71 @@ class Gui_Mirror():
         generate.creattcl()
         self.open_file(resultename)
 
+    def mibtcl(self):
+        self.tempconfig = 4
+        self.pop_end_wind.destroy()
+        operator = Operatemtputty()
+        if operator.decidemtputty() == 1:
+            pass
+        else:
+            operator.openmtputty()
+        if operator.decide3cd() == 1:
+            pass
+        else:
+            operator.open3cd()
+        path = self.logpath + '\\3cdlog\\' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + "\\"
+        self.path3cd = path
+        operator.mkdir(path)
+        operator.operate3cd(path)
+        if self.TMdata:
+            for tm in self.TMdata:
+                tmname = tm[3] + ':' + tm[4]
+                if operator.decidedevice(tmname) == 1:
+                    pass
+                else:
+                    operator.connetdevice(tm)
+                time.sleep(3)
+                operator.protestmasterconfig(tmname)
+                time.sleep(3)
+        if self.selectdata:
+            for device in self.selectdata:
+                devicename = device[3] + ':' + device[4]
+                dutname = device[1]
+                if operator.decidedevice(devicename) == 1:
+                    pass
+                else:
+                    operator.connetdevice(device)
+                time.sleep(3)
+                operator.extraputtyset(devicename)
+                logname = device[1] + '_' + time.strftime("%Y-%m-%d %H-%M-%S", time.localtime()) + '.log'
+                self.filelist.append(logname)
+                operator.setlogging(self.logpath + '\\' + logname)
+                # operator.extraputtyset(devicename)
+                # operator.setputtylog()
+                # operator.setwindowtitle(devicename)
+                if self.hostdata:
+                    hostip = self.hostdata[0][3]
+                    operator.pre3cdconfig(devicename, dutname, hostip)
+                else:
+                    tkinter.messagebox.showinfo(title='Hi', message='请注意没有选择info-center host服务器！！！')
+                operator.startrecording(self.init_window_name, devicename, self.tempconfig, dutname)
+        else:
+            tkinter.messagebox.showinfo(title='Hi', message='请选择连接的设备')
+        tkinter.messagebox.showinfo(title='Hi', message='设置成功，请开始测试！')
+        self.init_window_name.destroy()
+        miboperate = MibOperate(self.path3cd, dutname)
+        miboperate.mib_gui()
+
 
 
 if __name__ == '__main__':
+    if getattr(sys, 'frozen', False):
+        application_path = os.path.dirname(sys.executable)
+        os.chdir(application_path)
+    elif __file__:
+        application_path = os.path.dirname(__file__)
+        os.chdir(application_path)
+
     init_window = tk.Tk()  # 实例化出一个父窗口
     mirror_gui = Gui_Mirror(init_window)
     mirror_gui.set_init_window()

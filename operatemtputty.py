@@ -541,8 +541,10 @@ class Operatemtputty:
             self.posttext(subhadle4, 'service-type ftp')
             self.posttext(subhadle4, 'service-type http https pad ssh terminal telnet')
 
+        time.sleep(3)
         # path = os.path.dirname(__file__)
         ftp.transfile(ip, username='test', password='admin123456789', path='./configfile/', filename=f'{dutname}_mirror.cfg')
+        time.sleep(3)
 
     def precomconfig(self, devicename):
         handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
@@ -1209,6 +1211,34 @@ class Operatemtputty:
         win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
         win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
 
+    def premibconfig(self, devicename, version):
+        handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+        subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
+        subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename)
+        subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename)
+        subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename)
+        if subhadle4:
+            pass
+        else:
+            handle = win32gui.FindWindow("TTYPLUSMAIN", "MTPuTTY (Multi-Tabbed PuTTY)")
+            subhadle1 = win32gui.FindWindowEx(handle, 0, "TaqDockingSite", "")
+            subhadle2 = win32gui.FindWindowEx(subhadle1, 0, "TaqDockingControl", devicename.split(':')[0])
+            subhadle3 = win32gui.FindWindowEx(subhadle2, 0, "TfrmPutty", devicename.split(':')[0])
+            subhadle4 = win32gui.FindWindowEx(subhadle3, 0, "PuTTY", devicename.split(':')[0] + " - PuTTY")
+        win32gui.PostMessage(subhadle4, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+        win32gui.PostMessage(subhadle4, win32con.WM_KEYUP, win32con.VK_RETURN, 0)  # 发送回车
+        self.posttext(subhadle4, 'return')
+        self.posttext(subhadle4, 'system-view')
+        self.posttext(subhadle4, 'snmp-agent')
+        if version =='v1':
+            self.posttext(subhadle4, 'snmp-agent sys-info version v1')
+        elif version =='v2':
+            self.posttext(subhadle4, 'snmp-agent sys-info version v2c')
+        else:
+            self.posttext(subhadle4, 'snmp-agent sys-info version all')
+        self.posttext(subhadle4, 'snmp-agent  community read public')
+        self.posttext(subhadle4, 'snmp-agent  community write private')
+
     def startrecording(self, top, devicename, config, dutname):
 
         scale = 100
@@ -1255,6 +1285,21 @@ class Operatemtputty:
                 print("\r任务进度:{:>3.0f}% [{}->{}]消耗时间:{:.2f}s".format(c, a, b, t), end="")
                 time.sleep(0.03)
         if config == 3:
+            for i in range(scale + 1):
+
+                if i == 50:
+                    self.saveconfig(devicename, dutname)
+                    self.precomconfig(devicename)
+
+                pb["value"] = i
+                top.update()
+                a = '*' * i
+                b = '.' * (scale - i)
+                c = (i / scale) * 100
+                t = time.perf_counter() - start
+                print("\r任务进度:{:>3.0f}% [{}->{}]消耗时间:{:.2f}s".format(c, a, b, t), end="")
+                time.sleep(0.03)
+        if config == 4:
             for i in range(scale + 1):
 
                 if i == 50:
@@ -1761,8 +1806,18 @@ class Operatemtputty:
         # test = "pscp -pw 123456 root@" + ip + ":/opt/TestMaster/logs/frr_emulator.2022*.log " + path + "/" + "TMlog/"
         os.system(f'cd {path}/configfile/;ftp {ip} ;{username};{password};get {filename}')
 
+    def confimfiletype(self, filepath, type):
+        if any(name.endswith((type)) for name in os.listdir(filepath)):
+            return 1
+        else:
+            return 0
+
+
+
 # ss=Operatemtputty()
-# ss.del_files("./log")
+#
+# test=ss.confimfiletype("./log", '.topo')
+# print(test)
 
 
 # ss.operate3cd()

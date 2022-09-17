@@ -1,0 +1,1 @@
+{"Device 1": {"deviceName": "Device 1", "deviceId": 1, "intfName": "1/0", "ipv4": "true", "ipv6": "true", "vlan": "false", "port_attr": {"description":""}, "protocol": []}, "Device 2": {"deviceName": "Device 2", "deviceId": 2, "intfName": "1/1", "ipv4": "true", "ipv6": "true", "vlan": "false", "port_attr": {"description":""}, "protocol": []}}

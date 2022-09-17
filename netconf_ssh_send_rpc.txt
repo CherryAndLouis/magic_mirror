@@ -1,0 +1,25 @@
+# -*- coding=utf-8 -*-
+import sys
+import time
+import netconf
+from netconf.client import NetconfSSHSession
+
+def ssh_send_rpc(host, port=830, username='admin', password='admin', rpc_xml=None, timeout=20000):
+    try:
+        session = NetconfSSHSession(host, port, username, password)
+        rpc_xml = '<' + rpc_xml
+        return_xml = session.send_rpc(rpc=rpc_xml.strip(), timeout=int(timeout))
+        #return_xml_2 = session.send_rpc(rpc='<commit xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"/>', timeout=int(timeout))
+
+        #ret = return_xml[-1] + return_xml_2[-1]
+        return return_xml[-1]
+        session.close()
+    except netconf.error.NetconfError as net_err:
+        return str(net_err)
+    except netconf.error.SessionError as ses_err:
+        return str(ses_err)
+    except Exception as e:
+        return str(e)
+
+reply_xml = ssh_send_rpc(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])
+print(reply_xml.replace('<?xml version="1.0" encoding="UTF-8"?>',''))

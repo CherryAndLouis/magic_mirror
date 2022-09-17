@@ -8,12 +8,13 @@ from publicmeth import PublicMeth
 
 class ExtractLog:
 
-    def __init__(self, filepath="./log/", result_file="./result.tcl"):
+    def __init__(self, filepath="./log/", result_file="./result.tcl", tm_dir={}):
         self.filepath = filepath
         self.result_file = result_file
         self.operatemtputty = Operatemtputty()
         self.operatemtputty.del_notutf_8('./log')
         self.publicmeth = PublicMeth()
+        self.tm_dir = tm_dir
 
     def returnindex(self, result_data, index):
         for j in range(len(result_data[:index]) - 1, -1, -1):
@@ -284,6 +285,8 @@ class ExtractLog:
         tmdata = self.createTM()
         for data in tmdata:
             result_data.append(data)
+        if self.tm_dir:
+            result_data.append(self.tm_dir)
         result_data.sort(key=itemgetter('time'))
         print_data.sort(key=itemgetter('time'))
         # print(result_data)
@@ -499,7 +502,7 @@ class ExtractLog:
                 debug_check = re.compile('^debug').findall(k.get('config').lstrip())
 
                 # 确定是否为check项
-                if disItem or ping_check or capture_check or dir_check or tracert_check or debug_check or viewlist_num==199:
+                if disItem or ping_check or capture_check or dir_check or tracert_check or debug_check or viewlist_num==199 or viewlist_num==99:
                     # display 显示类信息流程处理
                     if disItem:
                         if re.compile("\|\s*in").findall(k.get("config")) or re.compile("\|\s*ex").findall(k.get("config")):
@@ -587,6 +590,12 @@ class ExtractLog:
                         dutlist.append(dut)
                         checkdatelist.append(date)
                         checknumlist.append(199)
+                        checklist.append(k.get('config'))
+
+                    if viewlist_num == 99:
+                        dutlist.append(dut)
+                        checkdatelist.append(date)
+                        checknumlist.append(99)
                         checklist.append(k.get('config'))
                 # 非check配置逻辑
                 else:
@@ -758,7 +767,7 @@ class ExtractLog:
         return config_data
 
     def deallogbak3cd(self, path):
-        result_data, print_data, configreturn = self.disposelog()
+        # result_data, print_data, configreturn = self.disposelog()
         result_data = self.publicmeth.getconfig(path)
         link_dir, ip_dir, ipv6_dir = self.dealtopo()
         result_data = self.transip(result_data, ip_dir, ipv6_dir, link_dir)
@@ -1999,6 +2008,9 @@ class ExtractLog:
                 result_file_o.write(tmender_config)
                 tmheader.close()
                 tmender.close()
+            elif temp_check_num[index] == 99:
+                result_file_o.write(value)
+
             # elif temp_check_num[index] == 99:
             #     check = '}'
             #     result_file_o.write(check)
@@ -2342,6 +2354,8 @@ class ExtractLog:
                     result_file_o.write(tmender_config)
                     tmheader.close()
                     tmender.close()
+                elif temp_check_num[index] == 99:
+                    result_file_o.write(value)
                 # elif temp_check_num[index] == 99:
                 #     check = '}'
                 #     result_file_o.write(check)
@@ -2478,3 +2492,5 @@ class ExtractLog:
         else:
             pass
 
+# test = ExtractLog()
+# test.creattcl3cd("D:\魔镜脚本开发系统\\Git\\magic_mirror\\devicelog\\3cdlog\\2022-09-13 16-58-25\\")

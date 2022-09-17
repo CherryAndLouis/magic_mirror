@@ -1,3 +1,3 @@
-#MAP:DUT1 PORT1-GigabitEtherne2/0/3 PORT2-GigabitEtherne2/0/1,RT2 PORT1-GigabitEthernet1/0/1 PORT2-GigabitEthernet1/0/2,RT3 PORT1-GigabitEthernet2/0/3 PORT2-GigabitEthernet2/0/1
+#MAP:DUT1 PORT1->GigabitEtherne2/0/3 PORT2->GigabitEtherne2/0/1,RT2 PORT1->GigabitEthernet1/0/1 PORT2->GigabitEthernet1/0/2,RT3 PORT1->GigabitEthernet2/0/3 PORT2->GigabitEthernet2/0/1
 #rtentry:DUT1 PORT1-1.2.0.1 PORT2-1.1.0.1,RT3 PORT1-1.2.0.2 PORT2-1.1.0.2
 #rtentryv6=DUT1 PORT1-2001::1 PORT2-1.1.0.1,RT3 PORT1-1.2.0.2 PORT2-1.1.0.2

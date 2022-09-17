@@ -1,0 +1,5 @@
+('D:\\魔镜脚本开发系统\\Git\\magic_mirror\\build\\mirrorGui\\pyasn1-0.4.2-py3.6.egg',
+ None,
+ {'*.cp36-win_amd64.pyd', '*.py', '*.pyw', '*.pyc', '*.pyd', 'EGG-INFO'},
+ 'DATA',
+ [])
